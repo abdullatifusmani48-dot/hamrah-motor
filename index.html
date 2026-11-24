@@ -64,3 +64,26 @@ $('exportBtn').onclick=()=>{let blob=new Blob([JSON.stringify({app:'hamrah-motor
 $('restoreFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let x=JSON.parse(await f.text()),d=x.data||x;if(!d||typeof d.income!=='object'||!Array.isArray(d.expenses))throw Error();let n={income:d.income||{},expenses:d.expenses||[],carSpend:d.carSpend||[],freeSpend:d.freeSpend||[],repairs:d.repairs||[],transfers:d.transfers||[],loans:d.loans||[],loanPayments:d.loanPayments||[],cashOps:d.cashOps||[]};if(![n.expenses,n.carSpend,n.freeSpend,n.repairs,n.transfers,n.loans,n.loanPayments,n.cashOps].every(Array.isArray))throw Error();if(!confirm('اطلاعات فعلی با فایل پشتیبان جایگزین شود؟'))return;data=n;save();render();alert('بازیابی انجام شد.')}catch(_){alert('فایل پشتیبان معتبر نیست.')}e.target.value=''};
 load();['dayDate','repairDate','transferDate','reportDate','loanDate','loanPaymentDate','cashInDate','spendDate'].forEach(id=>setJ(id,isoToday()));render();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script></body></html>
+
+<script>
+dayCalc = function(date) {
+  let income = Number(data.income[date] || 0);
+  let expenses = sum(data.expenses.filter(x => x.date === date));
+  let remain = Math.max(0, income - expenses);
+
+  let units = Math.floor(remain / 10);
+  let carUnits = Math.min(10, units);
+  let restUnits = units - carUnits;
+
+  let personalUnits = Math.floor(restUnits / 2);
+  let freeUnits = restUnits - personalUnits;
+
+  let car = carUnits * 10;
+  let personal = personalUnits * 10;
+  let free = freeUnits * 10;
+
+  return {income, expenses, remain, car, personal, free};
+};
+
+render();
+</script>
