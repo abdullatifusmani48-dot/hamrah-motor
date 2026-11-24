@@ -1,0 +1,14 @@
+
+{
+  "name": "همراه موتر - مدیریت عواید",
+  "short_name": "همراه موتر",
+  "description": "مدیریت درآمد، مصارف و پس‌انداز روزانه موتر",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#101b24",
+  "theme_color": "#101b24",
+  "lang": "fa",
+  "dir": "rtl"
+}
