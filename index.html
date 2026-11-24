@@ -87,3 +87,25 @@ dayCalc = function(date) {
 
 render();
 </script>
+
+<script>
+dayCalc = function(date) {
+  let income = Number(data.income[date] || 0);
+  let expenses = sum(data.expenses.filter(x => x.date === date));
+  let remain = Math.max(0, income - expenses);
+
+  // سهم صندوق موتر
+  let car = remain >= 450
+    ? 100
+    : Math.floor(remain * 0.2 / 10) * 10;
+
+  // تقسیم باقی پول بین پس‌انداز شخصی و پول آزاد
+  let rest = Math.floor((remain - car) / 10);
+  let personal = Math.floor(rest / 2) * 10;
+  let free = (rest - Math.floor(rest / 2)) * 10;
+
+  return {income, expenses, remain, car, personal, free};
+};
+
+render();
+</script>
