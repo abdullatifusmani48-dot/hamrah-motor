@@ -1,3 +1,4 @@
+
 {
   "name": "همراه موتر",
   "short_name": "همراه موتر",
@@ -6,7 +7,7 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#071820",
-  "theme_color": "#081b25",
-  "description": "مدیریت درآمد، مصارف و پس‌اندازهای موتر"
+  "background_color": "#06140f",
+  "theme_color": "#10251c",
+  "description": "مدیریت هوشمند درآمد، مصارف، صندوق‌ها و قرضه‌ها"
 }
