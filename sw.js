@@ -20,8 +20,7 @@ self.addEventListener('activate', event => {
     caches.keys()
       .then(keys =>
         Promise.all(
-          keys
-            .filter(key => key !== CACHE)
+          keys.filter(key => key !== CACHE)
             .map(key => caches.delete(key))
         )
       )
@@ -45,7 +44,6 @@ self.addEventListener('fetch', event => {
             cache.put(event.request, copy);
           });
         }
-
         return response;
       })
       .catch(() =>
