@@ -3,173 +3,82 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10251c">
-<title>همراه موتر | مدیریت مالی</title>
+<title>همراه موتر</title>
 <link rel="manifest" href="./manifest.json">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
-
-:root{
---bg:#06140f;--panel:#10251c;--panel2:#173326;
---line:#31513d;--text:#f5f2e8;--muted:#a5b6a7;
---mint:#82d8a7;--gold:#e8c78a;--blue:#91b9e8;
---red:#e99191;
-}
 *{box-sizing:border-box}
 body{
-margin:0;min-height:100vh;padding-bottom:100px;
-color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;
-background:radial-gradient(ellipse at 90% 0%,#a17b3820,transparent 35%),
-linear-gradient(160deg,#06140f,#091b14 55%,#07130e);
+ margin:0;padding:15px 15px 90px;
+ background:#091810;color:#f5f2e8;
+ font-family:Tahoma,Arial,sans-serif;
 }
-button,input,select{font:inherit}
-button{cursor:pointer}
-.app{width:min(100%,720px);margin:auto;padding:18px 15px}
-.topbar,.brand,.hero-head,.hero-foot,.section-head,.wallet-top,.record{
-display:flex;justify-content:space-between;align-items:center;gap:9px
+.app{max-width:700px;margin:auto}
+header{text-align:center;padding:15px;color:#e8c78a}
+header h1{margin:5px;font-size:25px}
+header p{font-size:12px;color:#a5b6a7}
+.panel{
+ background:#13291e;border:1px solid #31513d;
+ border-radius:17px;padding:15px;margin:12px 0;
 }
-.topbar{margin:7px 2px 22px}
-.brand{justify-content:flex-start}
-.logo{
-width:47px;height:47px;border-radius:16px;display:grid;
-place-items:center;color:#172316;font-size:22px;font-weight:900;
-background:linear-gradient(145deg,#fff0c8,#e8c78a,#a77a3d)
+h2{font-size:16px;color:#e8c78a;margin:5px 0 14px}
+.balance{
+ background:linear-gradient(135deg,#1b4930,#10251c);
+ border:1px solid #b99a5b;border-radius:20px;
+ padding:20px;text-align:center;
 }
-.brand h1{font-size:19px;margin:0}
-.brand small,.wallet small,.stat small,.record small{color:var(--muted)}
-.brand small{font-size:10px}
-.icon-btn,.close{
-border:1px solid var(--line);border-radius:13px;
-color:var(--gold);background:var(--panel);padding:10px
+.balance small{color:#c9d7c9}
+.balance strong{display:block;font-size:30px;margin:10px}
+.wallets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wallet{
+ background:#1a3526;border:1px solid #31513d;
+ border-radius:13px;padding:12px 5px;text-align:center;
 }
-.hero{
-padding:23px 20px 20px;border-radius:28px;
-background:linear-gradient(135deg,#1a3a2b,#10271d 55%,#182d21);
-border:1px solid #e8c78a55;box-shadow:0 22px 60px #0006
+.wallet small{display:block;font-size:11px;color:#c3d0c4}
+.wallet strong{display:block;font-size:15px;margin-top:8px;overflow-wrap:anywhere}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+button{
+ border:0;border-radius:12px;padding:12px 8px;
+ font-size:13px;font-weight:bold;cursor:pointer;
 }
-.eyebrow{font-size:11px;color:var(--gold);font-weight:800}
-.live{font-size:10px;color:#b8e9c8}
-.total-label{font-size:12px;color:#c2d0c3;margin-top:23px}
-.total{font-size:clamp(30px,8vw,43px);font-weight:900;margin:4px 0}
-.currency{font-size:12px;color:var(--gold)}
-.hero-foot{margin-top:17px;align-items:end}
-.hero-foot small{display:block;color:#b4c5b7;font-size:10px}
-.hero-foot strong{display:block;font-size:14px;margin-top:4px}
-.hero-mark{font-size:10px;color:var(--gold)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-.wallets{margin:14px 0 22px}
-.wallet,.stat,.panel{
-border:1px solid var(--line);
-background:linear-gradient(145deg,#183326e8,#10231a);
-border-radius:18px;padding:13px 10px;
+.action{background:#e8c78a;color:#172316}
+.action.green{background:#82d8a7;color:#10251c}
+.action.blue{background:#91b9e8;color:#10251c}
+.action.red{background:#e99191;color:#281313}
+input,select{
+ width:100%;padding:12px;margin-top:6px;
+ border:1px solid #45604d;border-radius:10px;
+ background:#091810;color:#fff;font-size:14px;
 }
-.wallet small{display:block;font-size:10px;margin-top:6px}
-.wallet strong,.stat strong{
-display:block;font-size:15px;direction:ltr;text-align:right;
-margin-top:5px;overflow-wrap:anywhere
+label{display:block;font-size:12px;margin-top:13px;color:#c5d2c5}
+.date-row{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:6px}
+.save{width:100%;margin-top:18px;background:#82d8a7;color:#10251c}
+.cancel{width:100%;margin-top:8px;background:#294334;color:#fff}
+.item{
+ border-bottom:1px solid #31513d;padding:12px 3px;
+ display:flex;justify-content:space-between;gap:8px;
+ align-items:center;font-size:12px;
 }
-.wallet-label{font-size:10px;color:var(--gold)}
-.section-head{margin:23px 2px 11px}
-.section-head h2{font-size:14px;margin:0}
-.section-head span{font-size:10px;color:var(--gold)}
-.panel{border-radius:22px;padding:15px;margin-bottom:12px}
-.stats{margin:0 0 12px}
-.stat{padding:11px 8px;background:#ffffff05;border-color:#ffffff12}
-.stat small{display:block;font-size:10px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0 22px}
-.action-btn,.btn{
-border:0;border-radius:14px;padding:13px 7px;
-font-size:12px;font-weight:900
+.item:last-child{border:0}
+.item small{display:block;color:#a5b6a7;margin-top:5px}
+.item button{padding:6px 8px;font-size:11px;margin:2px}
+.edit{background:#91b9e8;color:#10251c}
+.delete{background:#e99191;color:#281313}
+.hidden{display:none!important}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+.tabs button{background:#294334;color:#fff;font-size:11px}
+.tabs button.active{background:#e8c78a;color:#172316}
+.notice{font-size:11px;color:#a5b6a7;line-height:1.8}
+#toast{
+ position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+ background:#e8c78a;color:#172316;padding:12px 18px;
+ border-radius:12px;display:none;z-index:20;font-size:12px;
 }
-.green{background:linear-gradient(110deg,#b5edc4,#71c993);color:#092015}
-.gold{background:linear-gradient(110deg,#fff0c8,#d4ae70);color:#33220d}
-.outline{background:#82d8a710;border:1px solid #82d8a755;color:var(--mint)}
-.blue{background:#91b9e81a;border:1px solid #91b9e855;color:var(--blue)}
-.red{background:#e9919116;border:1px solid #e9919144;color:var(--red)}
-.tabs{display:flex;gap:7px;overflow-x:auto;padding:2px 0 10px}
-.tabs button{
-flex:0 0 auto;border:1px solid var(--line);
-background:#ffffff07;color:var(--muted);
-border-radius:12px;padding:9px 13px;font-size:11px
-}
-.tabs button.active{
-color:#182316;background:linear-gradient(110deg,#fff0c8,#d8b477);
-font-weight:900
-}
-.field{margin:12px 0}
-.field label{display:block;color:#bdcbbd;font-size:11px;margin-bottom:7px}
-.field input,.field select{
-width:100%;background:#091a12;border:1px solid #ffffff20;
-color:var(--text);padding:11px;border-radius:12px;font-size:13px
-}
-.field select option{background:#10251c}
-.btn{width:100%;margin-top:7px;background:linear-gradient(110deg,#fff0c8,#d8b477);color:#2b210f}
-.btn.secondary{background:#ffffff08;border:1px solid var(--line);color:var(--text)}
-.notice{font-size:10px;color:var(--muted);line-height:1.9}
-.record{
-padding:11px;border:1px solid #ffffff12;border-radius:15px;
-background:#ffffff05;margin-bottom:8px
-}
-.record-icon{
-width:37px;height:37px;flex-shrink:0;display:grid;
-place-items:center;border-radius:12px;background:#82d8a719;
-color:var(--mint)
-}
-.record-info{flex:1;min-width:0}
-.record-info b{display:block;font-size:12px}
-.record-info small{display:block;font-size:10px;margin-top:3px}
-.record-side{text-align:left;flex-shrink:0}
-.record-side strong{direction:ltr;display:block;color:var(--mint);font-size:12px}
-.negative{color:var(--red)!important}
-.gold-text{color:var(--gold)!important}
-.record-actions{display:flex;gap:5px;margin-top:5px}
-.mini{background:none;border:0;color:var(--blue);font-size:10px;padding:3px}
-.mini.delete{color:var(--red)}
-.empty{text-align:center;padding:20px;color:var(--muted);font-size:11px}
-.net-line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ffffff12;font-size:11px}
-.net-line span{color:var(--muted)}
-.chart{height:110px;display:flex;align-items:end;gap:8px;padding-top:10px}
-.bar-wrap{height:100%;flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:5px}
-.bar{width:min(100%,25px);border-radius:7px;background:linear-gradient(180deg,#a5e9b9,#4d9464);min-height:3px}
-.bar-label{font-size:9px;color:var(--muted)}
-.bottom-nav{
-position:fixed;z-index:5;bottom:0;left:0;right:0;
-padding:10px 12px calc(10px + env(safe-area-inset-bottom));
-background:#091a12ed;border-top:1px solid #31513d99;
-display:flex;justify-content:center
-}
-.nav-inner{width:min(100%,650px);display:flex;justify-content:space-around}
-.nav-item{
-border:0;background:none;color:#819487;font-size:9px;
-display:flex;flex-direction:column;align-items:center;gap:4px
-}
-.nav-item span{font-size:18px}
-.nav-item.active{color:var(--gold)}
-.modal-backdrop{
-position:fixed;z-index:10;inset:0;background:#020805d9;
-display:none;align-items:end;justify-content:center;padding:10px
-}
-.modal-backdrop.show{display:flex}
-.modal{
-width:min(100%,560px);max-height:91vh;overflow:auto;
-background:linear-gradient(145deg,#183326,#102319);
-border:1px solid #e8c78a45;border-radius:25px;padding:18px
-}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
-.modal-head h3{font-size:15px;color:var(--gold)}
-.toast{
-position:fixed;z-index:20;bottom:95px;left:50%;
-transform:translate(-50%,15px);opacity:0;
-background:#e8d4a8;color:#1a2518;padding:10px 16px;
-border-radius:12px;font-size:11px;font-weight:800;
-transition:.25s;pointer-events:none
-}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:380px){
-.app{padding:10px}.wallet{padding:10px 7px}
-.wallet strong{font-size:13px}
+@media(max-width:390px){
+ body{padding:9px 9px 80px}
+ .wallet strong{font-size:13px}
 }
 </style>
 </head>
@@ -177,826 +86,488 @@ transition:.25s;pointer-events:none
 <body>
 <div class="app">
 
-<header class="topbar">
-<div class="brand">
-<div class="logo">هـ</div>
-<div><h1>همراه موتر</h1><small>مدیریت هوشمند امور مالی</small></div>
-</div>
-<button class="icon-btn" onclick="showBackup()">⚙</button>
+<header>
+ <h1>همراه موتر 🚘</h1>
+ <p>مدیریت درآمد، مصارف و صندوق‌ها</p>
 </header>
 
-<section class="hero">
-<div class="hero-head">
-<span class="eyebrow">داشبورد مالی</span>
-<span class="live">● فعال</span>
-</div>
-<div class="total-label">مجموع موجودی سه صندوق</div>
-<div class="total" id="totalBalance">0 <span class="currency">افغانی</span></div>
-<div class="hero-foot">
-<div><small>درآمد امروز</small><strong id="todayIncome">0</strong></div>
-<div><small>مصارف امروز</small><strong id="todayExpenses">0</strong></div>
-<div class="hero-mark" id="todayLabel">امروز</div>
-</div>
+<section class="balance">
+ <small>مجموع موجودی سه صندوق</small>
+ <strong id="totalBalance">۰</strong>
+ <small>افغانی</small>
 </section>
 
-<div class="section-head"><h2>صندوق‌های مالی</h2><span>موجودی فعلی</span></div>
-
-<section class="grid wallets">
-<div class="wallet"><div class="wallet-top">🚘 <span class="wallet-label">۱</span></div><small>صندوق موتر</small><strong id="carBalance">0</strong></div>
-<div class="wallet"><div class="wallet-top">💰 <span class="wallet-label">۲</span></div><small>پس‌انداز شخصی</small><strong id="personalBalance">0</strong></div>
-<div class="wallet"><div class="wallet-top">◇ <span class="wallet-label">۳</span></div><small>پول آزاد</small><strong id="freeBalance">0</strong></div>
-</section>
-
-<div class="actions">
-<button class="action-btn green" onclick="openForm('income')">＋ ثبت درآمد</button>
-<button class="action-btn gold" onclick="openForm('expense')">− ثبت مصرف</button>
-<button class="action-btn outline" onclick="openForm('cash')">↕ ورود / خروج پول</button>
-<button class="action-btn blue" onclick="openForm('transfer')">⇄ انتقال صندوق</button>
-<button class="action-btn gold" onclick="openForm('repair')">🔧 ترمیم موتر</button>
-<button class="action-btn outline" onclick="openForm('loan')">＋ ثبت قرضه</button>
-</div>
-
-<div class="section-head"><h2>گزارش مالی</h2><span>خلاصه عملکرد</span></div>
 <section class="panel">
-<div class="tabs" id="reportTabs">
-<button class="active" onclick="setReport('day',this)">روزانه</button>
-<button onclick="setReport('week',this)">هفتگی</button>
-<button onclick="setReport('month',this)">ماهانه</button>
-<button onclick="setReport('all',this)">کل دوره</button>
-</div>
-<div class="grid stats">
-<div class="stat"><small>درآمد</small><strong id="reportIncome">0</strong></div>
-<div class="stat"><small>مصارف</small><strong id="reportExpense">0</strong></div>
-<div class="stat"><small>خالص</small><strong id="reportNet">0</strong></div>
-</div>
-<div class="net-line"><span>مصارف ترمیم موتر</span><b id="reportRepair">0</b></div>
-<div class="net-line"><span>تعداد روزهای ثبت‌شده</span><b id="reportDays">0</b></div>
-<div class="chart" id="reportChart"></div>
+ <h2>صندوق‌های مالی</h2>
+ <div class="wallets">
+  <div class="wallet">
+   <small>صندوق موتر</small>
+   <strong id="carBalance">۰</strong>
+  </div>
+  <div class="wallet">
+   <small>پس‌انداز شخصی</small>
+   <strong id="personalBalance">۰</strong>
+  </div>
+  <div class="wallet">
+   <small>پول آزاد</small>
+   <strong id="freeBalance">۰</strong>
+  </div>
+ </div>
 </section>
 
-<div class="section-head"><h2>مدیریت قرضه‌ها</h2><span id="loanCount">۰ مورد</span></div>
 <section class="panel">
-<div class="grid stats">
-<div class="stat"><small>قرضه گرفته‌شده</small><strong id="borrowedTotal">0</strong></div>
-<div class="stat"><small>قرضه داده‌شده</small><strong id="lentTotal">0</strong></div>
-<div class="stat"><small>باقی‌مانده</small><strong id="loanRemaining">0</strong></div>
-</div>
-<div class="actions">
-<button class="action-btn gold" onclick="openForm('loan')">＋ قرضه جدید</button>
-<button class="action-btn outline" onclick="openForm('loanPay')">↘ پرداخت / دریافت</button>
-</div>
-<div id="loanList"></div>
+ <h2>ثبت عملیات</h2>
+ <div class="actions">
+  <button class="action green" onclick="openForm('income')">＋ درآمد</button>
+  <button class="action" onclick="openForm('expense')">− مصرف</button>
+  <button class="action blue" onclick="openForm('repair')">🔧 ترمیم موتر</button>
+  <button class="action" onclick="openForm('transfer')">⇄ انتقال صندوق</button>
+  <button class="action green" onclick="openForm('cash')">ورود / خروج پول</button>
+  <button class="action" onclick="openForm('loan')">ثبت قرضه</button>
+ </div>
 </section>
 
-<div class="section-head"><h2>تاریخچه معاملات</h2><span id="historyCount">۰ مورد</span></div>
+<section class="panel" id="formPanel">
+ <h2 id="formTitle">ثبت اطلاعات</h2>
+ <div id="formFields">
+  <p class="notice">برای ثبت درآمد یا مصرف، یکی از دکمه‌های بالا را انتخاب کن.</p>
+ </div>
+</section>
+
 <section class="panel">
-<div class="tabs" id="historyTabs">
-<button class="active" onclick="setHistory('all',this)">همه</button>
-<button onclick="setHistory('income',this)">درآمد</button>
-<button onclick="setHistory('expense',this)">مصارف</button>
-<button onclick="setHistory('repair',this)">ترمیم</button>
-<button onclick="setHistory('transfer',this)">انتقال</button>
-<button onclick="setHistory('cash',this)">صندوق</button>
-<button onclick="setHistory('loan',this)">قرضه</button>
-</div>
-<div id="historyList"></div>
+ <h2>تاریخچه معاملات</h2>
+ <div class="tabs">
+  <button class="active" onclick="filterHistory('all',this)">همه</button>
+  <button onclick="filterHistory('income',this)">درآمد</button>
+  <button onclick="filterHistory('expense',this)">مصارف</button>
+  <button onclick="filterHistory('repair',this)">ترمیم</button>
+  <button onclick="filterHistory('transfer',this)">انتقال</button>
+  <button onclick="filterHistory('cash',this)">صندوق</button>
+  <button onclick="filterHistory('loan',this)">قرضه</button>
+ </div>
+ <div id="historyList"></div>
 </section>
 
-<div class="section-head"><h2>پشتیبان‌گیری</h2><span>حفاظت از اطلاعات</span></div>
-<section class="panel" id="backupPanel">
-<button class="btn" onclick="exportData()">↓ دریافت نسخه پشتیبان</button>
-<button class="btn secondary" onclick="$('restoreFile').click()">↑ بازیابی نسخه پشتیبان</button>
-<input type="file" id="restoreFile" accept=".json,application/json" hidden onchange="importData(event)">
-<p class="notice">اطلاعات در حافظه همین دستگاه ذخیره می‌شود. مرتباً نسخه پشتیبان دریافت کن.</p>
+<section class="panel">
+ <h2>نسخه پشتیبان</h2>
+ <button class="action green" style="width:100%" onclick="backup()">دریافت نسخه پشتیبان</button>
+ <label for="restoreFile">بازیابی نسخه پشتیبان</label>
+ <input id="restoreFile" type="file" accept=".json" onchange="restore(event)">
+ <p class="notice">بهتر است هر چند وقت یک‌بار از اطلاعات خود نسخه پشتیبان بگیری.</p>
 </section>
 
-<p class="notice" style="text-align:center">همراه موتر · مدیریت هوشمند امور مالی</p>
 </div>
 
-<nav class="bottom-nav">
-<div class="nav-inner">
-<button class="nav-item active" onclick="goHome(this)"><span>⌂</span>خانه</button>
-<button class="nav-item" onclick="openForm('income')"><span>＋</span>درآمد</button>
-<button class="nav-item" onclick="openForm('expense')"><span>−</span>مصارف</button>
-<button class="nav-item" onclick="openForm('loan')"><span>◇</span>قرضه</button>
-<button class="nav-item" onclick="scrollToHistory(this)"><span>▤</span>تاریخچه</button>
-</div>
-</nav>
-
-<div class="modal-backdrop" id="formBackdrop" onclick="if(event.target===this)closeForm()">
-<div class="modal">
-<div class="modal-head">
-<h3 id="formTitle">ثبت اطلاعات</h3>
-<button class="close" onclick="closeForm()">×</button>
-</div>
-<div id="formFields"></div>
-<button class="btn" id="formSave" onclick="saveForm()">ذخیره اطلاعات</button>
-</div>
-</div>
-
-<div class="toast" id="toast"></div>
+<div id="toast"></div>
 
 <script>
 const KEY='hamrahMotor_v2';
 const $=id=>document.getElementById(id);
-const today=()=>new Date().toISOString().slice(0,10);
-const wallets={
-car:'صندوق موتر',
-personal:'پس‌انداز شخصی',
-free:'پول آزاد'
-};
-const walletNames=Object.keys(wallets);
+const months=['حمل','ثور','جوزا','سرطان','اسد','سنبله','میزان','عقرب','قوس','جدی','دلو','حوت'];
+const walletNames={car:'صندوق موتر',personal:'پس‌انداز شخصی',free:'پول آزاد'};
+let data=loadData();
+let currentType='',editId=null,historyFilter='all';
 
-let reportMode='day';
-let historyMode='all';
-let editing=null;
-let data=load();
-
-function emptyData(){
-return {
-income:{},expenses:[],carSpend:[],freeSpend:[],
-repairs:[],transfers:[],loans:[],
-loanPayments:[],cashOps:[]
-};
+function div(a,b){return Math.floor(a/b)}
+function mod(a,b){return a-div(a,b)*b}
+function jalCal(jy){
+ const breaks=[-61,9,38,199,426,686,756,818,1111,1181,1210,1635,2060,2097,2192,2262,2324,2394,2456,3178];
+ let bl=breaks.length,gy=jy+621,leapJ=-14,jp=breaks[0],jm,jump,n,i;
+ if(jy<jp||jy>=breaks[bl-1])return {leap:0,gy,march:20};
+ for(i=1;i<bl;i++){
+  jm=breaks[i];jump=jm-jp;
+  if(jy<jm)break;
+  leapJ+=div(jump,33)*8+div(mod(jump,33),4);
+  jp=jm;
+ }
+ n=jy-jp;
+ leapJ+=div(n,33)*8+div(mod(n,33)+3,4);
+ if(mod(jump,33)===4&&jump-n===4)leapJ++;
+ const leapG=div(gy,4)-div((div(gy,100)+1)*3,4)-150;
+ const march=20+leapJ-leapG;
+ if(jump-n<6)n=n-jump+div(jump+4,33)*33;
+ let leap=mod(mod(n+1,33)-1,4);
+ if(leap===-1)leap=4;
+ return {leap,gy,march};
 }
-
-function load(){
-try{
-const old=JSON.parse(localStorage.getItem(KEY)||'{}');
-const d={...emptyData(),...old};
-if(!d.income||Array.isArray(d.income))d.income={};
-for(const k of ['expenses','carSpend','freeSpend','repairs','transfers','loans','loanPayments','cashOps']){
-if(!Array.isArray(d[k]))d[k]=[];
+function g2d(gy,gm,gd){
+ let d=div((gy+div(gm-8,6)+100100)*1461,4)+div(153*mod(gm+9,12)+2,5)+gd-34840408;
+ return d-div(div(gy+100100+div(gm-8,6),100)*3,4)+752;
 }
-return d;
-}catch(e){return emptyData()}
+function d2g(jdn){
+ let j=4*jdn+139361631;
+ j=j+div(div(4*jdn+183187720,146097)*3,4)*4-3908;
+ let i=div(mod(j,1461),4)*5+308;
+ let gd=div(mod(i,153),5)+1,gm=mod(div(i,153),12)+1;
+ let gy=div(j,1461)-100100+div(8-gm,6);
+ return {gy,gm,gd};
 }
-
-function persist(){
-try{
-localStorage.setItem(KEY,JSON.stringify(data));
-}catch(e){toast('ذخیره‌سازی انجام نشد')}
+function j2d(jy,jm,jd){
+ let r=jalCal(jy);
+ return g2d(r.gy,3,r.march)+(jm-1)*31-div(jm,7)*(jm-7)+jd-1;
 }
-
-function uid(){
-return Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+function d2j(jdn){
+ let g=d2g(jdn),jy=g.gy-621,r=jalCal(jy);
+ let k=jdn-g2d(g.gy,3,r.march),jm,jd;
+ if(k>=0){
+  if(k<=185)return {jy,jm:1+div(k,31),jd:mod(k,31)+1};
+  k-=186;
+ }else{
+  jy--;k+=179;
+  if(r.leap===1)k++;
+ }
+ jm=7+div(k,30);jd=mod(k,30)+1;
+ return {jy,jm,jd};
 }
-
-function num(v){return Number(v)||0}
-
-function money(v){
-return num(v).toLocaleString('en-US',{maximumFractionDigits:2});
+function toJalali(iso){
+ let p=iso.split('-').map(Number);
+ return d2j(g2d(p[0],p[1],p[2]));
 }
-
-function safe(s){
-return String(s??'').replace(/[&<>"']/g,c=>({
-'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-}[c]));
+function toISO(y,m,d){
+ let g=d2g(j2d(y,m,d));
+ return `${g.gy}-${String(g.gm).padStart(2,'0')}-${String(g.gd).padStart(2,'0')}`;
 }
-
-function dateText(s){
-if(!s)return '';
-try{
-return new Intl.DateTimeFormat('fa-AF',{
-year:'numeric',month:'short',day:'numeric'
-}).format(new Date(s+'T12:00:00'));
-}catch(e){return s}
+function todayISO(){
+ let d=new Date();
+ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
-
-function toast(s){
-$('toast').textContent=s;
-$('toast').classList.add('show');
-clearTimeout(window.toastTimer);
-window.toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2300);
+function jalaliText(iso){
+ if(!iso)return '';
+ let j=toJalali(iso);
+ return `${j.jd} ${months[j.jm-1]} ${j.jy}`;
 }
-
-function sum(arr){
-return arr.reduce((a,x)=>a+num(x.amount),0);
+function monthDays(y,m){
+ if(m<=6)return 31;
+ if(m<=11)return 30;
+ return jalCal(y).leap===0?30:29;
 }
-
-function inRange(date,mode){
-if(mode==='all')return true;
-const d=new Date(date+'T12:00:00');
-const now=new Date();
-if(mode==='day')return date===today();
-if(mode==='week'){
-const start=new Date(now);
-start.setDate(now.getDate()-((now.getDay()+6)%7));
-return d>=new Date(start.toDateString())&&d<=now;
+function dateField(initial){
+ let j=toJalali(initial||todayISO());
+ let days=Array.from({length:monthDays(j.jy,j.jm)},(_,i)=>i+1);
+ let years=Array.from({length:21},(_,i)=>j.jy-10+i);
+ return `
+ <label>تاریخ هجری شمسی</label>
+ <div class="date-row">
+  <select id="fDay">${days.map(d=>`<option value="${d}" ${d===j.jd?'selected':''}>${d}</option>`).join('')}</select>
+  <select id="fMonth">${months.map((m,i)=>`<option value="${i+1}" ${i+1===j.jm?'selected':''}>${m}</option>`).join('')}</select>
+  <select id="fYear">${years.map(y=>`<option value="${y}" ${y===j.jy?'selected':''}>${y}</option>`).join('')}</select>
+ </div>
+ <p class="notice" id="datePreview">${jalaliText(initial||todayISO())}</p>`;
 }
-return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth();
+function readDate(){
+ let y=Number($('fYear').value),m=Number($('fMonth').value),d=Number($('fDay').value);
+ if(d>monthDays(y,m))throw Error('این ماه چنین روزی ندارد');
+ return toISO(y,m,d);
 }
-
-/* محاسبه درآمد و تقسیم سه صندوق */
+function refreshDays(){
+ let y=Number($('fYear').value),m=Number($('fMonth').value);
+ let day=$('fDay'),old=Number(day.value),max=monthDays(y,m);
+ day.innerHTML=Array.from({length:max},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');
+ day.value=Math.min(old,max);
+ $('datePreview').textContent=`${day.value} ${months[m-1]} ${y}`;
+}
+function loadData(){
+ let blank={income:{},expenses:[],repairs:[],transfers:[],loans:[],loanPayments:[],cashOps:[]};
+ try{
+  let saved=JSON.parse(localStorage.getItem(KEY)||'{}');
+  let result={...blank,...saved};
+  for(let k of ['expenses','repairs','transfers','loans','loanPayments','cashOps'])
+   if(!Array.isArray(result[k]))result[k]=[];
+  if(!result.income||Array.isArray(result.income))result.income={};
+  return result;
+ }catch(e){return blank}
+}
+function saveData(){localStorage.setItem(KEY,JSON.stringify(data))}
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function amount(v){return Number(v)||0}
+function fmt(v){return amount(v).toLocaleString('en-US',{maximumFractionDigits:2})}
+function total(arr){return arr.reduce((s,x)=>s+amount(x.amount),0)}
+function toast(msg){
+ $('toast').textContent=msg;$('toast').style.display='block';
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>$('toast').style.display='none',2300);
+}
 function dayCalc(date){
-const income=num(data.income[date]);
-
-// مصارف قدیمی بدون صندوق مشخص
-const expenses=sum(data.expenses.filter(
-x=>x.date===date&&!x.wallet
-));
-
-const remain=Math.max(0,income-expenses);
-const car=remain>=450?100:Math.floor(remain*.2/10)*10;
-const rest=Math.floor((remain-car)/10);
-const personal=Math.floor(rest/2)*10;
-const free=(rest-Math.floor(rest/2))*10;
-
-return {income,expenses,remain,car,personal,free};
+ let income=amount(data.income[date]);
+ let oldExpenses=total(data.expenses.filter(x=>x.date===date&&!x.wallet));
+ let remain=Math.max(0,income-oldExpenses);
+ let car=remain>=450?100:Math.floor(remain*.2/10)*10;
+ let rest=Math.floor((remain-car)/10);
+ let personal=Math.floor(rest/2)*10;
+ return {car,personal,free:(rest-Math.floor(rest/2))*10};
 }
-
-/* محاسبه موجودی تمام صندوق‌ها */
 function balances(){
-const b={car:0,personal:0,free:0};
-
-Object.keys(data.income).forEach(date=>{
-const c=dayCalc(date);
-b.car+=c.car;
-b.personal+=c.personal;
-b.free+=c.free;
-});
-
-// مصرف‌های جدید از صندوق انتخاب‌شده کسر می‌شوند
-data.expenses.forEach(x=>{
-if(x.wallet&&walletNames.includes(x.wallet)){
-b[x.wallet]-=num(x.amount);
+ let b={car:0,personal:0,free:0};
+ Object.keys(data.income).forEach(date=>{
+  let x=dayCalc(date);
+  b.car+=x.car;b.personal+=x.personal;b.free+=x.free;
+ });
+ data.expenses.forEach(x=>{
+  if(x.wallet&&b[x.wallet]!==undefined)b[x.wallet]-=amount(x.amount);
+ });
+ data.repairs.forEach(x=>b.car-=amount(x.amount));
+ data.transfers.forEach(x=>{
+  if(b[x.from]!==undefined)b[x.from]-=amount(x.amount);
+  if(b[x.to]!==undefined)b[x.to]+=amount(x.amount);
+ });
+ data.cashOps.forEach(x=>{
+  if(b[x.wallet]!==undefined)b[x.wallet]+=x.type==='in'?amount(x.amount):-amount(x.amount);
+ });
+ data.loans.forEach(x=>{
+  let w=x.wallet||'free';
+  if(b[w]!==undefined)b[w]+=x.type==='borrow'?amount(x.amount):-amount(x.amount);
+ });
+ data.loanPayments.forEach(x=>{
+  let l=data.loans.find(v=>v.id===x.loanId);
+  if(!l)return;
+  let w=l.wallet||'free';
+  if(b[w]!==undefined)b[w]+=l.type==='borrow'?-amount(x.amount):amount(x.amount);
+ });
+ return b;
 }
-});
-
-// ورود و خروج پول
-data.cashOps.forEach(x=>{
-if(!walletNames.includes(x.wallet))return;
-b[x.wallet]+=x.type==='in'?num(x.amount):-num(x.amount);
-});
-
-// انتقال میان صندوق‌ها
-data.transfers.forEach(x=>{
-if(walletNames.includes(x.from))b[x.from]-=num(x.amount);
-if(walletNames.includes(x.to))b[x.to]+=num(x.amount);
-});
-
-// ترمیم از صندوق موتر
-data.repairs.forEach(x=>b.car-=num(x.amount));
-
-// قرضه‌ها
-data.loans.forEach(x=>{
-const w=x.wallet||'free';
-if(!walletNames.includes(w))return;
-b[w]+=x.type==='borrow'?num(x.amount):-num(x.amount);
-});
-
-// تسویه قرضه
-data.loanPayments.forEach(x=>{
-const l=data.loans.find(y=>y.id===x.loanId);
-if(!l)return;
-const w=l.wallet||'free';
-if(!walletNames.includes(w))return;
-b[w]+=l.type==='borrow'?-num(x.amount):num(x.amount);
-});
-
-return b;
-}
-
 function render(){
-const b=balances();
-const d=dayCalc(today());
-
-$('carBalance').textContent=money(b.car);
-$('personalBalance').textContent=money(b.personal);
-$('freeBalance').textContent=money(b.free);
-
-$('totalBalance').innerHTML=
-money(b.car+b.personal+b.free)+
-' <span class="currency">افغانی</span>';
-
-$('todayIncome').textContent=money(d.income);
-$('todayExpenses').textContent=money(
-sum(data.expenses.filter(x=>x.date===today()))+
-sum(data.repairs.filter(x=>x.date===today()))
-);
-$('todayLabel').textContent=dateText(today());
-
-renderReport();
-renderLoans();
-renderHistory();
+ let b=balances();
+ $('carBalance').textContent=fmt(b.car);
+ $('personalBalance').textContent=fmt(b.personal);
+ $('freeBalance').textContent=fmt(b.free);
+ $('totalBalance').textContent=fmt(b.car+b.personal+b.free)+' افغانی';
+ renderHistory();
 }
-
-function renderReport(){
-const mode=reportMode;
-const dates=Object.keys(data.income).filter(x=>inRange(x,mode));
-const incomes=dates.reduce((s,x)=>s+num(data.income[x]),0);
-
-const expenses=sum(data.expenses.filter(x=>inRange(x.date,mode)));
-const repairs=sum(data.repairs.filter(x=>inRange(x.date,mode)));
-
-$('reportIncome').textContent=money(incomes);
-$('reportExpense').textContent=money(expenses+repairs);
-$('reportNet').textContent=money(incomes-expenses-repairs);
-$('reportRepair').textContent=money(repairs);
-$('reportDays').textContent=dates.length;
-
-const chartDates=mode==='day'?[today()]:dates.sort().slice(-7);
-const max=Math.max(1,...chartDates.map(x=>num(data.income[x])));
-
-$('reportChart').innerHTML=chartDates.length?
-chartDates.map(x=>{
-const h=Math.max(4,num(data.income[x])/max*75);
-return `<div class="bar-wrap">
-<div class="bar" style="height:${h}px" title="${money(data.income[x])}"></div>
-<span class="bar-label">${dateText(x).split(' ')[0]}</span>
-</div>`;
-}).join(''):
-'<div class="empty">اطلاعاتی برای نمودار وجود ندارد.</div>';
+function makeField(label,id,type='text',placeholder=''){
+ return `<label>${label}</label><input id="${id}" type="${type}" placeholder="${placeholder}">`;
 }
-
-function setReport(mode,el){
-reportMode=mode;
-document.querySelectorAll('#reportTabs button').forEach(x=>x.classList.remove('active'));
-el.classList.add('active');
-renderReport();
+function walletSelect(id){
+ return `<label>انتخاب صندوق</label><select id="${id}">
+ <option value="car">صندوق موتر</option>
+ <option value="personal">پس‌انداز شخصی</option>
+ <option value="free">پول آزاد</option>
+ </select>`;
 }
+function formDate(initial){return dateField(initial||todayISO())}
+</script>
 
-function loanRemaining(id){
-const l=data.loans.find(x=>x.id===id);
-if(!l)return 0;
-return Math.max(0,num(l.amount)-sum(data.loanPayments.filter(x=>x.loanId===id)));
+function openForm(type,recordId=null){
+ currentType=type;editId=recordId;
+ let old=recordId?data.expenses.find(x=>x.id===recordId):null;
+ let html='',title='';
+
+ if(type==='income'){
+  title='ثبت درآمد روزانه';
+  html=makeField('مبلغ درآمد به افغانی','fAmount','number','مثلاً ۱۰۰۰')+
+       formDate(todayISO())+
+       '<p class="notice">درآمد میان سه صندوق تقسیم می‌شود.</p>';
+ }
+ else if(type==='expense'){
+  title=old?'ویرایش مصرف':'ثبت مصرف';
+  html=makeField('نام مصرف','fName','text','مثلاً تیل یا غذا')+
+       makeField('مبلغ مصرف','fAmount','number','مبلغ به افغانی')+
+       walletSelect('fWallet')+
+       formDate(old?old.date:todayISO());
+ }
+ else if(type==='repair'){
+  title='ثبت ترمیم موتر';
+  html=makeField('نام ترمیم یا پرزه','fName','text','مثلاً تعویض روغن')+
+       makeField('مبلغ','fAmount','number','مبلغ به افغانی')+
+       formDate(todayISO());
+ }
+ else if(type==='transfer'){
+  title='انتقال میان صندوق‌ها';
+  html='<label>از صندوق</label><select id="fFrom"><option value="car">صندوق موتر</option><option value="personal">پس‌انداز شخصی</option><option value="free">پول آزاد</option></select>'+
+       '<label>به صندوق</label><select id="fTo"><option value="personal">پس‌انداز شخصی</option><option value="free">پول آزاد</option><option value="car">صندوق موتر</option></select>'+
+       makeField('مبلغ انتقال','fAmount','number','مبلغ به افغانی')+
+       formDate(todayISO());
+ }
+ else if(type==='cash'){
+  title='ورود یا خروج پول';
+  html='<label>نوع عملیات</label><select id="fType"><option value="in">ورود پول</option><option value="out">خروج پول</option></select>'+
+       walletSelect('fWallet')+
+       makeField('مبلغ','fAmount','number','مبلغ به افغانی')+
+       makeField('توضیحات','fName','text','اختیاری')+
+       formDate(todayISO());
+ }
+ else if(type==='loan'){
+  title='ثبت قرضه';
+  html='<label>نوع قرضه</label><select id="fType"><option value="borrow">قرضه گرفته‌ام</option><option value="lend">قرضه داده‌ام</option></select>'+
+       makeField('نام شخص یا توضیحات','fName','text','نام شخص')+
+       makeField('مبلغ قرضه','fAmount','number','مبلغ به افغانی')+
+       walletSelect('fWallet')+
+       formDate(todayISO());
+ }
+ else if(type==='loanPay'){
+  let openLoans=data.loans.filter(x=>loanLeft(x.id)>0);
+  if(!openLoans.length){toast('قرضه باقی‌مانده وجود ندارد');return}
+  title='پرداخت یا دریافت قرضه';
+  html='<label>انتخاب قرضه</label><select id="fLoan">'+
+       openLoans.map(x=>`<option value="${x.id}">${escapeHTML(x.name||'قرضه')} - باقی‌مانده ${fmt(loanLeft(x.id))}</option>`).join('')+
+       '</select>'+
+       makeField('مبلغ پرداخت یا دریافت','fAmount','number','مبلغ به افغانی')+
+       formDate(todayISO());
+ }
+
+ $('formTitle').textContent=title;
+ $('formFields').innerHTML=html+
+  '<button class="save" onclick="saveForm()">ذخیره اطلاعات</button>'+
+  '<button class="cancel" onclick="closeForm()">لغو</button>';
+
+ if(old){
+  $('fName').value=old.name||'';
+  $('fAmount').value=old.amount;
+  $('fWallet').value=old.wallet||'free';
+ }
+ if(type==='transfer')$('fTo').value='personal';
+
+ if($('fYear')){
+  $('fDay').addEventListener('change',refreshDays);
+  $('fMonth').addEventListener('change',refreshDays);
+  $('fYear').addEventListener('change',refreshDays);
+ }
+ $('formPanel').scrollIntoView({behavior:'smooth',block:'start'});
 }
-
-function renderLoans(){
-const borrowed=data.loans.filter(x=>x.type==='borrow');
-const lent=data.loans.filter(x=>x.type==='lend');
-
-$('borrowedTotal').textContent=money(sum(borrowed));
-$('lentTotal').textContent=money(sum(lent));
-$('loanRemaining').textContent=money(
-data.loans.reduce((s,l)=>s+loanRemaining(l.id),0)
-);
-$('loanCount').textContent=data.loans.length+' مورد';
-
-$('loanList').innerHTML=data.loans.length?
-[...data.loans].reverse().map(l=>`
-<div class="record">
-<div class="record-icon">${l.type==='borrow'?'↙':'↗'}</div>
-<div class="record-info">
-<b>${safe(l.name||'قرضه')}</b>
-<small>${dateText(l.date)} · ${l.type==='borrow'?'قرضه گرفته‌شده':'قرضه داده‌شده'}</small>
-<small>باقی‌مانده: ${money(loanRemaining(l.id))} افغانی</small>
-</div>
-<div class="record-side">
-<strong class="gold-text">${money(l.amount)}</strong>
-<div class="record-actions">
-<button class="mini" onclick="loanPayment('${l.id}')">پرداخت</button>
-<button class="mini delete" onclick="deleteLoan('${l.id}')">حذف</button>
-</div>
-</div>
-</div>`).join(''):
-'<div class="empty">قرضه‌ای ثبت نشده است.</div>';
-}
-
-function allRecords(){
-const a=[];
-
-Object.entries(data.income).forEach(([date,amount])=>{
-a.push({kind:'income',date,amount,name:'درآمد روزانه'});
-});
-
-data.expenses.forEach(x=>a.push({...x,kind:'expense'}));
-data.repairs.forEach(x=>a.push({...x,kind:'repair',name:x.name||'ترمیم موتر'}));
-data.transfers.forEach(x=>a.push({...x,kind:'transfer',name:'انتقال میان صندوق‌ها'}));
-data.cashOps.forEach(x=>a.push({...x,kind:'cash',name:x.type==='in'?'ورود پول به صندوق':'خروج پول از صندوق'}));
-data.loans.forEach(x=>a.push({...x,kind:'loan',name:x.name||'قرضه'}));
-data.loanPayments.forEach(x=>a.push({...x,kind:'loanPay',name:x.note||'تسویه قرضه'}));
-
-return a.sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
-}
-
-/* تاریخچه با قابلیت ویرایش و حذف مصرف */
-function renderHistory(){
-const icons={
-income:'↗',expense:'−',repair:'🔧',
-transfer:'⇄',cash:'↕',loan:'◇',loanPay:'↘'
-};
-const names={
-income:'درآمد',expense:'مصرف',repair:'ترمیم موتر',
-transfer:'انتقال',cash:'عملیات صندوق',
-loan:'قرضه',loanPay:'تسویه قرضه'
-};
-
-let list=allRecords();
-
-if(historyMode!=='all'){
-if(historyMode==='loan'){
-list=list.filter(x=>x.kind==='loan'||x.kind==='loanPay');
-}else{
-list=list.filter(x=>x.kind===historyMode);
-}
-}
-
-$('historyCount').textContent=list.length+' مورد';
-
-$('historyList').innerHTML=list.length?
-list.map(x=>{
-const negative=['expense','repair'].includes(x.kind);
-return `
-<div class="record">
-<div class="record-icon">${icons[x.kind]||'•'}</div>
-<div class="record-info">
-<b>${safe(x.name||names[x.kind])}</b>
-<small>${dateText(x.date)} · ${names[x.kind]||''}</small>
-${x.kind==='expense'&&x.wallet?
-`<small>برداشت از: ${wallets[x.wallet]||''}</small>`:''}
-</div>
-<div class="record-side">
-<strong class="${negative?'negative':''}">
-${negative?'−':''}${money(x.amount)}
-</strong>
-${x.kind==='expense'?`
-<div class="record-actions">
-<button class="mini" onclick="openForm('expense','${x.id}')">✎ ویرایش</button>
-<button class="mini delete" onclick="deleteExpense('${x.id}')">حذف</button>
-</div>`:''}
-</div>
-</div>`;
-}).join(''):
-'<div class="empty">موردی برای نمایش وجود ندارد.</div>';
-}
-
-function setHistory(mode,el){
-historyMode=mode;
-document.querySelectorAll('#historyTabs button').forEach(x=>x.classList.remove('active'));
-el.classList.add('active');
-renderHistory();
-}
-
-function goHome(el){
-document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
-el.classList.add('active');
-window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function scrollToHistory(el){
-document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
-el.classList.add('active');
-$('historyList').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-function field(label,id,type='text',placeholder='',extra=''){
-return `<div class="field">
-<label>${label}</label>
-<input id="${id}" type="${type}" placeholder="${placeholder}" ${extra}>
-</div>`;
-}
-
-function selectField(label,id,options){
-return `<div class="field">
-<label>${label}</label>
-<select id="${id}">
-${options.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('')}
-</select>
-</div>`;
-}
-
-function walletOptions(){
-return walletNames.map(k=>[k,wallets[k]]);
-}
-
-/* ساخت فرم‌ها */
-function openForm(type,editId=null){
-editing={type,id:editId};
-
-let html='',title='';
-const old=editId?
-data.expenses.find(x=>x.id===editId):null;
-
-if(type==='income'){
-title='ثبت درآمد روزانه';
-html=field('مبلغ درآمد (افغانی)','fAmount','number','مثلاً 1000','min="0" step="any"')+
-field('تاریخ','fDate','date')+
-'<p class="notice">درآمد طبق قانون تقسیم سه صندوق محاسبه می‌شود.</p>';
-
-}else if(type==='expense'){
-title=old?'ویرایش مصرف':'ثبت مصرف جدید';
-html=field('عنوان مصرف','fName','text','مثلاً غذا، تیل یا مصارف روزانه')+
-field('مبلغ مصرف','fAmount','number','مبلغ به افغانی','min="0" step="any"')+
-selectField('برداشت از کدام صندوق؟','fWallet',walletOptions())+
-field('تاریخ','fDate','date')+
-'<p class="notice">مبلغ مصرف مستقیماً از صندوق انتخاب‌شده کسر می‌شود. در صورت تغییر صندوق، موجودی دوباره محاسبه خواهد شد.</p>';
-
-}else if(type==='repair'){
-title='ثبت ترمیم موتر';
-html=field('نوع ترمیم یا پرزه','fName','text','مثلاً تعویض روغن')+
-field('مبلغ مصرف','fAmount','number','مبلغ به افغانی','min="0" step="any"')+
-field('تاریخ','fDate','date')+
-'<p class="notice">مبلغ ترمیم از صندوق موتر کسر می‌شود.</p>';
-
-}else if(type==='cash'){
-title='ورود یا خروج پول';
-html=selectField('نوع عملیات','fType',[['in','ورود پول'],['out','خروج پول']])+
-selectField('صندوق','fWallet',walletOptions())+
-field('مبلغ','fAmount','number','مبلغ به افغانی','min="0" step="any"')+
-field('تاریخ','fDate','date')+
-field('یادداشت','fName','text','توضیحات اختیاری');
-
-}else if(type==='transfer'){
-title='انتقال میان صندوق‌ها';
-html=selectField('از صندوق','fFrom',walletOptions())+
-selectField('به صندوق','fTo',walletOptions())+
-field('مبلغ انتقال','fAmount','number','مبلغ به افغانی','min="0" step="any"')+
-field('تاریخ','fDate','date');
-
-}else if(type==='loan'){
-title='ثبت قرضه';
-html=selectField('نوع قرضه','fType',[
-['borrow','قرضه گرفته‌ام'],
-['lend','قرضه داده‌ام']
-])+
-field('نام شخص یا توضیحات','fName','text','نام شخص')+
-field('مبلغ قرضه','fAmount','number','مبلغ به افغانی','min="0" step="any"')+
-selectField('صندوق مربوط','fWallet',walletOptions())+
-field('تاریخ','fDate','date');
-
-}else if(type==='loanPay'){
-title='پرداخت یا دریافت قرضه';
-const options=data.loans.filter(l=>loanRemaining(l.id)>0)
-.map(l=>[l.id,`${l.name||'قرضه'} · ${money(loanRemaining(l.id))} باقی‌مانده`]);
-
-if(!options.length){
-toast('قرضه باز باقی‌مانده وجود ندارد');
-return;
-}
-
-html=selectField('انتخاب قرضه','fLoan',options)+
-field('مبلغ تسویه','fAmount','number','مبلغ به افغانی','min="0" step="any"')+
-field('تاریخ','fDate','date')+
-field('یادداشت','fName','text','توضیحات اختیاری');
-}
-
-$('formTitle').textContent=title;
-$('formFields').innerHTML=html;
-
-if($('fDate'))$('fDate').value=old?.date||today();
-
-if(old){
-$('fName').value=old.name||'';
-$('fAmount').value=old.amount;
-$('fWallet').value=old.wallet||'free';
-}
-
-if(type==='transfer')$('fTo').value='personal';
-
-$('formSave').textContent=old?'ذخیره تغییرات':'ذخیره اطلاعات';
-$('formBackdrop').classList.add('show');
-}
-
 function closeForm(){
-$('formBackdrop').classList.remove('show');
-editing=null;
+ currentType='';editId=null;
+ $('formFields').innerHTML='<p class="notice">برای ثبت عملیات، یکی از دکمه‌های بالا را انتخاب کن.</p>';
 }
-
-/* ذخیره تمام عملیات */
 function saveForm(){
-const t=editing?.type;
-if(!t)return;
+ let t=currentType;
+ if(!t)return;
+ let value=amount($('fAmount')?.value);
+ if(value<=0){toast('مبلغ را درست وارد کن');return}
+ let date;
+ try{date=readDate()}catch(e){toast(e.message);return}
 
-const amount=num($('fAmount')?.value);
-const date=$('fDate')?.value||today();
+ if(t==='income'){
+  data.income[date]=amount(data.income[date])+value;
+ }
+ else if(t==='expense'){
+  let wallet=$('fWallet').value;
+  let old=editId?data.expenses.find(x=>x.id===editId):null;
+  let previous=old?{...old}:null;
+  let item={id:old?old.id:id(),date,amount:value,wallet,name:$('fName').value.trim()||'مصرف'};
+  if(old)Object.assign(old,item);
+  else data.expenses.push(item);
+  if(balances()[wallet]<-0.001){
+   if(old)Object.assign(old,previous);
+   else data.expenses.pop();
+   toast('موجودی صندوق کافی نیست');return;
+  }
+ }
+ else if(t==='repair'){
+  if(balances().car<value){toast('موجودی صندوق موتر کافی نیست');return}
+  data.repairs.push({id:id(),date,amount:value,name:$('fName').value.trim()||'ترمیم موتر'});
+ }
+ else if(t==='transfer'){
+  let from=$('fFrom').value,to=$('fTo').value;
+  if(from===to){toast('صندوق مبدأ و مقصد باید متفاوت باشد');return}
+  if(balances()[from]<value){toast('موجودی صندوق مبدأ کافی نیست');return}
+  data.transfers.push({id:id(),date,amount:value,from,to});
+ }
+ else if(t==='cash'){
+  let wallet=$('fWallet').value,kind=$('fType').value;
+  if(kind==='out'&&balances()[wallet]<value){toast('موجودی صندوق کافی نیست');return}
+  data.cashOps.push({id:id(),date,amount:value,wallet,type:kind,name:$('fName').value.trim()});
+ }
+ else if(t==='loan'){
+  let kind=$('fType').value,wallet=$('fWallet').value;
+  if(kind==='lend'&&balances()[wallet]<value){toast('موجودی صندوق کافی نیست');return}
+  data.loans.push({id:id(),date,amount:value,type:kind,wallet,name:$('fName').value.trim()||'قرضه'});
+ }
+ else if(t==='loanPay'){
+  let loanId=$('fLoan').value;
+  let loan=data.loans.find(x=>x.id===loanId);
+  if(!loan){toast('قرضه انتخاب نشده است');return}
+  if(value>loanLeft(loanId)){toast('مبلغ از باقی‌مانده قرضه بیشتر است');return}
+  let wallet=loan.wallet||'free';
+  if(loan.type==='borrow'&&balances()[wallet]<value){toast('موجودی صندوق کافی نیست');return}
+  data.loanPayments.push({id:id(),loanId,date,amount:value});
+ }
 
-if(!Number.isFinite(amount)||amount<=0){
-toast('مبلغ را درست وارد کنید');
-return;
+ saveData();closeForm();render();toast('اطلاعات ذخیره شد');
 }
-
-if(!date){
-toast('تاریخ را انتخاب کنید');
-return;
+function loanLeft(loanId){
+ let loan=data.loans.find(x=>x.id===loanId);
+ if(!loan)return 0;
+ return Math.max(0,amount(loan.amount)-total(data.loanPayments.filter(x=>x.loanId===loanId)));
 }
-
-if(t==='income'){
-data.income[date]=num(data.income[date])+amount;
-
-}else if(t==='expense'){
-
-const wallet=$('fWallet').value;
-const old=editing.id?
-data.expenses.find(x=>x.id===editing.id):null;
-
-const record={
-id:old?old.id:uid(),
-amount,date,wallet,
-name:$('fName').value.trim()||'مصرف'
-};
-
-if(old){
-const index=data.expenses.indexOf(old);
-const previous={...old};
-
-Object.assign(old,record);
-
-if(balances()[wallet]<-0.000001){
-Object.assign(old,previous);
-toast('موجودی صندوق انتخاب‌شده کافی نیست');
-return;
+function escapeHTML(s){
+ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
-}else{
-data.expenses.push(record);
-
-if(balances()[wallet]<-0.000001){
-data.expenses.pop();
-toast('موجودی صندوق انتخاب‌شده کافی نیست');
-return;
+function filterHistory(kind,button){
+ historyFilter=kind;
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
+ button.classList.add('active');
+ renderHistory();
 }
+function historyRecords(){
+ let list=[];
+ Object.entries(data.income).forEach(([date,amount])=>list.push({kind:'income',date,amount,name:'درآمد روزانه'}));
+ data.expenses.forEach(x=>list.push({...x,kind:'expense'}));
+ data.repairs.forEach(x=>list.push({...x,kind:'repair'}));
+ data.transfers.forEach(x=>list.push({...x,kind:'transfer',name:'انتقال میان صندوق‌ها'}));
+ data.cashOps.forEach(x=>list.push({...x,kind:'cash',name:x.name||'عملیات صندوق'}));
+ data.loans.forEach(x=>list.push({...x,kind:'loan'}));
+ data.loanPayments.forEach(x=>list.push({...x,kind:'loanPay',name:'پرداخت یا دریافت قرضه'}));
+ return list.sort((a,b)=>String(b.date).localeCompare(String(a.date)));
 }
-
-}else if(t==='repair'){
-
-if(balances().car<amount){
-toast('موجودی صندوق موتر کافی نیست');
-return;
+function renderHistory(){
+ let list=historyRecords();
+ if(historyFilter!=='all'){
+  if(historyFilter==='loan')list=list.filter(x=>x.kind==='loan'||x.kind==='loanPay');
+  else list=list.filter(x=>x.kind===historyFilter);
+ }
+ let names={income:'درآمد',expense:'مصرف',repair:'ترمیم موتر',transfer:'انتقال',cash:'عملیات صندوق',loan:'قرضه',loanPay:'تسویه قرضه'};
+ $('historyList').innerHTML=list.length?list.map(x=>{
+  let actions='';
+  if(x.kind==='expense'){
+   actions=`<button class="edit" onclick="openForm('expense','${x.id}')">ویرایش</button><button class="delete" onclick="deleteExpense('${x.id}')">حذف</button>`;
+  }
+  if(x.kind==='loan'&&loanLeft(x.id)>0){
+   actions=`<button class="edit" onclick="openForm('loanPay')">تسویه قرضه</button>`;
+  }
+  let sign=['expense','repair'].includes(x.kind)?'−':'';
+  return `<div class="item">
+   <div><b>${escapeHTML(x.name||names[x.kind])}</b>
+    <small>${names[x.kind]} · ${jalaliText(x.date)}</small>
+    ${x.kind==='expense'&&x.wallet?`<small>برداشت از ${walletNames[x.wallet]}</small>`:''}
+   </div>
+   <div style="text-align:left">
+    <b>${sign}${fmt(x.amount)}</b>
+    <div>${actions}</div>
+   </div>
+  </div>`;
+ }).join(''):'<p class="notice">هنوز معامله‌ای ثبت نشده است.</p>';
 }
-
-data.repairs.push({
-id:uid(),amount,date,
-name:$('fName').value.trim()||'ترمیم موتر'
-});
-
-}else if(t==='cash'){
-
-const wallet=$('fWallet').value;
-const type=$('fType').value;
-
-if(type==='out'&&balances()[wallet]<amount){
-toast('موجودی صندوق کافی نیست');
-return;
+function deleteExpense(recordId){
+ let item=data.expenses.find(x=>x.id===recordId);
+ if(!item)return;
+ if(!confirm('این مصرف حذف شود؟'))return;
+ data.expenses=data.expenses.filter(x=>x.id!==recordId);
+ saveData();render();toast('مصرف حذف شد');
 }
-
-data.cashOps.push({
-id:uid(),amount,date,wallet,type,
-name:$('fName').value.trim()
-});
-
-}else if(t==='transfer'){
-
-const from=$('fFrom').value;
-const to=$('fTo').value;
-
-if(from===to){
-toast('صندوق مبدأ و مقصد باید متفاوت باشد');
-return;
+function backup(){
+ let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ let url=URL.createObjectURL(blob);
+ let a=document.createElement('a');
+ a.href=url;a.download='hamrah-motor-backup.json';
+ a.click();URL.revokeObjectURL(url);
 }
-
-if(balances()[from]<amount){
-toast('موجودی صندوق مبدأ کافی نیست');
-return;
+function restore(event){
+ let file=event.target.files[0];
+ if(!file)return;
+ let reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   let imported=JSON.parse(reader.result);
+   if(!confirm('اطلاعات فعلی با نسخه پشتیبان جایگزین شود؟'))return;
+   data={...data,...imported};
+   saveData();render();toast('نسخه پشتیبان بازیابی شد');
+  }catch(e){toast('فایل پشتیبان معتبر نیست')}
+  event.target.value='';
+ };
+ reader.readAsText(file);
 }
-
-data.transfers.push({id:uid(),amount,date,from,to});
-
-}else if(t==='loan'){
-
-const type=$('fType').value;
-const wallet=$('fWallet').value;
-
-if(type==='lend'&&balances()[wallet]<amount){
-toast('موجودی صندوق کافی نیست');
-return;
-}
-
-data.loans.push({
-id:uid(),amount,date,type,wallet,
-name:$('fName').value.trim()||'قرضه'
-});
-
-}else if(t==='loanPay'){
-
-const id=$('fLoan').value;
-const l=data.loans.find(x=>x.id===id);
-
-if(!l){
-toast('قرضه را انتخاب کنید');
-return;
-}
-
-const remain=loanRemaining(id);
-
-if(amount>remain){
-toast('مبلغ از باقی‌مانده قرضه بیشتر است');
-return;
-}
-
-const wallet=l.wallet||'free';
-
-if(l.type==='borrow'&&balances()[wallet]<amount){
-toast('موجودی صندوق برای پرداخت کافی نیست');
-return;
-}
-
-data.loanPayments.push({
-id:uid(),loanId:id,amount,date,
-note:$('fName').value.trim()
-});
-}
-
-persist();
-closeForm();
 render();
-toast('اطلاعات با موفقیت ثبت شد');
-}
-
-/* حذف مصرف */
-function deleteExpense(id){
-const expense=data.expenses.find(x=>x.id===id);
-if(!expense)return;
-
-if(!confirm('آیا این مصرف حذف شود؟ موجودی صندوق اصلاح خواهد شد.'))return;
-
-data.expenses=data.expenses.filter(x=>x.id!==id);
-persist();
-render();
-toast('مصرف با موفقیت حذف شد');
-}
-
-function loanPayment(id){
-openForm('loanPay');
-if($('fLoan'))$('fLoan').value=id;
-}
-
-function deleteLoan(id){
-if(data.loanPayments.some(x=>x.loanId===id)){
-toast('قرضه دارای تسویه است و حذف نمی‌شود');
-return;
-}
-
-if(!confirm('این قرضه حذف شود؟'))return;
-
-data.loans=data.loans.filter(x=>x.id!==id);
-persist();
-render();
-toast('قرضه حذف شد');
-}
-
-/* پشتیبان‌گیری */
-function exportData(){
-const blob=new Blob([
-JSON.stringify({...data,backupCreated:new Date().toISOString()},null,2)
-],{type:'application/json'});
-
-const url=URL.createObjectURL(blob);
-const a=document.createElement('a');
-a.href=url;
-a.download='hamrah-motor-backup.json';
-document.body.appendChild(a);
-a.click();
-a.remove();
-setTimeout(()=>URL.revokeObjectURL(url),1000);
-toast('نسخه پشتیبان آماده شد');
-}
-
-function importData(e){
-const file=e.target.files[0];
-if(!file)return;
-
-const reader=new FileReader();
-
-reader.onload=()=>{
-try{
-const d=JSON.parse(reader.result);
-
-if(!confirm('اطلاعات فعلی با نسخه پشتیبان جایگزین شود؟'))return;
-
-if(!d||typeof d!=='object')throw new Error('invalid');
-
-data={...emptyData(),...d};
-
-for(const k of ['expenses','carSpend','freeSpend','repairs','transfers','loans','loanPayments','cashOps']){
-if(!Array.isArray(data[k]))data[k]=[];
-}
-
-if(!data.income||Array.isArray(data.income))data.income={};
-
-persist();
-render();
-toast('بازیابی انجام شد');
-
-}catch(err){
-toast('فایل پشتیبان معتبر نیست');
-}finally{
-e.target.value='';
-}
-};
-
-reader.readAsText(file);
-}
-
-function showBackup(){
-$('backupPanel').scrollIntoView({behavior:'smooth',block:'center'});
-}
-
-render();
-
 if('serviceWorker' in navigator){
-window.addEventListener('load',()=>{
-navigator.serviceWorker.register('./sw.js').catch(()=>{});
-});
+ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 }
 </script>
 </body>
