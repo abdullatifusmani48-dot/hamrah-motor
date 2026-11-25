@@ -1,111 +1,292 @@
-<!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#081b25"><meta name="description" content="همراه موتر؛ مدیریت درآمد، مصارف، صندوق‌ها و قرضه‌ها"><link rel="manifest" href="manifest.json"><title>همراه موتر</title>
+
 <style>
-:root{--bg:#071820;--panel:#102832;--line:#29464d;--text:#f2f7f4;--muted:#9bb3b2;--mint:#69e0bd;--gold:#e8c77a;--blue:#81b9f2;--rose:#f28e91}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#1c5550 0,transparent 35%),radial-gradient(ellipse at 0 30%,#163a50 0,transparent 30%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1120px;margin:auto;padding:16px 14px 40px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 18px}.brand{display:flex;align-items:center;gap:11px}.logo{width:47px;height:47px;border-radius:16px;background:linear-gradient(145deg,#8df0cf,#b5a56d);display:grid;place-items:center;color:#08232a;font-size:25px}.brand h1{font-size:21px;margin:0}.brand p{margin:4px 0 0;color:var(--muted);font-size:11px}.date-pill,.chip{border:1px solid #41636a;background:#102d35b8;color:#d9eeea;border-radius:14px;padding:9px 12px;font-size:11px}.hero{border:1px solid #37605d;background:linear-gradient(120deg,#17433fee,#132e3bee 65%,#263a3cee);border-radius:25px;padding:20px;box-shadow:0 18px 50px #0005}.hero-head{display:flex;justify-content:space-between;gap:10px}.eyebrow{color:#a9d9cc;font-size:12px}.hero h2{font-size:23px;margin:7px 0 3px}.sub,.hint{font-size:11px;color:var(--muted)}.hero-value{font-size:34px;font-weight:800;margin:17px 0 8px}.unit{font-size:12px;color:#b9d7cf}.hero-foot{display:flex;gap:8px;flex-wrap:wrap}.chip{background:#ffffff12;border-color:#ffffff1c}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:12px 0}.wallet{border:1px solid var(--line);border-radius:19px;padding:15px;background:linear-gradient(155deg,#16343b,#0e252e);min-width:0}.wallet-top{display:flex;justify-content:space-between}.wallet-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#ffffff0e}.wallet small{color:var(--muted);font-size:11px}.wallet strong{display:block;font-size:21px;margin:12px 0 4px;overflow-wrap:anywhere}.mint{color:var(--mint)}.gold{color:var(--gold)}.blue{color:var(--blue)}.rose{color:var(--rose)}.section{margin-top:16px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.section-title h3{font-size:15px;margin:0}.section-title span{font-size:10px;color:var(--muted)}.panel{background:linear-gradient(145deg,#102b34ed,#0d242d);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 10px 35px #0002}.tabs{display:flex;gap:7px;overflow:auto;padding:3px 0 9px}.tab{border:1px solid var(--line);background:#102831;color:#a9c1be;border-radius:12px;padding:9px 12px;white-space:nowrap;font-size:11px}.tab.active{background:linear-gradient(120deg,#b6e7d5,#e3d09a);color:#10272b;font-weight:700;border-color:transparent}.view{display:none}.view.active{display:block}.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:11px}.field label{font-size:11px;color:#b7ceca}.field input,.field select{width:100%;border:1px solid #34545c;border-radius:11px;padding:11px;background:#0a2029;color:var(--text);outline:none;min-height:43px}.field input[type=checkbox]{width:18px;min-height:18px}.btn{border:0;border-radius:12px;padding:11px 15px;background:linear-gradient(120deg,#9be8ce,#e5ce8b);color:#0b272c;font-weight:800}.btn.secondary{background:#183943;color:#d7e9e4;border:1px solid #3b5a60}.btn.danger{background:#4a252b;color:#ffc2c2;border:1px solid #75424a}.btn.small{padding:6px 9px;font-size:10px}.actions{display:flex;gap:8px;flex-wrap:wrap}.notice{color:var(--muted);font-size:10px;line-height:1.8;margin-top:8px}.statline{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #29444b;font-size:11px}.statline:last-child{border:0}.statline b{font-size:12px}.chart-wrap{min-height:175px;display:flex;align-items:center;justify-content:center;overflow:hidden}.chart-wrap svg{width:100%;height:auto;max-height:250px}.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}.legend span{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block}.records{display:flex;flex-direction:column;gap:7px}.record{display:flex;justify-content:space-between;gap:8px;align-items:center;border:1px solid #29464d;background:#102a33;border-radius:13px;padding:10px}.record b{font-size:12px}.record small{display:block;color:var(--muted);font-size:10px;margin-top:4px}.amount{font-weight:800;white-space:nowrap;font-size:11px}.empty{text-align:center;color:var(--muted);font-size:11px;padding:20px 8px}footer{text-align:center;color:#779391;font-size:10px;margin:25px 0 4px}.date-help{font-size:10px;color:#a9d9cc;margin-top:-4px}.date-input{direction:ltr;text-align:left}.loan-card{border:1px solid #35545b;background:linear-gradient(145deg,#142f38,#0c222b);border-radius:15px;padding:12px;margin-bottom:9px}.loan-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.loan-head b{font-size:13px}.loan-meta{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.8}.loan-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0}.loan-numbers div{background:#ffffff08;border-radius:10px;padding:8px}.loan-numbers small{display:block;color:var(--muted);font-size:9px}.loan-numbers strong{font-size:12px;display:block;margin-top:4px}.loan-history{border-top:1px solid #29464d;padding-top:8px;margin-top:8px}.loan-history summary{font-size:10px;color:#b9d7cf;cursor:pointer}.loan-history .record{margin-top:6px}@media(max-width:680px){.app{padding:11px 11px 32px}.brand h1{font-size:19px}.date-pill{font-size:10px;padding:8px}.grid{grid-template-columns:1fr 1fr}.wallet:last-child{grid-column:span 2}.hero{padding:17px}.hero-value{font-size:29px}.two{grid-template-columns:1fr}.panel{padding:12px}}
-</style></head><body><div class="app">
-<header class="top"><div class="brand"><div class="logo">↗</div><div><h1>همراه موتر</h1><p>مدیریت هوشمند درآمد و پس‌انداز</p></div></div><div class="date-pill" id="todayLabel">امروز</div></header>
-<section class="hero"><div class="hero-head"><div><div class="eyebrow">موجودی قابل استفاده</div><h2>پول آزاد شما</h2><div class="sub">مانده انباشته پس از ثبت مصارف و انتقال‌ها</div></div><div class="chip">AFN · افغانی</div></div><div class="hero-value" id="freeBalance">0 <span class="unit">AFN</span></div><div class="hero-foot"><span class="chip" id="todayIncomeChip">درآمد امروز: 0</span><span class="chip" id="todayFreeChip">افزایش امروز: 0</span></div></section>
-<section class="grid"><div class="wallet"><div class="wallet-top"><small>صندوق موتر</small><div class="wallet-icon gold">🚗</div></div><strong class="gold" id="carBalance">0</strong><div class="hint">ترمیم و نگهداری</div></div><div class="wallet"><div class="wallet-top"><small>پس‌انداز شخصی</small><div class="wallet-icon blue">◇</div></div><strong class="blue" id="personalBalance">0</strong><div class="hint">پس‌انداز مستقل</div></div><div class="wallet"><div class="wallet-top"><small>پول آزاد</small><div class="wallet-icon mint">✦</div></div><strong class="mint" id="freeBalanceCard">0</strong><div class="hint">مانده روزهای گذشته</div></div></section>
-<section class="section"><div class="section-title"><h3>نمای زنده وضعیت مالی</h3><span>نمودارها با هر ثبت به‌روز می‌شوند</span></div><div class="two"><div class="panel"><h3>ترکیب موجودی صندوق‌ها</h3><div class="chart-wrap" id="donutChart"></div><div class="legend"><span><i class="dot" style="background:#e8c77a"></i>موتر</span><span><i class="dot" style="background:#81b9f2"></i>شخصی</span><span><i class="dot" style="background:#69e0bd"></i>آزاد</span></div></div><div class="panel"><h3>درآمد و مصارف · 7 روز اخیر</h3><div class="chart-wrap" id="weekChart"></div><div class="legend"><span><i class="dot" style="background:#69e0bd"></i>درآمد</span><span><i class="dot" style="background:#f28e91"></i>مصارف</span></div></div></div><div class="panel" style="margin-top:11px"><h3>روند افزایش صندوق‌ها · 7 روز اخیر</h3><div class="chart-wrap" id="allocChart"></div></div></section>
-<div class="tabs"><button class="tab active" data-tab="daily">ثبت روزانه</button><button class="tab" data-tab="wallets">صندوق‌ها</button><button class="tab" data-tab="charts">گراف‌ها</button><button class="tab" data-tab="loans">مدیریت قرضه‌ها</button><button class="tab" data-tab="reports">گزارش‌ها</button><button class="tab" data-tab="history">تاریخچه</button><button class="tab" data-tab="backup">پشتیبان</button></div>
-<section class="view active" id="daily"><div class="section-title"><h3>ثبت درآمد و مصارف روز</h3><span>مصرف تیل در محاسبات نیست</span></div><div class="panel"><div class="two"><div class="field"><label>تاریخ هجری شمسی</label><input class="date-input" id="dayDate" placeholder="1405-03-12" inputmode="numeric"><div class="date-help">سال-ماه-روز؛ ماه‌ها از حمل تا حوت</div></div><div class="field"><label>درآمد واقعی امروز (AFN)</label><input type="number" id="incomeAmount" min="0" step="1" placeholder="مثلاً 550"></div></div><div class="actions"><button class="btn" id="saveIncome">ثبت درآمد روز</button><button class="btn secondary" id="clearIncome">پاک‌کردن درآمد این روز</button></div><div class="notice">پس از کسر مصارف عادی، باقی‌مانده به سه صندوق تقسیم می‌شود.</div></div><div class="section"><div class="section-title"><h3>مصارف عادی همین روز</h3><span>از درآمد همان روز کم می‌شود</span></div><div class="panel"><div class="two"><div class="field"><label>شرح مصرف</label><input id="expenseTitle" placeholder="مثلاً غذا یا پارکینگ"></div><div class="field"><label>مبلغ (AFN)</label><input id="expenseAmount" type="number" min="1" step="1"></div></div><button class="btn" id="addExpense">ثبت مصرف عادی</button><div class="records" id="dailyExpenses" style="margin-top:11px"></div></div></div><div class="section"><div class="section-title"><h3>نتیجه محاسبه روز</h3><span id="selectedDateLabel"></span></div><div class="panel"><div class="statline"><span>درآمد</span><b id="dIncome">0 AFN</b></div><div class="statline"><span>مصارف عادی</span><b id="dExpense">0 AFN</b></div><div class="statline"><span>باقی‌مانده برای تقسیم</span><b id="dRemain" class="mint">0 AFN</b></div><div class="statline"><span>افزایش صندوق موتر</span><b id="dCar" class="gold">0 AFN</b></div><div class="statline"><span>افزایش پس‌انداز شخصی</span><b id="dPersonal" class="blue">0 AFN</b></div><div class="statline"><span>افزایش پول آزاد</span><b id="dFree" class="mint">0 AFN</b></div></div></div></section>
-<section class="view" id="wallets"><div class="section-title"><h3>افزودن پول تازه به صندوق</h3><span>از هر منبعی</span></div><div class="panel"><div class="two"><div class="field"><label>منبع پول</label><input id="cashInTitle" placeholder="مثلاً کمک خانواده یا درآمد دیگر"></div><div class="field"><label>افزودن به کدام صندوق؟</label><select id="cashInWallet"><option value="free">پول آزاد</option><option value="personal">پس‌انداز شخصی</option><option value="car">صندوق موتر</option></select></div></div><div class="two"><div class="field"><label>مبلغ (AFN)</label><input id="cashInAmount" type="number" min="1" step="1"></div><div class="field"><label>تاریخ هجری شمسی</label><input id="cashInDate" class="date-input" placeholder="1405-03-12"></div></div><button class="btn" id="addCashIn">ثبت پول دریافتی</button></div>
-<div class="section"><div class="section-title"><h3>مصرف از هر صندوق</h3><span>برداشت مستقیم</span></div><div class="panel"><div class="two"><div class="field"><label>برداشت از کدام صندوق؟</label><select id="spendWallet"><option value="free">پول آزاد</option><option value="personal">پس‌انداز شخصی</option><option value="car">صندوق موتر</option></select></div><div class="field"><label>مبلغ (AFN)</label><input id="spendAmount" type="number" min="1" step="1"></div></div><div class="two"><div class="field"><label>شرح مصرف</label><input id="spendTitle" placeholder="مثلاً خرید یا مصرف شخصی"></div><div class="field"><label>تاریخ هجری شمسی</label><input id="spendDate" class="date-input" placeholder="1405-03-12"></div></div><button class="btn" id="addSpend">ثبت مصرف از صندوق</button></div></div>
-<div class="section"><div class="section-title"><h3>انتقال پول میان صندوق‌ها</h3><span>انتقال درآمد تازه نیست</span></div><div class="panel"><div class="two"><div class="field"><label>از کدام صندوق؟</label><select id="transferFrom"><option value="free">پول آزاد</option><option value="car">صندوق موتر</option><option value="personal">پس‌انداز شخصی</option></select></div><div class="field"><label>به کدام صندوق؟</label><select id="transferTo"><option value="personal">پس‌انداز شخصی</option><option value="car">صندوق موتر</option><option value="free">پول آزاد</option></select></div></div><div class="two"><div class="field"><label>مبلغ انتقال (AFN)</label><input id="transferAmount" type="number" min="1" step="1"></div><div class="field"><label>تاریخ هجری شمسی</label><input id="transferDate" class="date-input" placeholder="1405-03-12"></div></div><div class="field"><label>یادداشت (اختیاری)</label><input id="transferNote"></div><button class="btn" id="addTransfer">ثبت انتقال</button></div></div>
-<div class="section"><div class="section-title"><h3>مصرف ترمیم و نگهداری موتر</h3><span>منبع پرداخت را انتخاب کن</span></div><div class="panel"><div class="two"><div class="field"><label>برداشت از کدام صندوق؟</label><select id="repairSource"><option value="car">صندوق موتر</option><option value="personal">پس‌انداز شخصی</option><option value="free">پول آزاد</option></select></div><div class="field"><label>مبلغ (AFN)</label><input id="repairAmount" type="number" min="1" step="1"></div></div><div class="two"><div class="field"><label>شرح ترمیم</label><input id="repairTitle" placeholder="مثلاً تعویض پرزه"></div><div class="field"><label>تاریخ هجری شمسی</label><input id="repairDate" class="date-input" placeholder="1405-03-12"></div></div><button class="btn" id="addRepair">ثبت مصرف ترمیم</button></div></div><div class="section"><div class="panel"><div class="statline"><span>صندوق موتر</span><b class="gold" id="carWalletValue">0 AFN</b></div><div class="statline"><span>پس‌انداز شخصی</span><b class="blue" id="personalWalletValue">0 AFN</b></div><div class="statline"><span>پول آزاد</span><b class="mint" id="freeWalletValue">0 AFN</b></div></div></div></section>
-<section class="view" id="charts"><div class="section-title"><h3>گراف‌های تحلیلی</h3></div><div class="two"><div class="panel"><h3>ترکیب موجودی</h3><div class="chart-wrap" id="donutChart2"></div></div><div class="panel"><h3>درآمد و مصارف هفته</h3><div class="chart-wrap" id="weekChart2"></div></div></div><div class="panel" style="margin-top:11px"><h3>افزایش صندوق‌ها</h3><div class="chart-wrap" id="allocChart2"></div></div></section>
-<section class="view" id="loans"><div class="section-title"><h3>مدیریت قرضه‌ها</h3><span>حساب قرضه جدا از صندوق‌ها</span></div><div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div class="wallet"><small>من قرضدار هستم</small><strong class="rose" id="debtOweTotal">0 AFN</strong><div class="hint">باقی‌مانده قرض پرداختنی</div></div><div class="wallet"><small>دیگران به من قرضدار هستند</small><strong class="mint" id="debtReceivableTotal">0 AFN</strong><div class="hint">باقی‌مانده پول دریافتنی</div></div></div><div class="section"><div class="section-title"><h3>ثبت قرض جدید</h3></div><div class="panel"><div class="two"><div class="field"><label>نوع قرضه</label><select id="loanType"><option value="borrowed">من از این شخص قرضدار هستم</option><option value="lent">این شخص به من قرضدار است</option></select></div><div class="field"><label>نام شخص</label><input id="loanPerson" maxlength="70"></div></div><div class="two"><div class="field"><label>مبلغ اصلی قرض (AFN)</label><input id="loanPrincipal" type="number" min="1" step="1"></div><div class="field"><label>تاریخ قرض</label><input id="loanDate" class="date-input" placeholder="1405-03-12"></div></div><div class="field"><label>یادداشت (اختیاری)</label><input id="loanNote" maxlength="180"></div><button class="btn" id="addLoan">ثبت قرضه</button><div class="notice">ثبت اصل قرض، به‌تنهایی موجودی صندوق را تغییر نمی‌دهد.</div></div></div>
-<div class="section"><div class="section-title"><h3>ثبت پرداخت یا دریافت قسط</h3><span>با صندوق یا از منبع بیرونی</span></div><div class="panel"><div class="field"><label>انتخاب قرضه و شخص</label><select id="paymentLoan"><option value="">انتخاب قرضه</option></select></div><div class="two"><div class="field"><label id="paymentAmountLabel">مبلغ (AFN)</label><input id="loanPaymentAmount" type="number" min="1" step="1"></div><div class="field"><label>تاریخ</label><input id="loanPaymentDate" class="date-input" placeholder="1405-03-12"></div></div><div class="field"><label style="display:flex;align-items:center;gap:9px"><input id="loanAffectWallet" type="checkbox"> این معامله در موجودی صندوق هم حساب شود</label></div><div class="two" id="loanWalletRow"><div class="field"><label id="loanWalletLabel">صندوق مربوطه</label><select id="loanWallet"><option value="free">پول آزاد</option><option value="personal">پس‌انداز شخصی</option><option value="car">صندوق موتر</option></select></div><div class="field"><label>یادداشت یا منبع پول</label><input id="loanPaymentNote" placeholder="مثلاً پول نقد بیرونی"></div></div>
-<div class="section" style="margin-top:8px"><div class="field"><label style="display:flex;align-items:center;gap:9px"><input id="directSettle" type="checkbox"> دریافت این قرض را مستقیم برای تصفیه قرض دیگر استفاده می‌کنم</label></div><div class="field" id="settleTargetWrap" style="display:none"><label>قرضی که می‌خواهی تصفیه کنی</label><select id="settleTarget"></select><div class="notice">این گزینه فقط برای دریافت قسط از شخصی است که به تو قرضدار است. مبلغ دریافت و پرداخت، هر دو در تاریخچه ثبت می‌شوند و صندوق تغییر نمی‌کند.</div></div></div><button class="btn" id="addLoanPayment">ثبت پرداخت / دریافت</button><div class="notice">اگر گزینه صندوق را فعال نکنی، معامله فقط باقی‌مانده قرض را تغییر می‌دهد. برای پرداخت قرض از پول بیرونی، گزینه را خاموش بگذار و منبع را در یادداشت بنویس.</div></div></div><div class="section"><div class="section-title"><h3>فهرست قرضه‌ها</h3></div><div id="loanList" class="records"></div></div></section>
-<section class="view" id="reports"><div class="section-title"><h3>گزارش مالی</h3><span>روزانه، هفتگی و ماهانه</span></div><div class="panel"><div class="field"><label>نوع گزارش</label><select id="reportType"><option value="day">روزانه</option><option value="week">هفتگی</option><option value="month">ماهانه</option></select></div><div class="field"><label>تاریخ مرجع هجری شمسی</label><input id="reportDate" class="date-input" placeholder="1405-03-12"></div><div id="reportResult"></div></div></section>
-<section class="view" id="history"><div class="section-title"><h3>تاریخچه ثبت‌ها</h3><span>آخرین موارد اول</span></div><div class="panel"><div class="field"><label>نوع تاریخچه</label><select id="historyType"><option value="all">همه ثبت‌ها</option><option value="income">درآمدها</option><option value="expense">مصارف عادی</option><option value="repair">مصارف ترمیم</option><option value="transfer">انتقال‌ها</option><option value="cash">پول دریافتی و مصرف صندوق</option><option value="loan">پرداخت و دریافت قرض</option></select></div><div class="records" id="historyRecords"></div></div></section>
-<section class="view" id="backup"><div class="section-title"><h3>پشتیبان‌گیری و بازیابی</h3></div><div class="panel"><p class="notice">اطلاعات در همین دستگاه ذخیره می‌شود. برای انتقال به موبایل دیگر فایل پشتیبان بساز.</p><div class="actions"><button class="btn" id="exportBtn">گرفتن فایل پشتیبان</button><label class="btn secondary" for="restoreFile">بازیابی فایل</label><input type="file" id="restoreFile" accept="application/json,.json" hidden></div></div></section><footer>همراه موتر · نسخه آفلاین · تاریخ هجری شمسی افغانستان</footer></div>
-<script>
-'use strict';
-const KEY='hamrahMotor_v2',$=id=>document.getElementById(id),num=n=>Math.round(Number(n)||0).toLocaleString('en-US');
-const MONTHS=['حمل','ثور','جوزا','سرطان','اسد','سنبله','میزان','عقرب','قوس','جدی','دلو','حوت'];
-const isoToday=()=>{let d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`},parseISO=s=>{let[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12)},isoFmt=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-function jParts(iso){let p=new Intl.DateTimeFormat('en-u-ca-persian-nu-latn',{year:'numeric',month:'numeric',day:'numeric',timeZone:'UTC'}).formatToParts(parseISO(iso)),o={};p.forEach(x=>o[x.type]=x.value);return{y:+o.year,m:+o.month,d:+o.day}}
-function toJ(iso){if(!iso)return '';let p=jParts(iso);return `${p.y}-${String(p.m).padStart(2,'0')}-${String(p.d).padStart(2,'0')}`}
-function fromJ(s){let m=String(s||'').trim().match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/);if(!m)return null;let y=+m[1],mo=+m[2],day=+m[3];if(mo<1||mo>12||day<1||day>31)return null;let start=new Date(y+621,2,18,12);for(let i=0;i<370;i++){let d=new Date(start);d.setDate(start.getDate()+i);let iso=isoFmt(d),p=jParts(iso);if(p.y===y&&p.m===mo&&p.d===day)return iso}return null}
-function jalali(iso){if(!iso)return '';let p=jParts(iso);return `${p.d} ${MONTHS[p.m-1]} ${p.y}`}const dateVal=id=>fromJ($(id).value),setJ=(id,iso)=>$(id).value=toJ(iso),shift=(iso,n)=>{let d=parseISO(iso);d.setDate(d.getDate()+n);return isoFmt(d)},uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7),sum=a=>a.reduce((t,x)=>t+(Number(x.amount)||0),0),validAmount=x=>Number.isFinite(x)&&Number.isInteger(x)&&x>0;
-let data={income:{},expenses:[],carSpend:[],freeSpend:[],repairs:[],transfers:[],loans:[],loanPayments:[],cashOps:[]};
-function load(){try{let x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&typeof x==='object')data={income:x.income||{},expenses:Array.isArray(x.expenses)?x.expenses:[],carSpend:Array.isArray(x.carSpend)?x.carSpend:[],freeSpend:Array.isArray(x.freeSpend)?x.freeSpend:[],repairs:Array.isArray(x.repairs)?x.repairs:[],transfers:Array.isArray(x.transfers)?x.transfers:[],loans:Array.isArray(x.loans)?x.loans:[],loanPayments:Array.isArray(x.loanPayments)?x.loanPayments:[],cashOps:Array.isArray(x.cashOps)?x.cashOps:[]}}catch(e){}}
-function save(){localStorage.setItem(KEY,JSON.stringify(data))}function dayCalc(date){let income=Number(data.income[date]||0),expenses=sum(data.expenses.filter(x=>x.date===date)),remain=Math.max(0,income-expenses),car=Math.floor(remain*.4),personal=Math.floor(remain*.3),free=remain-car-personal;return{income,expenses,remain,car,personal,free}}
-function allDays(){return [...new Set([...Object.keys(data.income),...data.expenses.map(x=>x.date)])].sort()}const names={car:'صندوق موتر',personal:'پس‌انداز شخصی',free:'پول آزاد'};
-function balances(){let b={car:0,personal:0,free:0};allDays().forEach(d=>{let x=dayCalc(d);b.car+=x.car;b.personal+=x.personal;b.free+=x.free});data.carSpend.forEach(x=>b.car-=+x.amount);data.freeSpend.forEach(x=>b.free-=+x.amount);data.repairs.forEach(x=>b[x.source||'car']-=+x.amount);data.transfers.forEach(x=>{b[x.from]-=+x.amount;b[x.to]+=+x.amount});data.cashOps.forEach(x=>{b[x.wallet]+=(x.type==='in'?1:-1)*Number(x.amount)});data.loanPayments.forEach(x=>{if(x.affectWallet){let l=data.loans.find(z=>z.id===x.loanId);if(l){if(l.type==='borrowed')b[x.wallet]-=+x.amount;else b[x.wallet]+=+x.amount}}});return b}
-function enough(wallet,amount){return balances()[wallet]>=amount}function rangeDates(type,ref){if(type==='day')return[ref,ref];if(type==='week'){let d=parseISO(ref),n=(d.getDay()+6)%7;return[shift(ref,-n),shift(ref,6-n)]}let d=parseISO(ref),a=new Date(d.getFullYear(),d.getMonth(),1,12),z=new Date(d.getFullYear(),d.getMonth()+1,0,12);return[isoFmt(a),isoFmt(z)]}function inR(d,a,b){return d>=a&&d<=b}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function donut(b){let v=[Math.max(0,b.car),Math.max(0,b.personal),Math.max(0,b.free)],t=v.reduce((a,x)=>a+x,0);if(!t)return '<div class="empty">پس از ثبت درآمد، نمودار نمایش داده می‌شود.</div>';let a=-90,cs=['#e8c77a','#81b9f2','#69e0bd'],p='';v.forEach((n,i)=>{if(!n)return;let z=n/t*360,q=x=>({x:90+65*Math.cos((x-90)*Math.PI/180),y:90+65*Math.sin((x-90)*Math.PI/180)}),u=q(a),w=q(a+z);p+=`<path d="M${u.x} ${u.y} A65 65 0 ${z>180?1:0} 1 ${w.x} ${w.y}" fill="none" stroke="${cs[i]}" stroke-width="18" stroke-linecap="round"/>`;a+=z});return `<svg viewBox="0 0 180 180"><circle cx="90" cy="90" r="65" fill="none" stroke="#29464d" stroke-width="18"/>${p}<text x="90" y="86" fill="#f2f7f4" text-anchor="middle" font-size="15" font-weight="700">${num(t)}</text><text x="90" y="104" fill="#9bb3b2" text-anchor="middle" font-size="9">AFN مجموع</text></svg>`}
-function bars(items,ss){let w=500,h=180,l=25,bot=25,top=10,max=Math.max(1,...items.flatMap(x=>ss.map(s=>x[s.k]||0))),slot=(w-l-8)/items.length,bw=Math.min(13,slot/(ss.length+1)),o=`<svg viewBox="0 0 ${w} ${h}"><line x1="${l}" y1="${h-bot}" x2="${w-5}" y2="${h-bot}" stroke="#426067"/>`;items.forEach((it,i)=>{ss.forEach((s,j)=>{let hh=(it[s.k]||0)/max*(h-top-bot),x=l+i*slot+slot/2-ss.length*bw/2+j*bw;o+=`<rect x="${x}" y="${h-bot-hh}" width="${bw-2}" height="${hh}" rx="3" fill="${s.c}"/>`});o+=`<text x="${l+i*slot+slot/2}" y="${h-7}" fill="#9bb3b2" font-size="9" text-anchor="middle">${it.label}</text>`});return o+'</svg>'}
-function chartRender(){let b=balances(),ds=Array.from({length:7},(_,i)=>shift(isoToday(),i-6)),it=ds.map(d=>({label:String(jParts(d).d),income:dayCalc(d).income,expense:dayCalc(d).expenses+sum(data.repairs.filter(x=>x.date===d))+sum(data.cashOps.filter(x=>x.date===d&&x.type==='out')),car:dayCalc(d).car,personal:dayCalc(d).personal,free:dayCalc(d).free})),d=donut(b),w=bars(it,[{k:'income',c:'#69e0bd'},{k:'expense',c:'#f28e91'}]),a=bars(it,[{k:'car',c:'#e8c77a'},{k:'personal',c:'#81b9f2'},{k:'free',c:'#69e0bd'}]);['donutChart','donutChart2'].forEach(id=>$(id).innerHTML=d);['weekChart','weekChart2'].forEach(id=>$(id).innerHTML=w);['allocChart','allocChart2'].forEach(id=>$(id).innerHTML=a)}
-function loanPaid(l){return sum(data.loanPayments.filter(p=>p.loanId===l.id))}function loanRemaining(l){return Math.max(0,Number(l.principal||0)-loanPaid(l))}
-function loanRender(){let owed=data.loans.filter(x=>x.type==='borrowed').reduce((t,x)=>t+loanRemaining(x),0),recv=data.loans.filter(x=>x.type==='lent').reduce((t,x)=>t+loanRemaining(x),0);$('debtOweTotal').textContent=num(owed)+' AFN';$('debtReceivableTotal').textContent=num(recv)+' AFN';let sel=$('paymentLoan'),old=sel.value;sel.innerHTML='<option value="">انتخاب قرضه</option>'+data.loans.filter(x=>loanRemaining(x)>0).map(x=>`<option value="${x.id}">${esc(x.person)} · ${x.type==='borrowed'?'من قرضدارم':'او قرضدار است'} · باقی: ${num(loanRemaining(x))} AFN</option>`).join('');if(data.loans.some(x=>x.id===old&&loanRemaining(x)>0))sel.value=old;let targets=data.loans.filter(x=>x.type==='borrowed'&&loanRemaining(x)>0);$('settleTarget').innerHTML='<option value="">انتخاب قرض پرداختنی</option>'+targets.map(x=>`<option value="${x.id}">${esc(x.person)} · باقی ${num(loanRemaining(x))}</option>`).join('');$('loanList').innerHTML=[...data.loans].sort((a,b)=>b.date.localeCompare(a.date)).map(l=>{let paid=loanPaid(l),r=loanRemaining(l),ps=data.loanPayments.filter(p=>p.loanId===l.id).sort((a,b)=>b.date.localeCompare(a.date));return `<div class="loan-card"><div class="loan-head"><div><b>${esc(l.person)}</b><div class="loan-meta">${l.type==='borrowed'?'من قرضدار هستم':'این شخص به من قرضدار است'} · ${jalali(l.date)}${l.note?' · '+esc(l.note):''}</div></div><span class="chip">${r===0?'تصفیه شده':l.type==='borrowed'?'قرض پرداختنی':'قرض دریافتنی'}</span></div><div class="loan-numbers"><div><small>اصل قرض</small><strong>${num(l.principal)}</strong></div><div><small>${l.type==='borrowed'?'پرداخت‌شده':'دریافت‌شده'}</small><strong class="blue">${num(paid)}</strong></div><div><small>باقی‌مانده</small><strong class="${r?'gold':'mint'}">${num(r)}</strong></div></div>${ps.length?`<details class="loan-history"><summary>تاریخچه پرداخت‌ها و دریافت‌ها (${ps.length})</summary>${ps.map(p=>`<div class="record"><div><b>${p.affectWallet?(l.type==='borrowed'?'پرداخت از ':'دریافت به ')+names[p.wallet]:'بدون تغییر صندوق'}${p.direct?' · تصفیه مستقیم قرض دیگر':''}</b><small>${jalali(p.date)}${p.note?' · '+esc(p.note):''}</small></div><div style="display:flex;align-items:center;gap:7px"><span class="amount">${num(p.amount)} AFN</span><button class="btn danger small" onclick="del('loanPayment','${p.id}')">حذف</button></div></div>`).join('')}</details>`:''}<div class="actions" style="margin-top:9px"><button class="btn danger small" onclick="del('loan','${l.id}')">حذف قرضه</button></div></div>`}).join('')||'<div class="empty">هنوز قرضه‌ای ثبت نشده است.</div>'}
-function report(){let ref=dateVal('reportDate');if(!ref){$('reportResult').innerHTML='<div class="empty">تاریخ شمسی معتبر وارد کن؛ نمونه: 1405-03-12</div>';return}let[a,b]=rangeDates($('reportType').value,ref),s={inc:0,ordinary:0,repairs:0,cashIn:0,cashOut:0,carAdd:0,personalAdd:0,freeAdd:0,transfers:0,loanPaid:0,loanReceived:0};allDays().filter(d=>inR(d,a,b)).forEach(d=>{let x=dayCalc(d);s.inc+=x.income;s.ordinary+=x.expenses;s.carAdd+=x.car;s.personalAdd+=x.personal;s.freeAdd+=x.free});s.repairs=sum(data.repairs.filter(x=>inR(x.date,a,b)));s.cashIn=sum(data.cashOps.filter(x=>inR(x.date,a,b)&&x.type==='in'));s.cashOut=sum(data.cashOps.filter(x=>inR(x.date,a,b)&&x.type==='out'));s.transfers=sum(data.transfers.filter(x=>inR(x.date,a,b)));data.loanPayments.filter(x=>inR(x.date,a,b)).forEach(p=>{let l=data.loans.find(z=>z.id===p.loanId);if(l){if(l.type==='borrowed')s.loanPaid+=p.amount;else s.loanReceived+=p.amount}});let rows=[['مجموع درآمد روزانه',s.inc],['مصارف عادی',s.ordinary],['افزایش صندوق موتر از درآمد روزانه',s.carAdd],['افزایش پس‌انداز شخصی از درآمد روزانه',s.personalAdd],['افزایش پول آزاد از درآمد روزانه',s.freeAdd],['مصارف ترمیم',s.repairs],['پول تازه دریافتی به صندوق‌ها',s.cashIn],['مصرف مستقیم از صندوق‌ها',s.cashOut],['انتقال میان صندوق‌ها (مجموع)',s.transfers],['پرداخت قرض‌ها',s.loanPaid],['دریافت قسط قرض‌ها',s.loanReceived]];$('reportResult').innerHTML=`<div class="notice">${jalali(a)} تا ${jalali(b)}</div>${rows.map(x=>`<div class="statline"><span>${x[0]}</span><b>${num(x[1])} AFN</b></div>`).join('')}`}
-function history(){let t=$('historyType').value,a=[];if(t==='all'||t==='income')Object.entries(data.income).forEach(([date,amount])=>a.push({date,amount,title:'درآمد روزانه',kind:'income'}));if(t==='all'||t==='expense')data.expenses.forEach(x=>a.push({...x,title:x.title,kind:'expense'}));if(t==='all'||t==='repair')data.repairs.forEach(x=>a.push({...x,title:`${x.title} · از ${names[x.source||'car']}`,kind:'repair'}));if(t==='all'||t==='transfer')data.transfers.forEach(x=>a.push({...x,title:`انتقال ${names[x.from]} به ${names[x.to]}`,kind:'transfer'}));if(t==='all'||t==='cash')data.cashOps.forEach(x=>a.push({...x,title:`${x.type==='in'?'افزودن پول':'مصرف'} · ${x.title} · ${names[x.wallet]}`,kind:'cash'}));if(t==='all'||t==='loan')data.loanPayments.forEach(x=>{let l=data.loans.find(z=>z.id===x.loanId);if(l)a.push({...x,title:`${l.type==='borrowed'?'پرداخت قرض به':'دریافت قرض از'} ${l.person}${x.direct?' · تصفیه مستقیم':''}`,kind:'loan'})});a.sort((x,y)=>y.date.localeCompare(x.date));$('historyRecords').innerHTML=a.slice(0,150).map(x=>`<div class="record"><div><b>${esc(x.title)}</b><small>${jalali(x.date)} · ${{income:'درآمد',expense:'مصرف عادی',repair:'مصرف ترمیم',transfer:'انتقال',cash:'معامله صندوق',loan:'پرداخت/دریافت قرض'}[x.kind]}</small></div><span class="amount">${num(x.amount)} AFN</span></div>`).join('')||'<div class="empty">هنوز اطلاعاتی ثبت نشده است.</div>'}
-function render(){let date=dateVal('dayDate')||isoToday(),d=dayCalc(date),b=balances();$('todayLabel').textContent=jalali(isoToday());$('freeBalance').innerHTML=`${num(b.free)} <span class="unit">AFN</span>`;$('freeBalanceCard').textContent=num(b.free);$('carBalance').textContent=num(b.car);$('personalBalance').textContent=num(b.personal);$('todayIncomeChip').textContent=`درآمد امروز: ${num(dayCalc(isoToday()).income)}`;$('todayFreeChip').textContent=`افزایش امروز: ${num(dayCalc(isoToday()).free)}`;$('carWalletValue').textContent=num(b.car)+' AFN';$('personalWalletValue').textContent=num(b.personal)+' AFN';$('freeWalletValue').textContent=num(b.free)+' AFN';$('selectedDateLabel').textContent=jalali(date);$('incomeAmount').value=data.income[date]??'';['dIncome','dExpense','dRemain','dCar','dPersonal','dFree'].forEach((id,i)=>$(id).textContent=num([d.income,d.expenses,d.remain,d.car,d.personal,d.free][i])+' AFN');$('dailyExpenses').innerHTML=data.expenses.filter(x=>x.date===date).map(x=>recordHtml(x,'مصرف عادی','expense')).join('')||'<div class="empty">برای این روز مصرفی ثبت نشده است.</div>';loanRender();chartRender();report();history()}
-function recordHtml(x,label,kind){return `<div class="record"><div><b>${esc(x.title||label)}</b><small>${jalali(x.date)} · ${label}</small></div><div style="display:flex;align-items:center;gap:7px"><span class="amount">${num(x.amount)} AFN</span><button class="btn danger small" onclick="del('${kind}','${x.id}')">حذف</button></div></div>`}
-window.del=(kind,id)=>{if(!confirm('این ثبت حذف شود؟'))return;if(kind==='expense')data.expenses=data.expenses.filter(x=>x.id!==id);if(kind==='repair')data.repairs=data.repairs.filter(x=>x.id!==id);if(kind==='transfer')data.transfers=data.transfers.filter(x=>x.id!==id);if(kind==='cash')data.cashOps=data.cashOps.filter(x=>x.id!==id);if(kind==='loanPayment')data.loanPayments=data.loanPayments.filter(x=>x.id!==id);if(kind==='loan'){data.loans=data.loans.filter(x=>x.id!==id);data.loanPayments=data.loanPayments.filter(x=>x.loanId!==id)}let b=balances();if(Object.values(b).some(v=>v<0)){alert('حذف این ثبت باعث منفی‌شدن یک صندوق می‌شود؛ ابتدا ثبت‌های وابسته را بررسی کن.');return}save();render()};
-$('saveIncome').onclick=()=>{let date=dateVal('dayDate'),v=Number($('incomeAmount').value);if(!date||!Number.isInteger(v)||v<0){alert('تاریخ شمسی معتبر و مبلغ درست وارد کن.');return}let old=data.income[date];data.income[date]=v;let b=balances();if(Object.values(b).some(x=>x<0)){if(old===undefined)delete data.income[date];else data.income[date]=old;alert('این تغییر موجودی یکی از صندوق‌ها را منفی می‌کند.');return}save();render()};
-$('clearIncome').onclick=()=>{let date=dateVal('dayDate');if(!date||!confirm('درآمد این روز حذف شود؟'))return;let old=data.income[date];delete data.income[date];if(Object.values(balances()).some(x=>x<0)){data.income[date]=old;alert('حذف ممکن نیست؛ برداشت‌ها یا انتقال‌ها به این موجودی وابسته‌اند.');return}save();render()};
-$('addExpense').onclick=()=>{let date=dateVal('dayDate'),title=$('expenseTitle').value.trim(),amount=Number($('expenseAmount').value);if(!date||!title||!validAmount(amount)){alert('تاریخ، شرح و مبلغ معتبر وارد کن.');return}let x={id:uid(),date,title,amount};data.expenses.push(x);if(Object.values(balances()).some(v=>v<0)){data.expenses.pop();alert('این مصرف باعث منفی‌شدن موجودی صندوق می‌شود.');return}save();$('expenseTitle').value='';$('expenseAmount').value='';render()};
-$('addCashIn').onclick=()=>{let x={id:uid(),type:'in',date:dateVal('cashInDate'),title:$('cashInTitle').value.trim(),wallet:$('cashInWallet').value,amount:Number($('cashInAmount').value)};if(!x.date||!x.title||!validAmount(x.amount)){alert('منبع پول، تاریخ و مبلغ معتبر وارد کن.');return}data.cashOps.push(x);save();$('cashInTitle').value='';$('cashInAmount').value='';render()};
-$('addSpend').onclick=()=>{let x={id:uid(),type:'out',date:dateVal('spendDate'),title:$('spendTitle').value.trim(),wallet:$('spendWallet').value,amount:Number($('spendAmount').value)};if(!x.date||!x.title||!validAmount(x.amount)){alert('شرح، تاریخ و مبلغ معتبر وارد کن.');return}if(!enough(x.wallet,x.amount)){alert('موجودی صندوق انتخاب‌شده کافی نیست.');return}data.cashOps.push(x);save();$('spendTitle').value='';$('spendAmount').value='';render()};
-$('addRepair').onclick=()=>{let x={id:uid(),date:dateVal('repairDate'),title:$('repairTitle').value.trim(),amount:Number($('repairAmount').value),source:$('repairSource').value};if(!x.date||!x.title||!validAmount(x.amount)){alert('تاریخ، شرح و مبلغ معتبر وارد کن.');return}if(!enough(x.source,x.amount)){alert('موجودی صندوق انتخاب‌شده کافی نیست.');return}data.repairs.push(x);save();$('repairTitle').value='';$('repairAmount').value='';render()};
-$('addTransfer').onclick=()=>{let x={id:uid(),date:dateVal('transferDate'),from:$('transferFrom').value,to:$('transferTo').value,amount:Number($('transferAmount').value),note:$('transferNote').value.trim()};if(!x.date||!validAmount(x.amount)||x.from===x.to){alert('تاریخ و مبلغ معتبر انتخاب کن و دو صندوق متفاوت باشند.');return}if(!enough(x.from,x.amount)){alert('موجودی صندوق مبدأ کافی نیست.');return}data.transfers.push(x);save();$('transferAmount').value='';$('transferNote').value='';render()};
-$('addLoan').onclick=()=>{let x={id:uid(),type:$('loanType').value,person:$('loanPerson').value.trim(),principal:Number($('loanPrincipal').value),date:dateVal('loanDate'),note:$('loanNote').value.trim()};if(!x.person||!x.date||!validAmount(x.principal)){alert('نام شخص، تاریخ و مبلغ معتبر وارد کن.');return}data.loans.push(x);save();$('loanPerson').value='';$('loanPrincipal').value='';$('loanNote').value='';render()};
-$('paymentLoan').onchange=()=>{let l=data.loans.find(x=>x.id===$('paymentLoan').value);$('paymentAmountLabel').textContent=l?(l.type==='borrowed'?'مبلغی که پرداخت کردی (AFN)':'مبلغی که دریافت کردی (AFN)'):'مبلغ (AFN)';$('loanWalletLabel').textContent=l?(l.type==='borrowed'?'پرداخت از کدام صندوق؟':'دریافت به کدام صندوق؟'):'صندوق مربوطه';$('directSettle').checked=false;$('settleTargetWrap').style.display='none'};
-$('directSettle').onchange=()=>{$('settleTargetWrap').style.display=$('directSettle').checked?'block':'none'};
-$('addLoanPayment').onclick=()=>{let loan=data.loans.find(x=>x.id===$('paymentLoan').value),amount=Number($('loanPaymentAmount').value),date=dateVal('loanPaymentDate'),affect=$('loanAffectWallet').checked,wallet=$('loanWallet').value,direct=$('directSettle').checked,target=data.loans.find(x=>x.id===$('settleTarget').value),note=$('loanPaymentNote').value.trim();if(!loan||!date||!validAmount(amount)){alert('قرضه، تاریخ و مبلغ معتبر را انتخاب کن.');return}if(amount>loanRemaining(loan)){alert('مبلغ از باقی‌مانده قرض بیشتر است.');return}if(affect&&loan.type==='borrowed'&&!enough(wallet,amount)){alert('موجودی صندوق انتخاب‌شده کافی نیست.');return}if(direct){if(loan.type!=='lent'||!target||target.type!=='borrowed'){alert('برای تصفیه مستقیم، یک قرض دریافتنی و یک قرض پرداختنی انتخاب کن.');return}if(amount>loanRemaining(target)){alert('مبلغ از باقی‌مانده قرض مقصد بیشتر است.');return}if(affect){alert('برای تصفیه مستقیم، گزینه تغییر صندوق را خاموش کن تا مبلغ دوبار حساب نشود.');return}}let p={id:uid(),loanId:loan.id,date,amount,affectWallet:affect,wallet,note,direct};data.loanPayments.push(p);if(direct)data.loanPayments.push({id:uid(),loanId:target.id,date,amount,affectWallet:false,wallet:'free',note:`تصفیه مستقیم با دریافت از ${loan.person}`,direct:true});let b=balances();if(Object.values(b).some(v=>v<0)){data.loanPayments=data.loanPayments.filter(x=>x!==p);alert('این معامله باعث منفی‌شدن موجودی صندوق می‌شود.');return}save();$('loanPaymentAmount').value='';$('loanPaymentNote').value='';$('directSettle').checked=false;$('settleTargetWrap').style.display='none';render()};
-document.querySelectorAll('.tab').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===btn));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===btn.dataset.tab));if(btn.dataset.tab==='reports')report()});$('reportType').onchange=report;$('reportDate').onchange=report;$('historyType').onchange=history;$('dayDate').onchange=render;
-$('exportBtn').onclick=()=>{let blob=new Blob([JSON.stringify({app:'hamrah-motor',version:5,exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='hamrah-motor-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
-$('restoreFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let x=JSON.parse(await f.text()),d=x.data||x;if(!d||typeof d.income!=='object'||!Array.isArray(d.expenses))throw Error();let n={income:d.income||{},expenses:d.expenses||[],carSpend:d.carSpend||[],freeSpend:d.freeSpend||[],repairs:d.repairs||[],transfers:d.transfers||[],loans:d.loans||[],loanPayments:d.loanPayments||[],cashOps:d.cashOps||[]};if(![n.expenses,n.carSpend,n.freeSpend,n.repairs,n.transfers,n.loans,n.loanPayments,n.cashOps].every(Array.isArray))throw Error();if(!confirm('اطلاعات فعلی با فایل پشتیبان جایگزین شود؟'))return;data=n;save();render();alert('بازیابی انجام شد.')}catch(_){alert('فایل پشتیبان معتبر نیست.')}e.target.value=''};
-load();['dayDate','repairDate','transferDate','reportDate','loanDate','loanPaymentDate','cashInDate','spendDate'].forEach(id=>setJ(id,isoToday()));render();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script></body></html>
+:root{
+  --bg:#06140f;
+  --panel:#10251c;
+  --panel2:#142e23;
+  --line:#31513d;
+  --text:#f5f2e8;
+  --muted:#a5b6a7;
+  --mint:#82d8a7;
+  --gold:#e8c77a;
+  --blue:#91b9e8;
+  --rose:#e99191;
+  --shadow:0 18px 45px #0005;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(ellipse at 85% -8%,#28583b 0,transparent 32%),
+    radial-gradient(ellipse at 0 35%,#153d2b 0,transparent 28%),
+    linear-gradient(145deg,#06140f,#091b13 55%,#07150f);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;
+  min-height:100vh;
+}
+button,input,select{font:inherit}
+button{cursor:pointer;transition:.22s ease}
+button:active{transform:scale(.97)}
+.app{max-width:1120px;margin:auto;padding:18px 15px 45px}
 
-<script>
-dayCalc = function(date) {
-  let income = Number(data.income[date] || 0);
-  let expenses = sum(data.expenses.filter(x => x.date === date));
-  let remain = Math.max(0, income - expenses);
+/* سربرگ */
+.top{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;margin:8px 0 22px
+}
+.brand{display:flex;align-items:center;gap:13px}
+.logo{
+  width:52px;height:52px;border-radius:18px;
+  display:grid;place-items:center;
+  color:#172416;font-size:27px;font-weight:900;
+  background:linear-gradient(145deg,#fff0bd,#d5ad54 55%,#8c682d);
+  box-shadow:0 5px 24px #d6b65b35,inset 0 1px 3px #fff9;
+  border:1px solid #f6df9b;
+}
+.brand h1{
+  font-size:22px;margin:0;
+  background:linear-gradient(90deg,#fff1c6,#dfbd70);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.brand p{margin:5px 0 0;color:var(--muted);font-size:11px}
+.date-pill,.chip{
+  border:1px solid #6c6843;background:#172b20;
+  color:#ead9a9;border-radius:14px;padding:9px 13px;font-size:11px
+}
 
-  let units = Math.floor(remain / 10);
-  let carUnits = Math.min(10, units);
-  let restUnits = units - carUnits;
+/* کارت اصلی */
+.hero{
+  position:relative;overflow:hidden;
+  border:1px solid #a78c4c;
+  background:
+    radial-gradient(circle at 90% 10%,#547b453d,transparent 38%),
+    linear-gradient(125deg,#193c29,#10271d 58%,#263923);
+  border-radius:28px;padding:24px;
+  box-shadow:0 20px 55px #0006,inset 0 1px #ffffff18;
+}
+.hero:after{
+  content:"";position:absolute;width:190px;height:190px;
+  border:1px solid #e8c77a25;border-radius:50%;
+  left:-65px;bottom:-115px;
+  box-shadow:0 0 0 18px #e8c77a08,0 0 0 38px #e8c77a06;
+  pointer-events:none
+}
+.hero-head{display:flex;justify-content:space-between;gap:10px}
+.eyebrow{color:#d8c48c;font-size:12px}
+.hero h2{font-size:23px;margin:8px 0 4px}
+.sub,.hint{font-size:11px;color:var(--muted)}
+.hero-value{
+  font-size:clamp(30px,6vw,42px);font-weight:900;
+  margin:22px 0 13px;letter-spacing:.4px;
+  color:#fff0c2;text-shadow:0 4px 20px #e8c77a30;
+  overflow-wrap:anywhere
+}
+.unit{font-size:12px;color:#d6c99e}
+.hero-foot{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#ffffff0c;border-color:#ffffff20;color:#e9dfc3}
 
-  let personalUnits = Math.floor(restUnits / 2);
-  let freeUnits = restUnits - personalUnits;
+/* صندوق‌ها */
+.grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:13px;margin:14px 0
+}
+.wallet{
+  position:relative;overflow:hidden;min-width:0;
+  border:1px solid #355743;border-radius:21px;padding:17px;
+  background:linear-gradient(150deg,#193729,#10251b 75%);
+  box-shadow:0 10px 28px #0003,inset 0 1px #ffffff0c;
+  transition:transform .25s,border-color .25s
+}
+.wallet:hover{transform:translateY(-3px);border-color:#b79a57}
+.wallet-top{display:flex;justify-content:space-between;align-items:center}
+.wallet-icon{
+  width:39px;height:39px;border-radius:14px;
+  display:grid;place-items:center;background:#ffffff0c;
+  border:1px solid #ffffff12;font-size:18px
+}
+.wallet small{color:var(--muted);font-size:11px}
+.wallet strong{
+  display:block;font-size:22px;margin:15px 0 5px;
+  overflow-wrap:anywhere
+}
+.mint{color:var(--mint)}
+.gold{color:var(--gold)}
+.blue{color:var(--blue)}
+.rose{color:var(--rose)}
 
-  let car = carUnits * 10;
-  let personal = personalUnits * 10;
-  let free = freeUnits * 10;
+/* بخش‌ها و پنل‌ها */
+.section{margin-top:19px}
+.section-title{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;margin:0 3px 11px
+}
+.section-title h3{font-size:15px;margin:0;color:#f1e6c6}
+.section-title span{font-size:10px;color:var(--muted)}
+.panel{
+  background:linear-gradient(145deg,#142d21ed,#0d2118);
+  border:1px solid #31503b;border-radius:21px;
+  padding:16px;box-shadow:var(--shadow),inset 0 1px #ffffff08
+}
+.panel h3{font-size:13px;color:#e8d7a7;margin:2px 0 12px}
 
-  return {income, expenses, remain, car, personal, free};
-};
+/* منوی بخش‌ها */
+.tabs{
+  display:flex;gap:8px;overflow-x:auto;
+  padding:5px 1px 12px;margin:17px 0 5px;
+  scrollbar-width:thin;scrollbar-color:#8d7542 transparent
+}
+.tab{
+  flex:0 0 auto;border:1px solid #34533d;
+  background:linear-gradient(145deg,#152c20,#102219);
+  color:#b9c8b8;border-radius:14px;
+  padding:11px 15px;white-space:nowrap;font-size:11px;
+  box-shadow:0 4px 12px #0002
+}
+.tab.active{
+  background:linear-gradient(120deg,#f4dfa0,#c49b4e);
+  color:#182518;font-weight:900;border-color:#f5dfa0;
+  box-shadow:0 5px 18px #d4b45b35
+}
+.view{display:none;animation:appear .25s ease}
+.view.active{display:block}
+@keyframes appear{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-render();
-</script>
+/* ورودی‌ها */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.field label{font-size:11px;color:#c5d2c2}
+.field input,.field select{
+  width:100%;border:1px solid #3a5a43;border-radius:13px;
+  padding:12px;background:#091b12;color:var(--text);
+  outline:none;min-height:45px;transition:.2s
+}
+.field input:focus,.field select:focus{
+  border-color:#d6b565;box-shadow:0 0 0 3px #d6b56518
+}
+.field input::placeholder{color:#718575}
+.field input[type=checkbox]{
+  width:18px;min-height:18px;accent-color:#d5b45f
+}
+.date-input{direction:ltr;text-align:left}
 
-<script>
-dayCalc = function(date) {
-  let income = Number(data.income[date] || 0);
-  let expenses = sum(data.expenses.filter(x => x.date === date));
-  let remain = Math.max(0, income - expenses);
+/* دکمه‌ها */
+.btn{
+  border:1px solid #f1d995;border-radius:13px;
+  padding:12px 17px;
+  background:linear-gradient(120deg,#f2dda0,#c49a4d);
+  color:#1b291a;font-weight:900;
+  box-shadow:0 5px 16px #c49a4d20
+}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn.secondary{
+  background:linear-gradient(145deg,#203d2b,#142c1d);
+  color:#e3e9dc;border:1px solid #45664b;box-shadow:none
+}
+.btn.danger{
+  background:linear-gradient(145deg,#512b2b,#3a2021);
+  color:#ffd0c9;border:1px solid #814747;box-shadow:none
+}
+.btn.small{padding:7px 10px;font-size:10px}
+.actions{display:flex;gap:9px;flex-wrap:wrap}
+.notice{color:var(--muted);font-size:10px;line-height:1.9;margin-top:9px}
+.date-help{font-size:10px;color:#cdbb82;margin-top:-4px}
 
-  // سهم صندوق موتر
-  let car = remain >= 450
-    ? 100
-    : Math.floor(remain * 0.2 / 10) * 10;
+/* آمار */
+.statline{
+  display:flex;justify-content:space-between;gap:10px;
+  padding:11px 2px;border-bottom:1px solid #294637;
+  font-size:11px
+}
+.statline:last-child{border:0}
+.statline b{font-size:12px;color:#f0e6c9}
 
-  // تقسیم باقی پول بین پس‌انداز شخصی و پول آزاد
-  let rest = Math.floor((remain - car) / 10);
-  let personal = Math.floor(rest / 2) * 10;
-  let free = (rest - Math.floor(rest / 2)) * 10;
+/* نمودارها */
+.chart-wrap{
+  min-height:175px;display:flex;align-items:center;
+  justify-content:center;overflow:hidden
+}
+.chart-wrap svg{width:100%;height:auto;max-height:250px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.legend span{
+  font-size:10px;color:var(--muted);
+  display:flex;align-items:center;gap:6px
+}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 
-  return {income, expenses, remain, car, personal, free};
-};
+/* تاریخچه و ردیف‌ها */
+.records{display:flex;flex-direction:column;gap:8px}
+.record{
+  display:flex;justify-content:space-between;gap:8px;
+  align-items:center;border:1px solid #34513d;
+  background:linear-gradient(110deg,#172f22,#10251a);
+  border-radius:14px;padding:11px
+}
+.record b{font-size:12px}
+.record small{
+  display:block;color:var(--muted);
+  font-size:10px;margin-top:5px;line-height:1.7
+}
+.amount{font-weight:900;white-space:nowrap;font-size:11px;color:#e8d49b}
+.empty{
+  text-align:center;color:var(--muted);
+  font-size:11px;padding:24px 8px
+}
 
-render();
-</script>
+/* قرضه‌ها */
+.loan-card{
+  border:1px solid #3a5943;
+  background:linear-gradient(145deg,#193528,#10241a);
+  border-radius:17px;padding:14px;margin-bottom:10px;
+  box-shadow:0 8px 22px #0002
+}
+.loan-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.loan-head b{font-size:13px;color:#f0e5c6}
+.loan-meta{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.9}
+.loan-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.loan-numbers div{
+  background:#ffffff08;border:1px solid #ffffff0a;
+  border-radius:12px;padding:9px
+}
+.loan-numbers small{display:block;color:var(--muted);font-size:9px}
+.loan-numbers strong{font-size:12px;display:block;margin-top:5px}
+.loan-history{border-top:1px solid #34513d;padding-top:9px;margin-top:9px}
+.loan-history summary{font-size:10px;color:#e1d09c;cursor:pointer}
+.loan-history .record{margin-top:7px}
+
+/* پایان صفحه */
+footer{
+  text-align:center;color:#829787;font-size:10px;
+  margin:30px 0 5px;padding-top:16px;
+  border-top:1px solid #294334
+}
+
+/* موبایل */
+@media(max-width:680px){
+  .app{padding:12px 11px 35px}
+  .brand h1{font-size:19px}
+  .brand p{font-size:10px}
+  .logo{width:46px;height:46px;border-radius:15px}
+  .date-pill{font-size:10px;padding:8px}
+  .grid{grid-template-columns:1fr 1fr;gap:9px}
+  .wallet{padding:13px;border-radius:17px}
+  .wallet:last-child{grid-column:span 2}
+  .wallet strong{font-size:20px}
+  .hero{padding:19px;border-radius:23px}
+  .hero-value{font-size:30px}
+  .hero h2{font-size:21px}
+  .two{grid-template-columns:1fr;gap:0}
+  .panel{padding:13px;border-radius:18px}
+  .section-title h3{font-size:14px}
+  .tabs{margin-top:14px}
+  .tab{padding:10px 13px}
+  .loan-numbers{gap:5px}
+  .loan-numbers div{padding:7px}
+}
+@media(min-width:681px){
+  .tabs{justify-content:center}
+}
+</style>
