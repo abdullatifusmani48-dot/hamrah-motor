@@ -1,5 +1,5 @@
 
-const CACHE = 'hamrah-motor-v6';
+const CACHE = 'hamrah-motor-v7';
 
 const CORE = [
   './',
@@ -40,10 +40,12 @@ self.addEventListener('fetch', event => {
           new URL(event.request.url).origin === self.location.origin
         ) {
           const copy = response.clone();
+
           caches.open(CACHE).then(cache => {
             cache.put(event.request, copy);
           });
         }
+
         return response;
       })
       .catch(() =>
