@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'hamrah-motor-v5';
+const CACHE_NAME = 'hamrah-motor-v6';
 
 const APP_FILES = [
   './',
@@ -8,7 +8,6 @@ const APP_FILES = [
   './sw.js'
 ];
 
-// نصب و ذخیره فایل‌های برنامه برای استفاده آفلاین
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -17,23 +16,21 @@ self.addEventListener('install', event => {
   );
 });
 
-// حذف کش‌های قدیمی
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames
+    caches.keys()
+      .then(names => Promise.all(
+        names
           .filter(name =>
             name.startsWith('hamrah-motor-') &&
             name !== CACHE_NAME
           )
           .map(name => caches.delete(name))
-      );
-    }).then(() => self.clients.claim())
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
-// مدیریت درخواست‌ها و نمایش نسخه آفلاین
 self.addEventListener('fetch', event => {
   const request = event.request;
 
@@ -41,31 +38,27 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(request.url);
 
-  // فقط درخواست‌های همین برنامه مدیریت شوند
   if (url.origin !== self.location.origin) return;
 
-  // برای فایل HTML ابتدا نسخه تازه و در نبود اینترنت نسخه کش‌شده
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
         .then(response => {
           if (response && response.ok) {
             const copy = response.clone();
-            caches.open(CACHE_NAME).then(cache => {
-              cache.put('./index.html', copy);
-            });
+            caches.open(CACHE_NAME)
+              .then(cache => cache.put('./index.html', copy));
           }
           return response;
         })
-        .catch(() => {
-          return caches.match('./index.html')
-            .then(response => response || caches.match('./'));
-        })
+        .catch(() =>
+          caches.match('./index.html')
+            .then(response => response || caches.match('./'))
+        )
     );
     return;
   }
 
-  // برای سایر فایل‌ها ابتدا کش و سپس شبکه
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;
@@ -73,9 +66,8 @@ self.addEventListener('fetch', event => {
       return fetch(request).then(response => {
         if (response && response.ok) {
           const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(request, copy);
-          });
+          caches.open(CACHE_NAME)
+            .then(cache => cache.put(request, copy));
         }
         return response;
       });
