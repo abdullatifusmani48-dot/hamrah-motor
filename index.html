@@ -1,643 +1,883 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f5f6ff">
-<meta name="description" content="همراه موتر؛ مدیریت هوشمند درآمد، مصارف، پس‌انداز و قرضه‌ها">
-<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#10251c">
 <title>همراه موتر | مدیریت مالی</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
-
-:root{
- --bg:#f5f6fc;--white:#fff;--ink:#20243a;--muted:#858ba2;
- --purple:#7956e8;--blue:#4385f5;--cyan:#20b9c7;
- --green:#20b981;--orange:#ff9c45;--pink:#ed6b9a;
- --red:#ed6470;--line:#edf0f7;--shadow:0 10px 35px rgba(44,50,95,.07);
- --radius:23px;
-}
+:root{--bg:#081810;--panel:#10251c;--panel2:#173327;--line:#294638;--gold:#d7b66b;--gold2:#f0d99a;--text:#f5f4ed;--muted:#a9b9ae;--green:#64c79a;--red:#f08080;--blue:#83b9ef;--radius:20px}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',Tahoma,sans-serif;font-size:14px;padding-bottom:92px}
+body{margin:0;background:radial-gradient(circle at 80% -10%,#234a37 0,transparent 35%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;padding:0 0 86px}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-.app{max-width:1180px;margin:auto;padding:18px 18px 30px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+header{padding:22px 18px 15px;display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:900px;margin:auto}
 .brand{display:flex;align-items:center;gap:12px}
-.logo{width:48px;height:48px;border-radius:17px;background:linear-gradient(135deg,#7755ec,#36b6d6);display:grid;place-items:center;color:#fff;font-size:24px;box-shadow:0 8px 20px #7956e844}
-.brand h1{font-size:20px;margin:0;font-weight:900;letter-spacing:-.5px}
-.brand p{margin:2px 0 0;color:var(--muted);font-size:11px}
-.top-actions{display:flex;gap:8px}
-.icon-btn{border:1px solid var(--line);background:#fff;width:42px;height:42px;border-radius:14px;color:#69708a;font-size:18px;box-shadow:0 4px 14px #252b4b08}
-.date-chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 13px;color:#6e7390;font-size:12px;font-weight:700}
-.hero{position:relative;overflow:hidden;border-radius:28px;padding:25px;color:#fff;background:linear-gradient(115deg,#6950dc 0%,#8562ee 48%,#4a9df2 100%);box-shadow:0 16px 35px #7659e633;margin-bottom:18px}
-.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#ffffff13}
-.hero:before{width:230px;height:230px;left:-70px;top:-115px}
-.hero:after{width:150px;height:150px;right:38%;bottom:-115px}
-.hero-content{position:relative;z-index:1}
-.hero-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.hero-label{font-size:13px;color:#eee8ff;font-weight:600}
-.hero-pill{font-size:11px;background:#ffffff22;border:1px solid #ffffff35;border-radius:30px;padding:7px 12px}
-.hero-amount{font-size:clamp(30px,6vw,43px);font-weight:900;letter-spacing:.5px;margin:13px 0 4px;direction:ltr;text-align:right}
-.hero-sub{font-size:11px;color:#e9e5ff}
-.hero-bottom{display:flex;gap:10px;margin-top:23px;flex-wrap:wrap}
-.hero-stat{background:#ffffff1b;border:1px solid #ffffff26;border-radius:15px;padding:11px 14px;min-width:125px;flex:1}
-.hero-stat small{display:block;color:#e9e5ff;font-size:10px}
-.hero-stat strong{display:block;margin-top:5px;font-size:16px;direction:ltr;text-align:right}
-.section-head{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 12px}
-.section-head h2{font-size:16px;margin:0;font-weight:900}
-.section-head span{font-size:11px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
-.stat-card{background:#fff;border:1px solid #eef0f7;border-radius:21px;padding:16px;box-shadow:var(--shadow);min-width:0;position:relative;overflow:hidden}
-.stat-card:after{content:"";position:absolute;width:85px;height:85px;border-radius:50%;left:-35px;bottom:-48px;background:var(--tint)}
-.stat-top{display:flex;align-items:center;justify-content:space-between;gap:6px}
-.stat-icon{width:39px;height:39px;border-radius:14px;display:grid;place-items:center;font-size:19px;background:var(--tint);color:var(--tone)}
-.stat-trend{font-size:10px;color:var(--tone);font-weight:800}
-.stat-card small{display:block;color:var(--muted);font-size:11px;margin-top:13px}
-.stat-card strong{display:block;font-size:19px;font-weight:900;margin-top:4px;direction:ltr;text-align:right;white-space:nowrap}
-.wallet-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.wallet{border-radius:22px;padding:17px;color:white;position:relative;overflow:hidden;min-height:140px;box-shadow:0 12px 24px var(--glow)}
-.wallet:after{content:"";position:absolute;width:120px;height:120px;border:22px solid #ffffff19;border-radius:50%;left:-35px;bottom:-55px}
-.wallet-head{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
-.wallet-icon{font-size:23px}
-.wallet-name{font-size:12px;font-weight:700}
-.wallet small{display:block;color:#ffffffcf;font-size:10px;margin-top:18px;position:relative;z-index:1}
-.wallet strong{display:block;font-size:22px;margin-top:4px;direction:ltr;text-align:right;position:relative;z-index:1}
-.wallet.car{background:linear-gradient(135deg,#ff9b43,#f36d54);--glow:#f68c5140}
-.wallet.personal{background:linear-gradient(135deg,#ed6ca2,#d65ad0);--glow:#df63ad38}
-.wallet.free{background:linear-gradient(135deg,#438cf4,#38b8d2);--glow:#438cf438}
-.actions-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
-.action{border:1px solid var(--line);background:#fff;border-radius:18px;padding:13px 7px;text-align:center;box-shadow:0 5px 18px #30365c08;transition:.2s}
-.action:active{transform:scale(.96)}
-.action .a-icon{width:43px;height:43px;border-radius:15px;margin:0 auto 8px;display:grid;place-items:center;font-size:21px}
-.action b{display:block;font-size:11px;color:#535a73}
-.action.income .a-icon{background:#e2fbf2;color:#18aa7a}
-.action.expense .a-icon{background:#fff0e5;color:#f18b38}
-.action.repair .a-icon{background:#fff0ed;color:#ed7162}
-.action.transfer .a-icon{background:#e9efff;color:#547de8}
-.action.loan .a-icon{background:#f3eaff;color:#9562db}
-.action.cash .a-icon{background:#e2f8fb;color:#22a7b8}
-.panel{background:#fff;border:1px solid #edf0f7;border-radius:23px;padding:18px;box-shadow:var(--shadow)}
-.chart-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.chart-title{font-size:12px;font-weight:800;margin:0 0 15px}
-.bar-list{display:flex;flex-direction:column;gap:13px}
-.bar-row{display:grid;grid-template-columns:75px 1fr 80px;align-items:center;gap:9px;font-size:11px}
-.bar-track{height:9px;border-radius:20px;background:#f0f1f7;overflow:hidden}
-.bar-fill{height:100%;border-radius:20px;transition:width .4s}
-.bar-value{text-align:left;font-size:10px;color:#6e748b;direction:ltr}
-.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-.legend span{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:5px}
-.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
-.recent-list{display:flex;flex-direction:column}
-.recent-item{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid #f1f2f7}
-.recent-item:last-child{border:0}
-.recent-icon{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-size:18px;flex-shrink:0}
-.recent-info{flex:1;min-width:0}
-.recent-info b{font-size:12px;display:block}
-.recent-info small{font-size:10px;color:var(--muted)}
-.recent-amount{font-size:13px;font-weight:900;direction:ltr;white-space:nowrap}
-.positive{color:#16ad7c}.negative{color:#e56c72}
-.empty{text-align:center;color:#a0a5b6;padding:24px 8px;font-size:12px}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(18px);border-top:1px solid #e9ebf4;z-index:20;padding:9px max(12px,env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center}
-.nav-inner{width:100%;max-width:700px;display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
-.nav-btn{border:0;background:transparent;color:#969bb0;border-radius:14px;padding:7px 3px;font-size:10px;font-weight:700}
-.nav-btn span{display:block;font-size:19px;margin-bottom:3px}
-.nav-btn.active{background:#f0edff;color:#7758df}
-.page{display:none}.page.active{display:block}
-.modal-backdrop{position:fixed;inset:0;background:#17182b88;z-index:50;display:none;align-items:flex-end;justify-content:center;padding:12px}
-.modal-backdrop.show{display:flex}
-.modal{width:100%;max-width:520px;max-height:90vh;overflow:auto;background:#fff;border-radius:26px;padding:20px;box-shadow:0 25px 80px #11152b55;animation:rise .22s ease}
-@keyframes rise{from{transform:translateY(20px);opacity:.5}to{transform:translateY(0);opacity:1}}
-.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.modal-head h3{margin:0;font-size:17px}
-.close{border:0;background:#f2f3f8;border-radius:12px;width:34px;height:34px;font-size:19px;color:#777}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{margin-bottom:12px;min-width:0}
-.field.full{grid-column:1/-1}
-.field label{display:block;font-size:11px;color:#737991;font-weight:700;margin-bottom:6px}
-.field input,.field select,.field textarea,.filter-input{width:100%;border:1px solid #e8eaf2;background:#fafbfe;border-radius:13px;padding:12px;color:#30364d;outline:none;min-width:0}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#9a83ed;box-shadow:0 0 0 3px #8c70ed18}
-.field textarea{resize:vertical;min-height:65px}
-.primary-btn{width:100%;border:0;border-radius:15px;padding:14px;color:#fff;font-weight:900;background:linear-gradient(110deg,#7855e8,#4d94ee);box-shadow:0 8px 18px #7658df35}
-.secondary-btn{border:1px solid #e7e9f1;background:#fff;color:#69708a;border-radius:13px;padding:10px 13px;font-weight:700}
-.danger-btn{border:0;background:#fff0f0;color:#dc646b;border-radius:12px;padding:8px 11px;font-weight:700}
-.notice{padding:11px 13px;background:#f1efff;border-radius:13px;color:#7156c9;font-size:11px;margin-bottom:13px;line-height:1.8}
-.tabs{display:flex;gap:7px;overflow:auto;margin-bottom:14px}
-.tab{border:1px solid #e9ebf3;background:#fff;border-radius:12px;padding:9px 13px;white-space:nowrap;font-size:11px;color:#777d92}
-.tab.active{background:#7658e8;color:#fff;border-color:#7658e8}
-.history-card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:13px;margin-bottom:9px;display:flex;gap:10px;align-items:center}
-.history-main{flex:1;min-width:0}
-.history-main b{font-size:12px;display:block}
-.history-main small{color:var(--muted);font-size:10px}
-.history-side{text-align:left}
-.history-side strong{font-size:12px;direction:ltr;display:block}
-.history-actions{display:flex;gap:5px;margin-top:5px}
-.mini-btn{border:0;border-radius:8px;padding:5px 8px;font-size:10px;background:#f0efff;color:#7458d6}
-.mini-btn.del{background:#fff0f0;color:#d96b70}
-.summary-box{background:linear-gradient(120deg,#eef1ff,#f8efff);border-radius:18px;padding:16px;margin-bottom:14px}
-.summary-box small{color:#797e99}.summary-box strong{display:block;font-size:23px;margin-top:4px;direction:ltr;text-align:right}
-.settings-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);gap:10px}
-.settings-row:last-child{border:0}
-.settings-row b{font-size:12px}.settings-row small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
-.toast{position:fixed;top:18px;left:50%;transform:translate(-50%,-20px);background:#262943;color:#fff;padding:12px 18px;border-radius:14px;font-size:12px;z-index:100;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 8px 30px #2224;white-space:nowrap}
+.logo{width:45px;height:45px;border-radius:15px;background:linear-gradient(145deg,var(--gold2),#a17b37);display:grid;place-items:center;color:#142219;font-size:23px;font-weight:bold}
+h1{font-size:19px;margin:0 0 5px}
+.sub{font-size:11px;color:var(--muted)}
+.date-pill{font-size:11px;color:var(--gold2);border:1px solid #806a3c;border-radius:30px;padding:9px 11px;white-space:nowrap}
+main{max-width:900px;margin:auto;padding:0 14px}
+.page{display:none}
+.page.active{display:block}
+.hero{border:1px solid #8a7544;background:linear-gradient(130deg,#254b38,#142b20 65%,#342b18);border-radius:26px;padding:22px;margin:8px 0 16px;box-shadow:0 16px 40px #0004;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff16;border-radius:50%;left:-55px;top:-85px;box-shadow:0 0 0 22px #ffffff08,0 0 0 44px #ffffff05}
+.eyebrow{font-size:12px;color:#d7d5c7}
+.total{font-size:34px;font-weight:800;color:#fff;margin:12px 0 5px}
+.unit{font-size:12px;color:var(--gold2)}
+.hero-foot{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.mini-stat{background:#07170f66;border:1px solid #ffffff17;padding:9px 12px;border-radius:13px;font-size:11px;color:#e9e9dc}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 11px}
+.section-head h2{font-size:15px;margin:0}
+.hint{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card{background:linear-gradient(145deg,#142d21,#102319);border:1px solid var(--line);border-radius:var(--radius);padding:15px;min-width:0}
+.wallet{position:relative;overflow:hidden}
+.wallet:after{content:"";position:absolute;width:70px;height:70px;border-radius:50%;left:-20px;bottom:-30px;background:#ffffff08}
+.w-title{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}
+.w-amount{font-size:20px;font-weight:800;margin:12px 0 4px;overflow-wrap:anywhere}
+.w-note{font-size:10px;color:var(--muted)}
+.gold{color:var(--gold2)}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.blue{color:var(--blue)}
+.actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.action{border:1px solid var(--line);background:#142d21;color:var(--text);border-radius:17px;padding:13px 6px;min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:11px}
+.action .ico{font-size:21px;color:var(--gold2)}
+.panel{background:#10251c;border:1px solid var(--line);border-radius:var(--radius);padding:15px;margin-bottom:12px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.muted{color:var(--muted)}
+.small{font-size:11px}
+.list{display:flex;flex-direction:column;gap:9px}
+.record{display:flex;align-items:center;gap:11px;padding:11px;border:1px solid #263f32;border-radius:15px;background:#0e2118}
+.r-icon{width:38px;height:38px;border-radius:13px;background:#203b2c;display:grid;place-items:center;font-size:17px;flex:none}
+.r-main{flex:1;min-width:0}
+.r-title{font-size:12px;font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-meta{font-size:10px;color:var(--muted);margin-top:5px}
+.r-value{font-size:12px;font-weight:bold;white-space:nowrap}
+.empty{text-align:center;color:var(--muted);padding:25px 10px;font-size:12px}
+input,select,textarea{width:100%;border:1px solid #365344;background:#091a12;color:var(--text);padding:12px;border-radius:12px;outline:none;font-size:13px}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+label{display:block;font-size:11px;color:var(--muted);margin:12px 0 6px}
+textarea{min-height:75px;resize:vertical}
+.btn{border:0;border-radius:13px;padding:12px 16px;background:linear-gradient(135deg,var(--gold2),#b68d48);color:#17251b;font-weight:bold;font-size:12px}
+.btn.secondary{background:#203b2d;color:var(--text);border:1px solid var(--line)}
+.btn.full{width:100%;margin-top:16px}
+.tabs{display:flex;gap:7px;overflow:auto;padding:3px 0 10px}
+.tab{border:1px solid var(--line);background:#12281d;color:var(--muted);border-radius:30px;padding:9px 13px;white-space:nowrap;font-size:11px}
+.tab.active{background:#d7b66b;color:#17251b;border-color:var(--gold)}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#0b1b13ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);z-index:5;padding:8px 5px calc(8px + env(safe-area-inset-bottom))}
+.nav{width:min(900px,100%);margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.nav button{border:0;background:transparent;color:var(--muted);font-size:10px;padding:6px 2px;border-radius:12px}
+.nav button span{display:block;font-size:18px;margin-bottom:4px}
+.nav button.active{color:var(--gold2);background:#243a2c}
+.modal-bg{display:none;position:fixed;inset:0;background:#000a;z-index:10;align-items:flex-end;justify-content:center;padding:12px}
+.modal-bg.show{display:flex}
+.modal{width:min(600px,100%);max-height:90vh;overflow:auto;background:#10251c;border:1px solid #49624f;border-radius:24px;padding:18px}
+.modal-top{display:flex;justify-content:space-between;align-items:center}
+.modal-top h3{font-size:16px;margin:0}
+.x{border:0;background:#263e30;color:white;border-radius:10px;width:34px;height:34px;font-size:19px}
+.toast{position:fixed;bottom:90px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#e4d09b;color:#17251b;border-radius:30px;padding:11px 18px;font-size:12px;z-index:20;transition:.25s;white-space:nowrap}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:720px){
- .app{padding:14px 13px 25px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .wallet-grid{gap:9px}.wallet{padding:13px;min-height:130px}.wallet strong{font-size:18px}
- .actions-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
- .chart-wrap{grid-template-columns:1fr}.hero{padding:21px}.stat-card{padding:13px}
-}
-@media(max-width:370px){
- .brand h1{font-size:17px}.date-chip{font-size:10px;padding:8px}
- .wallet-name{font-size:10px}.wallet strong{font-size:16px}
- .form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
-}
+.bar-wrap{margin:12px 0}
+.bar-label{display:flex;justify-content:space-between;font-size:11px;margin-bottom:7px}
+.bar{height:8px;border-radius:10px;background:#263b30;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#b58e4d,#e8d092)}
+.member{display:flex;align-items:center;gap:10px}
+.avatar{width:40px;height:40px;border-radius:14px;background:#294534;display:grid;place-items:center;color:var(--gold2);font-weight:bold}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.actions{grid-template-columns:repeat(6,minmax(0,1fr))}.modal-bg{align-items:center}}
+@media(max-width:390px){.total{font-size:29px}.grid{gap:8px}.card{padding:12px}.w-amount{font-size:18px}}
 </style>
 </head>
 <body>
-<div class="app">
-<header class="topbar">
- <div class="brand">
-  <div class="logo">🚘</div>
-  <div><h1>همراه موتر</h1><p>مدیریت هوشمند امور مالی</p></div>
- </div>
- <div class="top-actions">
-  <div class="date-chip" id="todayChip">امروز</div>
-  <button class="icon-btn" onclick="showPage('settings')" title="تنظیمات">⚙️</button>
- </div>
+<header>
+ <div class="brand"><div class="logo">م</div><div><h1>همراه موتر</h1><div class="sub">مدیریت درآمد، صندوق‌ها و مصارف</div></div></div>
+ <div class="date-pill" id="today"></div>
 </header>
-
+<main>
 <section class="page active" id="page-home">
  <div class="hero">
-  <div class="hero-content">
-   <div class="hero-top"><span class="hero-label">مجموع دارایی قابل دسترس</span><span class="hero-pill">✦ وضعیت مالی</span></div>
-   <div class="hero-amount" id="totalBalance">0</div>
-   <div class="hero-sub">موجودی مجموع سه صندوق شما</div>
-   <div class="hero-bottom">
-    <div class="hero-stat"><small>درآمد ثبت‌شده</small><strong id="totalIncome">0</strong></div>
-    <div class="hero-stat"><small>مصارف ثبت‌شده</small><strong id="totalExpense">0</strong></div>
-    <div class="hero-stat"><small>قرضه‌های باقی‌مانده</small><strong id="loanTotal">0</strong></div>
-   </div>
+  <div class="eyebrow">مجموع پول موجود در صندوق‌ها</div>
+  <div class="total" id="grandTotal">0</div>
+  <div class="unit">افغانی</div>
+  <div class="hero-foot">
+   <div class="mini-stat">درآمد امروز: <b id="todayIncome">0</b></div>
+   <div class="mini-stat">مصارف امروز: <b id="todayExpense">0</b></div>
   </div>
  </div>
-
- <div class="section-head"><h2>خلاصه صندوق‌ها</h2><span>موجودی فعلی</span></div>
- <div class="wallet-grid">
-  <div class="wallet car"><div class="wallet-head"><span class="wallet-name">صندوق موتر</span><span class="wallet-icon">🚗</span></div><small>پس‌انداز برای موتر و ترمیم</small><strong id="carBalance">0</strong></div>
-  <div class="wallet personal"><div class="wallet-head"><span class="wallet-name">پس‌انداز شخصی</span><span class="wallet-icon">💗</span></div><small>ذخیره شخصی شما</small><strong id="personalBalance">0</strong></div>
-  <div class="wallet free"><div class="wallet-head"><span class="wallet-name">پول آزاد</span><span class="wallet-icon">💎</span></div><small>پول قابل استفاده</small><strong id="freeBalance">0</strong></div>
+ <div class="section-head"><h2>صندوق‌های شما</h2><span class="hint">موجودی فعلی</span></div>
+ <div class="grid">
+  <div class="card wallet"><div class="w-title">🚗 صندوق موتر</div><div class="w-amount gold" id="balCar">0</div><div class="w-note">برای ترمیم و نگهداری موتر</div></div>
+  <div class="card wallet"><div class="w-title">👤 پس‌انداز شخصی</div><div class="w-amount green" id="balPersonal">0</div><div class="w-note">پس‌انداز شما</div></div>
+  <div class="card wallet"><div class="w-title">💵 پول آزاد</div><div class="w-amount" id="balFree">0</div><div class="w-note">قابل استفاده و انتقال</div></div>
+  <div class="card wallet"><div class="w-title">⛽ حساب گاز</div><div class="w-amount blue" id="balGas">0</div><div class="w-note">۲۰۰ افغانی از هر درآمد جدید</div></div>
  </div>
-
- <div class="section-head"><h2>عملیات سریع</h2><span>ثبت فعالیت جدید</span></div>
- <div class="actions-grid">
-  <button class="action income" onclick="openForm('income')"><span class="a-icon">💰</span><b>ثبت درآمد</b></button>
-  <button class="action expense" onclick="openForm('expense')"><span class="a-icon">🛍️</span><b>ثبت مصرف</b></button>
-  <button class="action repair" onclick="openForm('repair')"><span class="a-icon">🔧</span><b>ترمیم موتر</b></button>
-  <button class="action transfer" onclick="openForm('transfer')"><span class="a-icon">🔄</span><b>انتقال پول</b></button>
-  <button class="action loan" onclick="openForm('loan')"><span class="a-icon">🤝</span><b>ثبت قرضه</b></button>
-  <button class="action cash" onclick="openForm('cash')"><span class="a-icon">💳</span><b>ورود / خروج نقد</b></button>
+ <div class="section-head"><h2>عملیات سریع</h2><span class="hint">ثبت اطلاعات</span></div>
+ <div class="actions">
+  <button class="action" onclick="openForm('income')"><span class="ico">＋</span>ثبت درآمد</button>
+  <button class="action" onclick="openForm('expense')"><span class="ico">−</span>مصرف عادی</button>
+  <button class="action" onclick="openForm('gas')"><span class="ico">⛽</span>مصرف گاز</button>
+  <button class="action" onclick="openForm('repair')"><span class="ico">🔧</span>ترمیم موتر</button>
+  <button class="action" onclick="openForm('transfer')"><span class="ico">⇄</span>انتقال پول</button>
+  <button class="action" onclick="openForm('familyTx')"><span class="ico">👨‍👩‍👧</span>حساب فامیل</button>
+  <button class="action" onclick="openForm('cash')"><span class="ico">↕</span>داخل / خارج</button>
+  <button class="action" onclick="openForm('loan')"><span class="ico">🤝</span>قرضه</button>
+  <button class="action" onclick="showPage('family')"><span class="ico">👥</span>اعضای فامیل</button>
  </div>
-
- <div class="section-head"><h2>نمای کلی مالی</h2><span>بر اساس تمام ثبت‌ها</span></div>
- <div class="panel">
-  <div class="chart-wrap">
-   <div><h3 class="chart-title">ترکیب صندوق‌ها</h3><div class="bar-list" id="walletBars"></div></div>
-   <div><h3 class="chart-title">درآمد و مصارف</h3><div class="bar-list" id="flowBars"></div></div>
-  </div>
-  <div class="legend">
-   <span><i class="dot" style="background:#ff9c45"></i>موتر</span>
-   <span><i class="dot" style="background:#ed6b9a"></i>شخصی</span>
-   <span><i class="dot" style="background:#4385f5"></i>آزاد</span>
-   <span><i class="dot" style="background:#20b981"></i>درآمد</span>
-   <span><i class="dot" style="background:#ed6470"></i>مصارف</span>
-  </div>
- </div>
- <div class="section-head"><h2>آخرین فعالیت‌ها</h2><button class="secondary-btn" onclick="showPage('history')">مشاهده همه ←</button></div>
- <div class="panel"><div class="recent-list" id="recentList"></div></div>
+ <div class="section-head"><h2>آخرین فعالیت‌ها</h2><button class="btn secondary" onclick="showPage('history')">همه موارد</button></div>
+ <div class="panel"><div class="list" id="recentList"></div></div>
 </section>
 
 <section class="page" id="page-reports">
- <div class="section-head"><h2>گزارش‌های مالی</h2><span>تحلیل وضعیت شما</span></div>
- <div class="tabs" id="reportTabs">
-  <button class="tab active" data-period="day" onclick="setReport('day',this)">امروز</button>
-  <button class="tab" data-period="week" onclick="setReport('week',this)">این هفته</button>
-  <button class="tab" data-period="month" onclick="setReport('month',this)">این ماه</button>
-  <button class="tab" data-period="all" onclick="setReport('all',this)">تمام مدت</button>
+ <div class="section-head"><h2>گزارش مالی</h2><span class="hint">خلاصه فعالیت‌ها</span></div>
+ <div class="tabs" id="periodTabs">
+  <button class="tab active" data-period="day">امروز</button>
+  <button class="tab" data-period="week">این هفته</button>
+  <button class="tab" data-period="month">این ماه</button>
+  <button class="tab" data-period="all">تمام مدت</button>
  </div>
- <div class="summary-box"><small>خالص درآمد در دوره انتخاب‌شده</small><strong id="reportNet">0</strong></div>
  <div class="grid">
-  <div class="stat-card" style="--tone:#18aa7a;--tint:#e2fbf2"><div class="stat-top"><span class="stat-icon">📈</span></div><small>درآمد</small><strong id="reportIncome">0</strong></div>
-  <div class="stat-card" style="--tone:#e56c72;--tint:#fff0f0"><div class="stat-top"><span class="stat-icon">📉</span></div><small>مصارف</small><strong id="reportExpense">0</strong></div>
-  <div class="stat-card" style="--tone:#ed9141;--tint:#fff2e5"><div class="stat-top"><span class="stat-icon">🔧</span></div><small>ترمیم موتر</small><strong id="reportRepair">0</strong></div>
-  <div class="stat-card" style="--tone:#805de2;--tint:#f0eaff"><div class="stat-top"><span class="stat-icon">🔄</span></div><small>انتقالات</small><strong id="reportTransfers">0</strong></div>
+  <div class="card"><div class="w-title">درآمد</div><div class="w-amount green" id="repIncome">0</div></div>
+  <div class="card"><div class="w-title">مصارف عادی</div><div class="w-amount red" id="repExpense">0</div></div>
+  <div class="card"><div class="w-title">مصرف گاز</div><div class="w-amount blue" id="repGas">0</div></div>
+  <div class="card"><div class="w-title">ترمیم موتر</div><div class="w-amount gold" id="repRepair">0</div></div>
  </div>
- <div class="section-head"><h2>جزئیات دوره</h2></div>
- <div class="panel"><div class="bar-list" id="reportDetails"></div></div>
- <div class="section-head"><h2>تاریخچه قرضه‌ها</h2></div>
- <div class="panel" id="loanSummary"></div>
+ <div class="section-head"><h2>جزئیات گزارش</h2></div>
+ <div class="panel" id="reportDetails"></div>
+</section>
+
+<section class="page" id="page-family">
+ <div class="section-head"><h2>حساب اعضای فامیل</h2><button class="btn" onclick="openForm('member')">+ عضو جدید</button></div>
+ <div class="panel"><div class="small muted">پول پرداخت‌شده، پول برگشتی و باقی‌مانده هر شخص جداگانه ثبت می‌شود.</div></div>
+ <div class="list" id="familyList"></div>
 </section>
 
 <section class="page" id="page-history">
- <div class="section-head"><h2>تاریخچه فعالیت‌ها</h2><span id="historyCount">0 ثبت</span></div>
- <input class="filter-input" id="historySearch" placeholder="جستجو در فعالیت‌ها..." oninput="renderHistory()" style="margin-bottom:12px">
+ <div class="section-head"><h2>تاریخچه عملیات</h2></div>
+ <input id="historySearch" placeholder="جستجو در عنوان یا یادداشت..." oninput="renderHistory()">
  <div class="tabs" id="historyTabs">
-  <button class="tab active" onclick="setHistoryFilter('all',this)">همه</button>
-  <button class="tab" onclick="setHistoryFilter('income',this)">درآمد</button>
-  <button class="tab" onclick="setHistoryFilter('expense',this)">مصارف</button>
-  <button class="tab" onclick="setHistoryFilter('repair',this)">ترمیم</button>
-  <button class="tab" onclick="setHistoryFilter('transfer',this)">انتقال</button>
-  <button class="tab" onclick="setHistoryFilter('loan',this)">قرضه</button>
-  <button class="tab" onclick="setHistoryFilter('cash',this)">نقدی</button>
+  <button class="tab active" data-filter="all">همه</button>
+  <button class="tab" data-filter="income">درآمد</button>
+  <button class="tab" data-filter="expense">مصارف</button>
+  <button class="tab" data-filter="gas">گاز</button>
+  <button class="tab" data-filter="family">فامیل</button>
+  <button class="tab" data-filter="repair">ترمیم</button>
+  <button class="tab" data-filter="transfer">انتقال</button>
  </div>
- <div id="historyList"></div>
+ <div class="list" id="historyList"></div>
 </section>
 
 <section class="page" id="page-settings">
- <div class="section-head"><h2>تنظیمات و پشتیبان‌گیری</h2><span>مدیریت برنامه</span></div>
+ <div class="section-head"><h2>تنظیمات و پشتیبان‌گیری</h2></div>
  <div class="panel">
-  <div class="settings-row"><div><b>واحد پول</b><small>واحد نمایش مبالغ</small></div><strong>افغانی (AFN)</strong></div>
-  <div class="settings-row"><div><b>تقسیم خودکار درآمد</b><small>برای درآمدهای روزانه</small></div><strong>فعال ✓</strong></div>
-  <div class="settings-row"><div><b>ذخیره‌سازی اطلاعات</b><small>اطلاعات در حافظه همین دستگاه ذخیره می‌شود</small></div><strong style="color:#20b981">محلی ✓</strong></div>
-  <div class="settings-row"><div><b>نسخه برنامه</b><small>همراه موتر</small></div><strong>3.0</strong></div>
+  <h3 style="font-size:14px">پشتیبان اطلاعات</h3>
+  <p class="small muted">برای محفوظ ماندن اطلاعات، هر چند وقت یک‌بار فایل پشتیبان بگیرید.</p>
+  <button class="btn full" onclick="backup()">دریافت فایل پشتیبان</button>
+  <label for="restoreFile">بازیابی فایل پشتیبان</label>
+  <input id="restoreFile" type="file" accept="application/json" onchange="restoreBackup(event)">
  </div>
- <div class="section-head"><h2>پشتیبان‌گیری</h2></div>
  <div class="panel">
-  <p style="font-size:12px;color:#858ba2;line-height:2;margin-top:0">برای جلوگیری از ضایع‌شدن اطلاعات، هر چند وقت یک‌بار نسخه پشتیبان بگیرید. فایل پشتیبان را در جای امن نگهداری کنید.</p>
-  <button class="primary-btn" onclick="backupData()">⬇️ دریافت نسخه پشتیبان</button>
-  <div style="height:10px"></div>
-  <button class="secondary-btn" style="width:100%" onclick="document.getElementById('restoreFile').click()">⬆️ بازیابی نسخه پشتیبان</button>
-  <input id="restoreFile" type="file" accept=".json,application/json" hidden onchange="restoreData(event)">
+  <h3 style="font-size:14px">روش تقسیم درآمد</h3>
+  <p class="small muted">از هر درآمد جدید، ابتدا تا ۲۰۰ افغانی به حساب گاز اختصاص می‌یابد. باقی‌مانده طبق روش قبلی میان صندوق موتر، پس‌انداز شخصی و پول آزاد تقسیم می‌شود.</p>
  </div>
- <div class="section-head"><h2>راهنمای تقسیم درآمد</h2></div>
- <div class="panel" style="font-size:12px;line-height:2.2;color:#737991">
-  <b style="color:#f18b38">صندوق موتر:</b> اگر درآمد روزانه 450 افغانی یا بیشتر باشد، 100 افغانی به صندوق موتر اختصاص می‌یابد. در غیر آن 20 درصد درآمد با گردکردن به پایین در واحد 10 افغانی.<br>
-  <b style="color:#d65ad0">پس‌انداز شخصی:</b> نصف مبلغ باقی‌مانده.<br>
-  <b style="color:#438cf4">پول آزاد:</b> باقی مبلغ پس از تقسیم دو صندوق دیگر.
+ <div class="panel">
+  <div class="row"><span class="small muted">نسخه برنامه</span><b class="small">همراه موتر 2.1</b></div>
+  <div class="row" style="margin-top:12px"><span class="small muted">ذخیره‌سازی</span><b class="small green">حافظه همین دستگاه</b></div>
  </div>
 </section>
+</main>
+
+<div class="bottom">
+<nav class="nav">
+ <button class="active" data-page="home"><span>⌂</span>خانه</button>
+ <button data-page="reports"><span>▥</span>گزارش</button>
+ <button onclick="openForm('income')"><span>＋</span>ثبت</button>
+ <button data-page="history"><span>◷</span>تاریخچه</button>
+ <button data-page="settings"><span>⚙</span>تنظیمات</button>
+</nav>
 </div>
 
-<nav class="bottom-nav">
- <div class="nav-inner">
-  <button class="nav-btn active" onclick="showPage('home',this)"><span>🏠</span>خانه</button>
-  <button class="nav-btn" onclick="showPage('reports',this)"><span>📊</span>گزارش‌ها</button>
-  <button class="nav-btn" onclick="openForm('income')"><span>➕</span>ثبت جدید</button>
-  <button class="nav-btn" onclick="showPage('history',this)"><span>📋</span>تاریخچه</button>
-  <button class="nav-btn" onclick="showPage('settings',this)"><span>⚙️</span>تنظیمات</button>
- </div>
-</nav>
-
-<div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeModal()">
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
  <div class="modal">
-  <div class="modal-head"><h3 id="modalTitle">ثبت فعالیت</h3><button class="close" onclick="closeModal()">×</button></div>
+  <div class="modal-top"><h3 id="modalTitle">ثبت اطلاعات</h3><button class="x" onclick="closeModal()">×</button></div>
   <div id="modalBody"></div>
  </div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
+'use strict';
+
 const STORAGE_KEY='hamrahMotor_v2';
-const defaults=()=>({version:2,currency:"افغانی",income:[],expenses:[],repairs:[],transfers:[],cashOps:[],loans:[],loanPayments:[]});
-let data=loadData(),currentType='',editing=null,reportPeriod='day',historyFilter='all';
+
+const defaults=()=>({
+ version:2,currency:'افغانی',
+ income:[],expenses:[],repairs:[],transfers:[],
+ cashOps:[],loans:[],loanPayments:[],
+ gasUses:[],familyMembers:[],familyTransactions:[]
+});
+
+let data=loadData();
+let editing=null;
+let formType='';
+let reportPeriod='day';
+let historyFilter='all';
 
 function loadData(){
  try{
-  const old=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');
-  if(!old)return defaults();
-  const d={...defaults(),...old};
-  ['income','expenses','repairs','transfers','cashOps','loans','loanPayments'].forEach(k=>{if(!Array.isArray(d[k]))d[k]=[]});
-  return d;
+  const x=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+  return {...defaults(),...x,
+   income:x.income||[],expenses:x.expenses||[],
+   repairs:x.repairs||[],transfers:x.transfers||[],
+   cashOps:x.cashOps||[],loans:x.loans||[],
+   loanPayments:x.loanPayments||[],gasUses:x.gasUses||[],
+   familyMembers:x.familyMembers||[],
+   familyTransactions:x.familyTransactions||[]
+  };
  }catch(e){return defaults()}
 }
-function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data));renderAll()}
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
-function num(v){return Math.max(0,Number(v)||0)}
-function fmt(v){return Math.round(Number(v)||0).toLocaleString('en-US')+' ؋'}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function todaySolar(){
- try{
-  const p=new Intl.DateTimeFormat('en-US-u-ca-persian-nu-latn',{year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
-  const o={};p.forEach(x=>o[x.type]=x.value);
-  return `${o.year}/${o.month}/${o.day}`;
- }catch(e){return '1405/01/01'}
+
+function save(){
+ localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+ renderAll();
 }
-function dateValue(){return todaySolar()}
-function validDate(v){return /^\d{4}\/\d{2}\/\d{2}$/.test(v)}
-function dateParts(v){return (v||'').split('/').map(Number)}
-function dateCompare(a,b){return String(a||'').localeCompare(String(b||''))}
-function dateLabel(v){return v||'بدون تاریخ'}
-function monthKey(v){return String(v||'').slice(0,7)}
-function toast(msg){
- const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');
- clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),2400);
+
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const num=v=>Math.max(0,Number(v)||0);
+const fmt=v=>Math.round(Number(v)||0).toLocaleString('en-US');
+
+function esc(s){
+ return String(s??'').replace(/[&<>"']/g,c=>({
+ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+ }[c]));
 }
+
+function today(){
+ return new Intl.DateTimeFormat('en-US-u-ca-persian-nu-latn',{
+  year:'numeric',month:'2-digit',day:'2-digit'
+ }).format(new Date()).replace(/\u200e/g,'');
+}
+
+function dateNow(){return today()}
+
+function dateMs(s){
+ const p=String(s||'').split('/').map(Number);
+ if(p.length!==3)return 0;
+ return new Date(p[0]+621,p[1]-1,p[2]).getTime();
+}
+
+/* تقسیم درآمد: ابتدا ۲۰۰ افغانی گاز */
 function allocations(amount){
- let car=amount>=450?100:Math.floor((amount*.2)/10)*10;
- car=Math.min(car,amount);
- let rest=amount-car,personal=Math.floor(rest/2),free=rest-personal;
- return {car,personal,free};
+ const gas=Math.min(200,amount);
+ const rest=amount-gas;
+ let car=rest>=450?100:Math.floor(rest*.2/10)*10;
+ car=Math.min(car,rest);
+ const left=rest-car;
+ const personal=Math.floor(left/2);
+ const free=left-personal;
+ return {gas,car,personal,free};
 }
-function emptyBalances(){return {car:0,personal:0,free:0}}
-function getBalances(exclude){
- let b=emptyBalances();
+
+/* محاسبه موجودی صندوق‌ها */
+function getBalances(){
+ const b={car:0,personal:0,free:0,gas:0};
+
  data.income.forEach(x=>{
-  if(exclude&&exclude.id===x.id&&exclude.type==='income')return;
-  const a=x.allocations||allocations(num(x.amount));
-  b.car+=num(a.car);b.personal+=num(a.personal);b.free+=num(a.free);
+  let a=x.allocations;
+  if(!a){
+   a={...allocations(num(x.amount)),gas:0};
+  }
+  ['car','personal','free','gas'].forEach(k=>{
+   b[k]+=num(a[k]);
+  });
  });
- data.expenses.forEach(x=>{if(!(exclude&&exclude.id===x.id&&exclude.type==='expense'))b[x.fund||'free']-=num(x.amount)});
- data.repairs.forEach(x=>{if(!(exclude&&exclude.id===x.id&&exclude.type==='repair'))b.car-=num(x.amount)});
+
+ data.expenses.forEach(x=>{
+  b[x.fund||'free']-=num(x.amount);
+ });
+
+ data.repairs.forEach(x=>b.car-=num(x.amount));
+ data.gasUses.forEach(x=>b.gas-=num(x.amount));
+
  data.transfers.forEach(x=>{
-  if(exclude&&exclude.id===x.id&&exclude.type==='transfer')return;
-  b[x.from]-=num(x.amount);b[x.to]+=num(x.amount);
+  b[x.from]-=num(x.amount);
+  b[x.to]+=num(x.amount);
  });
+
  data.cashOps.forEach(x=>{
-  if(exclude&&exclude.id===x.id&&exclude.type==='cash')return;
   b[x.fund||'free']+=(x.direction==='in'?1:-1)*num(x.amount);
  });
+
  data.loans.forEach(x=>{
-  if(exclude&&exclude.id===x.id&&exclude.type==='loan')return;
-  const sign=x.direction==='taken'?1:-1;
-  b[x.fund||'free']+=sign*num(x.amount);
+  b[x.fund||'free']+=(x.direction==='taken'?1:-1)*num(x.amount);
  });
+
  data.loanPayments.forEach(x=>{
-  if(exclude&&exclude.id===x.id&&exclude.type==='payment')return;
-  const loan=data.loans.find(l=>l.id===x.loanId);
-  if(loan)b[loan.fund||'free']+=(loan.direction==='taken'?-1:1)*num(x.amount);
+  const l=data.loans.find(y=>y.id===x.loanId);
+  if(l)b[l.fund||'free']+=(l.direction==='taken'?-1:1)*num(x.amount);
  });
+
+ data.familyTransactions.forEach(x=>{
+  b[x.fund||'free']+=(x.direction==='given'?-1:1)*num(x.amount);
+ });
+
  return b;
 }
-function totalOutstanding(){
- return data.loans.reduce((sum,l)=>sum+remainingLoan(l),0);
+
+function toast(s){
+ const t=document.getElementById('toast');
+ t.textContent=s;
+ t.classList.add('show');
+ setTimeout(()=>t.classList.remove('show'),2300);
 }
-function paidFor(loan){return data.loanPayments.filter(p=>p.loanId===loan.id).reduce((s,p)=>s+num(p.amount),0)}
-function remainingLoan(loan){return Math.max(0,num(loan.amount)-paidFor(loan))}
-function totalIncome(){return data.income.reduce((s,x)=>s+num(x.amount),0)}
-function totalExpenses(){return data.expenses.reduce((s,x)=>s+num(x.amount),0)+data.repairs.reduce((s,x)=>s+num(x.amount),0)}
-function showPage(name,btn){
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- const page=document.getElementById('page-'+name);if(page)page.classList.add('active');
- document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
- if(btn)btn.classList.add('active');
- else{
-  const map={home:0,reports:1,history:3,settings:4};
-  const n=map[name];if(n!==undefined)document.querySelectorAll('.nav-btn')[n].classList.add('active');
- }
- if(name==='reports')renderReports();
- if(name==='history')renderHistory();
- window.scrollTo({top:0,behavior:'smooth'});
+
+function showPage(p){
+ document.querySelectorAll('.page').forEach(x=>{
+  x.classList.toggle('active',x.id==='page-'+p);
+ });
+ document.querySelectorAll('.nav [data-page]').forEach(x=>{
+  x.classList.toggle('active',x.dataset.page===p);
+ });
+ if(p==='family')renderFamily();
+ if(p==='history')renderHistory();
+ if(p==='reports')renderReports();
 }
+
+document.querySelectorAll('.nav [data-page]').forEach(b=>{
+ b.addEventListener('click',()=>showPage(b.dataset.page));
+});
+
+document.getElementById('periodTabs').addEventListener('click',e=>{
+ const b=e.target.closest('[data-period]');
+ if(!b)return;
+ reportPeriod=b.dataset.period;
+ document.querySelectorAll('#periodTabs .tab').forEach(x=>{
+  x.classList.toggle('active',x===b);
+ });
+ renderReports();
+});
+
+document.getElementById('historyTabs').addEventListener('click',e=>{
+ const b=e.target.closest('[data-filter]');
+ if(!b)return;
+ historyFilter=b.dataset.filter;
+ document.querySelectorAll('#historyTabs .tab').forEach(x=>{
+  x.classList.toggle('active',x===b);
+ });
+ renderHistory();
+});
+
+function fundName(k){
+ return ({
+  car:'صندوق موتر',
+  personal:'پس‌انداز شخصی',
+  free:'پول آزاد',
+  gas:'حساب گاز'
+ })[k]||k;
+}
+
+function memberName(id){
+ return data.familyMembers.find(m=>m.id===id)?.name||'عضو فامیل';
+}
+
+/* تمام فعالیت‌ها برای تاریخچه */
+function allRecords(){
+ let a=[];
+ const add=(arr,type,title,sign)=>{
+  arr.forEach(x=>{
+   a.push({...x,type,title:x.title||title,
+    sign:typeof sign==='function'?sign(x):sign});
+  });
+ };
+ add(data.income,'income','درآمد',1);
+ add(data.expenses,'expense','مصرف',-1);
+ add(data.repairs,'repair','ترمیم موتر',-1);
+ add(data.gasUses,'gas','مصرف گاز',-1);
+ add(data.transfers,'transfer','انتقال',0);
+ add(data.cashOps,'cash','داخل/خارج',x=>x.direction==='in'?1:-1);
+ add(data.loans,'loan','قرضه',x=>x.direction==='taken'?1:-1);
+ add(data.loanPayments,'payment','پرداخت قرضه',0);
+ add(data.familyTransactions,'family','حساب فامیل',x=>x.direction==='given'?-1:1);
+ return a.sort((x,y)=>dateMs(y.date)-dateMs(x.date));
+}
+
+function recordHTML(x){
+ const icons={
+  income:'＋',expense:'−',repair:'🔧',gas:'⛽',
+  transfer:'⇄',cash:'↕',loan:'🤝',payment:'✓',family:'👥'
+ };
+ let val=x.type==='transfer'?'انتقال '+fmt(x.amount):fmt(x.amount)+' افغانی';
+ let sign=x.sign>0?'+':x.sign<0?'−':'';
+ let meta=(x.date||'')+(x.note?' • '+x.note:'');
+ return `<div class="record">
+  <div class="r-icon">${icons[x.type]||'•'}</div>
+  <div class="r-main">
+   <div class="r-title">${esc(x.title)}</div>
+   <div class="r-meta">${esc(meta)}</div>
+  </div>
+  <div class="r-value ${x.sign>0?'green':x.sign<0?'red':'gold'}">
+   ${sign}${val}
+   <div style="font-size:9px;color:var(--muted);margin-top:5px;text-align:left">
+   ${esc(x.type==='expense'||x.type==='repair'?fundName(x.fund||'free'):x.type==='family'?memberName(x.memberId):'')}
+   </div>
+  </div>
+  <button class="x" style="width:29px;height:29px;font-size:13px" onclick="editRecord('${x.type}','${x.id}')">✎</button>
+ </div>`;
+}
+
+function renderHome(){
+ const b=getBalances();
+ const total=Object.values(b).reduce((s,v)=>s+v,0);
+ document.getElementById('grandTotal').textContent=fmt(total);
+ document.getElementById('balCar').textContent=fmt(b.car);
+ document.getElementById('balPersonal').textContent=fmt(b.personal);
+ document.getElementById('balFree').textContent=fmt(b.free);
+ document.getElementById('balGas').textContent=fmt(b.gas);
+
+ const d=dateNow();
+ const rs=allRecords().filter(x=>x.date===d);
+
+ document.getElementById('todayIncome').textContent=fmt(
+  rs.filter(x=>x.type==='income').reduce((s,x)=>s+num(x.amount),0)
+ );
+
+ document.getElementById('todayExpense').textContent=fmt(
+  rs.filter(x=>['expense','repair','gas'].includes(x.type))
+  .reduce((s,x)=>s+num(x.amount),0)
+ );
+
+ const recent=allRecords().slice(0,5);
+ document.getElementById('recentList').innerHTML=recent.length
+  ?recent.map(recordHTML).join('')
+  :'<div class="empty">هنوز فعالیتی ثبت نشده است.</div>';
+}
+
+function familyStats(id){
+ const a=data.familyTransactions.filter(x=>x.memberId===id);
+ const given=a.filter(x=>x.direction==='given')
+  .reduce((s,x)=>s+num(x.amount),0);
+ const returned=a.filter(x=>x.direction==='returned')
+  .reduce((s,x)=>s+num(x.amount),0);
+ return {given,returned,balance:given-returned};
+}
+
+function renderFamily(){
+ const el=document.getElementById('familyList');
+ el.innerHTML=data.familyMembers.length
+ ?data.familyMembers.map(m=>{
+  const s=familyStats(m.id);
+  return `<div class="panel">
+   <div class="row">
+    <div class="member">
+     <div class="avatar">${esc(m.name.slice(0,1))}</div>
+     <div><b>${esc(m.name)}</b><div class="small muted">${esc(m.phone||'بدون شماره')}</div></div>
+    </div>
+    <button class="btn secondary" onclick="openFamilyTransaction('${m.id}')">ثبت پول</button>
+   </div>
+   <div class="grid" style="margin-top:13px">
+    <div><div class="small muted">پرداخت‌شده</div><b class="gold">${fmt(s.given)}</b></div>
+    <div><div class="small muted">برگشتی</div><b class="green">${fmt(s.returned)}</b></div>
+    <div><div class="small muted">باقی‌مانده</div><b class="red">${fmt(s.balance)}</b></div>
+   </div>
+   <div class="row" style="margin-top:12px">
+    <span class="small muted">${esc(m.note||'')}</span>
+    <button class="btn secondary" onclick="deleteMember('${m.id}')">حذف عضو</button>
+   </div>
+  </div>`;
+ }).join('')
+ :'<div class="panel empty">هنوز عضوی ثبت نشده است. از دکمه «عضو جدید» استفاده کنید.</div>';
+}
+
+function inPeriod(x){
+ if(reportPeriod==='all')return true;
+ const t=dateMs(x.date),now=dateMs(dateNow());
+ if(!t)return false;
+ if(reportPeriod==='day')return x.date===dateNow();
+ if(reportPeriod==='month')return x.date.slice(0,7)===dateNow().slice(0,7);
+ return t>=now-6*86400000&&t<=now+86400000;
+}
+
+function renderReports(){
+ const a=allRecords().filter(inPeriod);
+ const sum=t=>a.filter(x=>x.type===t).reduce((s,x)=>s+num(x.amount),0);
+
+ [['repIncome','income'],['repExpense','expense'],['repGas','gas'],['repRepair','repair']]
+ .forEach(([id,t])=>{
+  document.getElementById(id).textContent=fmt(sum(t));
+ });
+
+ const total=sum('income');
+ const familyGiven=a.filter(x=>x.type==='family'&&x.direction==='given')
+  .reduce((s,x)=>s+num(x.amount),0);
+ const familyReturned=a.filter(x=>x.type==='family'&&x.direction==='returned')
+  .reduce((s,x)=>s+num(x.amount),0);
+
+ const items=[
+  ['درآمد',total],
+  ['مصارف عادی',sum('expense')],
+  ['مصرف گاز',sum('gas')],
+  ['ترمیم موتر',sum('repair')],
+  ['پرداخت به اعضای فامیل',familyGiven],
+  ['پول برگشتی از فامیل',familyReturned]
+ ];
+
+ document.getElementById('reportDetails').innerHTML=items.map(([n,v])=>
+  `<div class="bar-wrap">
+   <div class="bar-label"><span>${n}</span><b>${fmt(v)}</b></div>
+   <div class="bar"><i style="width:${total?Math.min(100,v/total*100):0}%"></i></div>
+  </div>`
+ ).join('');
+}
+
+function renderHistory(){
+ const q=(document.getElementById('historySearch')?.value||'').toLowerCase();
+ const a=allRecords().filter(x=>
+  (historyFilter==='all'||(historyFilter==='family'?x.type==='family':x.type===historyFilter))
+  &&(`${x.title} ${x.note||''} ${x.date||''} ${memberName(x.memberId||'')}`).toLowerCase().includes(q)
+ );
+ document.getElementById('historyList').innerHTML=a.length
+  ?a.map(recordHTML).join('')
+  :'<div class="empty">موردی پیدا نشد.</div>';
+}
+
 function renderAll(){
- const b=getBalances(),sum=b.car+b.personal+b.free;
- document.getElementById('todayChip').textContent=todaySolar();
- document.getElementById('totalBalance').textContent=fmt(sum);
- document.getElementById('totalIncome').textContent=fmt(totalIncome());
- document.getElementById('totalExpense').textContent=fmt(totalExpenses());
- document.getElementById('loanTotal').textContent=fmt(totalOutstanding());
- document.getElementById('carBalance').textContent=fmt(b.car);
- document.getElementById('personalBalance').textContent=fmt(b.personal);
- document.getElementById('freeBalance').textContent=fmt(b.free);
- renderBars(b);renderRecent();
+ renderHome();
+ renderFamily();
  if(document.getElementById('page-reports').classList.contains('active'))renderReports();
  if(document.getElementById('page-history').classList.contains('active'))renderHistory();
 }
-function renderBars(b){
- const vals=[['موتر',b.car,'#ff9c45'],['شخصی',b.personal,'#ed6b9a'],['آزاد',b.free,'#4385f5']];
- const max=Math.max(1,...vals.map(x=>Math.abs(x[1])));
- document.getElementById('walletBars').innerHTML=vals.map(x=>`<div class="bar-row"><span>${x[0]}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.max(0,Math.abs(x[1])/max*100)}%;background:${x[2]}"></div></div><span class="bar-value">${Math.round(x[1]).toLocaleString('en-US')}</span></div>`).join('');
- const inc=totalIncome(),exp=totalExpenses(),m=Math.max(1,inc,exp);
- document.getElementById('flowBars').innerHTML=[
- ['درآمد',inc,'#20b981'],['مصارف',exp,'#ed6470']
- ].map(x=>`<div class="bar-row"><span>${x[0]}</span><div class="bar-track"><div class="bar-fill" style="width:${x[1]/m*100}%;background:${x[2]}"></div></div><span class="bar-value">${Math.round(x[1]).toLocaleString('en-US')}</span></div>`).join('');
+
+function closeModal(){
+ document.getElementById('modalBg').classList.remove('show');
+ editing=null;
 }
-function allRecords(){
- const out=[];
- const add=(arr,type,icon,label,sign)=>arr.forEach(x=>out.push({...x,type,icon,label,sign}));
- add(data.income,'income','💰','درآمد',1);
- add(data.expenses,'expense','🛍️','مصرف',-1);
- add(data.repairs,'repair','🔧','ترمیم موتر',-1);
- add(data.transfers,'transfer','🔄','انتقال پول',0);
- add(data.cashOps,'cash','💳','عملیات نقدی',0);
- add(data.loans,'loan','🤝','قرضه',0);
- add(data.loanPayments,'payment','💸','تسویه قرضه',0);
- return out.sort((a,b)=>dateCompare(b.date,a.date)||String(b.id).localeCompare(String(a.id)));
-}
-function renderRecent(){
- const list=allRecords().slice(0,5);
- document.getElementById('recentList').innerHTML=list.length?list.map(recordHTML).join(''):'<div class="empty">هنوز فعالیتی ثبت نشده است.</div>';
-}
-function recordAmount(r){
- if(r.type==='income')return `+${fmt(r.amount)}`;
- if(r.type==='expense'||r.type==='repair')return `-${fmt(r.amount)}`;
- if(r.type==='loan')return `${r.direction==='taken'?'+':'-'}${fmt(r.amount)}`;
- if(r.type==='payment')return fmt(r.amount);
- return fmt(r.amount);
-}
-function recordHTML(r){
- const cls=r.sign===1?'positive':r.sign===-1?'negative':'';
- let desc=r.note||r.person||'';
- if(r.type==='transfer')desc=`${fundName(r.from)} ← ${fundName(r.to)}`;
- if(r.type==='loan')desc=(r.direction==='taken'?'قرضه گرفته‌شده از ':'قرضه داده‌شده به ')+(r.person||'');
- if(r.type==='payment')desc='تسویه قرضه · '+(r.person||'');
- if(r.type==='cash')desc=(r.direction==='in'?'ورود نقدی':'خروج نقدی')+' · '+fundName(r.fund);
- return `<div class="recent-item"><div class="recent-icon" style="background:${iconBg(r.type)}">${r.icon}</div><div class="recent-info"><b>${esc(r.title||r.label)}</b><small>${esc(desc)} · ${esc(dateLabel(r.date))}</small></div><div class="recent-amount ${cls}">${recordAmount(r)}</div></div>`;
-}
-function iconBg(t){return ({income:'#e2fbf2',expense:'#fff0e5',repair:'#fff0ed',transfer:'#e9efff',loan:'#f3eaff',payment:'#fff0e9',cash:'#e2f8fb'})[t]||'#f0f1f8'}
-function fundName(f){return ({car:'صندوق موتر',personal:'صندوق شخصی',free:'پول آزاد'})[f]||'صندوق'}
-function fundOptions(selected){return ['car','personal','free'].map(f=>`<option value="${f}" ${selected===f?'selected':''}>${fundName(f)}</option>`).join('')}
-function field(label,name,value='',type='text',placeholder='',full=false){
- return `<div class="field ${full?'full':''}"><label>${label}</label><input name="${name}" type="${type}" value="${esc(value)}" placeholder="${placeholder}" ${type==='number'?'min="0" step="1" inputmode="numeric"':''}></div>`;
-}
-function selectField(label,name,opts,selected,full=false){
- return `<div class="field ${full?'full':''}"><label>${label}</label><select name="${name}">${opts}</select></div>`;
-}
-function dateField(value){return field('تاریخ هجری شمسی (سال/ماه/روز)','date',value||dateValue(),'text','1405/01/01')}
+
 function openForm(type,id=null){
- currentType=type;editing=id?{type,id}:null;
- const existing=id?data[type==='payment'?'loanPayments':type==='cash'?'cashOps':type==='loan'?'loans':type==='expense'?'expenses':type==='repair'?'repairs':type==='transfer'?'transfers':'income'].find(x=>x.id===id):null;
- const x=existing||{};
- const titles={income:'ثبت درآمد روزانه',expense:'ثبت مصرف جدید',repair:'ثبت ترمیم موتر',transfer:'انتقال بین صندوق‌ها',loan:'ثبت قرضه جدید',cash:'ورود یا خروج پول نقد',payment:'تسویه قرضه'};
- document.getElementById('modalTitle').textContent=id?'ویرایش '+titles[type]:titles[type];
- let html='<form id="activityForm" onsubmit="submitForm(event)"><div class="form-grid">';
+ formType=type;
+ editing=id?{type,id}:null;
+ const old=id?findRecord(type,id):null;
+
+ const titles={
+  income:'ثبت درآمد روزانه',
+  expense:'ثبت مصرف عادی',
+  gas:'ثبت مصرف گاز',
+  repair:'ثبت ترمیم موتر',
+  transfer:'انتقال میان صندوق‌ها',
+  cash:'ثبت پول داخل یا خارج',
+  loan:'ثبت قرضه',
+  member:'افزودن عضو فامیل',
+  familyTx:'ثبت پول حساب فامیل'
+ };
+
+ document.getElementById('modalTitle').textContent=titles[type]||'ثبت اطلاعات';
+
+ const date=old?.date||dateNow();
+ const amount=old?.amount??'';
+ const note=old?.note||'';
+
+ const dateField=`<label>تاریخ هجری شمسی</label>
+ <input name="date" value="${esc(date)}" placeholder="1405/08/06" required>`;
+
+ const amountField=`<label>مبلغ (افغانی)</label>
+ <input name="amount" type="number" min="1" step="1" value="${amount}" placeholder="مثلاً 500" required>`;
+
+ const noteField=`<label>یادداشت</label>
+ <textarea name="note" placeholder="توضیحات اختیاری">${esc(note)}</textarea>`;
+
+ const funds=(selected='free')=>`<label>صندوق</label>
+ <select name="fund">
+ ${['car','personal','free'].map(k=>
+  `<option value="${k}" ${selected===k?'selected':''}>${fundName(k)}</option>`
+ ).join('')}
+ </select>`;
+
+ let body='';
+
  if(type==='income'){
-  html+=field('مبلغ درآمد (افغانی)','amount',x.amount||'','number','مثلاً 550');
-  html+=dateField(x.date);
-  html+='<div class="field full"><div class="notice">درآمد به‌صورت خودکار میان سه صندوق تقسیم می‌شود. مصرف 200 افغانی گاز را جداگانه وارد نکنید؛ مبلغ خالص دریافتی را ثبت کنید.</div></div>';
-  html+=field('یادداشت (اختیاری)','note',x.note||'','text','توضیحات');
- }else if(type==='expense'){
-  html+=field('مبلغ مصرف','amount',x.amount||'','number','مبلغ به افغانی');
-  html+=selectField('کسر از کدام صندوق؟','fund',fundOptions(x.fund||'free'),x.fund||'free');
-  html+=dateField(x.date);
-  html+=field('عنوان مصرف','title',x.title||'','text','مثلاً غذا، پارکینگ');
-  html+=field('یادداشت','note',x.note||'','text','توضیحات');
- }else if(type==='repair'){
-  html+=field('مبلغ ترمیم','amount',x.amount||'','number','مبلغ به افغانی');
-  html+=dateField(x.date);
-  html+=field('نوع ترمیم','title',x.title||'','text','مثلاً ترمیم انجن');
-  html+=field('یادداشت','note',x.note||'','text','توضیحات');
-  html+='<div class="field full"><div class="notice">مصارف ترمیم فقط از صندوق موتر کسر می‌شود.</div></div>';
- }else if(type==='transfer'){
-  html+=field('مبلغ انتقال','amount',x.amount||'','number','مبلغ به افغانی');
-  html+=selectField('از صندوق','from',fundOptions(x.from||'free'),x.from||'free');
-  html+=selectField('به صندوق','to',fundOptions(x.to||'car'),x.to||'car');
-  html+=dateField(x.date);
-  html+=field('یادداشت','note',x.note||'','text','توضیحات');
- }else if(type==='cash'){
-  html+=field('مبلغ','amount',x.amount||'','number','مبلغ به افغانی');
-  html+=selectField('نوع عملیات','direction','<option value="in">ورود پول به صندوق</option><option value="out">خروج پول از صندوق</option>',x.direction||'in');
-  html+=selectField('صندوق','fund',fundOptions(x.fund||'free'),x.fund||'free');
-  html+=dateField(x.date);
-  html+=field('عنوان','title',x.title||'','text','مثلاً پول نقد');
-  html+=field('یادداشت','note',x.note||'','text','توضیحات');
- }else if(type==='loan'){
-  html+=field('مبلغ قرضه','amount',x.amount||'','number','مبلغ به افغانی');
-  html+=selectField('نوع قرضه','direction','<option value="taken">قرضه گرفتم</option><option value="given">قرضه دادم</option>',x.direction||'taken');
-  html+=selectField('تأثیر در کدام صندوق؟','fund',fundOptions(x.fund||'free'),x.fund||'free');
-  html+=dateField(x.date);
-  html+=field('نام شخص','person',x.person||'','text','نام شخص');
-  html+=field('یادداشت','note',x.note||'','text','توضیحات');
- }else if(type==='payment'){
-  const loanOpts=data.loans.map(l=>`<option value="${l.id}">${esc(l.person||'بدون نام')} · ${l.direction==='taken'?'قرضه گرفته':'قرضه داده'} · باقی ${remainingLoan(l)}</option>`).join('');
-  html+=selectField('انتخاب قرضه','loanId',loanOpts,x.loanId||'',true);
-  html+=field('مبلغ تسویه','amount',x.amount||'','number','مبلغ');
-  html+=dateField(x.date);
-  html+=field('یادداشت','note',x.note||'','text','توضیحات');
+  body=amountField+dateField+noteField+
+  `<div class="small muted" style="margin-top:10px">از هر درآمد، تا ۲۰۰ افغانی به حساب گاز اختصاص می‌یابد و باقی‌مانده میان سه صندوق تقسیم می‌شود.</div>`;
  }
- html+='</div><button class="primary-btn" type="submit">'+(id?'ذخیره تغییرات':'ثبت اطلاعات')+'</button></form>';
- if(type==='loan')html+='<div style="margin-top:10px"><button class="secondary-btn" style="width:100%" onclick="openForm(\'payment\')">ثبت تسویه قرضه</button></div>';
- if(type==='payment'&&!data.loans.length)html='<div class="empty">ابتدا یک قرضه ثبت کنید.</div>';
- document.getElementById('modalBody').innerHTML=html;
- document.getElementById('modalBackdrop').classList.add('show');
+
+ if(type==='expense'){
+  body=amountField+funds(old?.fund||'free')+
+  `<label>عنوان مصرف</label><input name="title" value="${esc(old?.title||'مصرف عادی')}" required>`+
+  dateField+noteField;
+ }
+
+ if(type==='gas'){
+  body=amountField+
+  `<div class="small muted" style="margin-top:8px">موجودی حساب گاز: ${fmt(getBalances().gas)} افغانی</div>`+
+  dateField+noteField;
+ }
+
+ if(type==='repair'){
+  body=amountField+
+  `<label>عنوان ترمیم</label><input name="title" value="${esc(old?.title||'ترمیم موتر')}" required>`+
+  dateField+noteField;
+ }
+
+ if(type==='transfer'){
+  body=amountField+
+  `<label>از صندوق</label><select name="from">
+   ${['car','personal','free'].map(k=>`<option value="${k}" ${old?.from===k?'selected':''}>${fundName(k)}</option>`).join('')}
+  </select>
+  <label>به صندوق</label><select name="to">
+   ${['car','personal','free'].map(k=>`<option value="${k}" ${old?.to===k?'selected':''}>${fundName(k)}</option>`).join('')}
+  </select>`+dateField+noteField;
+ }
+
+ if(type==='cash'){
+  body=amountField+
+  `<label>نوع عملیات</label><select name="direction">
+   <option value="in">پول داخل صندوق</option>
+   <option value="out">پول خارج از صندوق</option>
+  </select>`+funds()+
+  `<label>عنوان</label><input name="title" value="پول نقدی">`+dateField+noteField;
+ }
+
+ if(type==='loan'){
+  body=amountField+
+  `<label>نوع قرضه</label><select name="direction">
+   <option value="taken">قرض گرفته‌ام</option>
+   <option value="given">قرض داده‌ام</option>
+  </select>`+funds()+
+  `<label>نام شخص</label><input name="person" value="">`+dateField+noteField;
+ }
+
+ if(type==='member'){
+  body=`<label>نام عضو فامیل</label><input name="name" required placeholder="نام کامل">
+  <label>شماره تماس (اختیاری)</label><input name="phone" placeholder="07xxxxxxxx">
+  <label>یادداشت</label><textarea name="note"></textarea>`;
+ }
+
+ if(type==='familyTx'){
+  body=`<label>عضو فامیل</label><select name="memberId">
+   ${data.familyMembers.map(m=>`<option value="${m.id}" ${old?.memberId===m.id?'selected':''}>${esc(m.name)}</option>`).join('')}
+  </select>
+  <label>نوع عملیات</label><select name="direction">
+   <option value="given">پول به عضو پرداخت کردم</option>
+   <option value="returned">عضو پول را پس داد</option>
+  </select>`+amountField+funds(old?.fund||'free')+dateField+noteField;
+ }
+
+ document.getElementById('modalBody').innerHTML=
+ `<form id="entryForm">${body}<button class="btn full" type="submit">ذخیره اطلاعات</button></form>`;
+
+ document.getElementById('modalBg').classList.add('show');
+ document.getElementById('entryForm').addEventListener('submit',submitForm);
 }
-function closeModal(){document.getElementById('modalBackdrop').classList.remove('show');editing=null}
+
+function findRecord(type,id){
+ const map={
+  income:'income',expense:'expenses',gas:'gasUses',
+  repair:'repairs',transfer:'transfers',cash:'cashOps',
+  loan:'loans',payment:'loanPayments',familyTx:'familyTransactions'
+ };
+ return (data[map[type]]||[]).find(x=>x.id===id);
+}
+
 function submitForm(e){
  e.preventDefault();
- const fd=new FormData(e.target),v=Object.fromEntries(fd.entries());
- v.amount=num(v.amount);
- if(!v.date||!validDate(v.date)){toast('تاریخ را به شکل 1405/01/01 وارد کنید');return}
- if(['income','expense','repair','transfer','cash','loan','payment'].includes(currentType)&&v.amount<=0){toast('مبلغ باید بیشتر از صفر باشد');return}
- if(currentType==='transfer'&&v.from===v.to){toast('صندوق مبدأ و مقصد باید متفاوت باشد');return}
- if(currentType==='payment'&&!v.loanId){toast('قرضه را انتخاب کنید');return}
- if(currentType==='loan'&&!v.person.trim()){toast('نام شخص را وارد کنید');return}
- const collection={income:'income',expense:'expenses',repair:'repairs',transfer:'transfers',cash:'cashOps',loan:'loans',payment:'loanPayments'}[currentType];
- const old=editing?data[collection].find(z=>z.id===editing.id):null;
- const item={...(old||{}),...v,id:old?old.id:uid()};
- if(currentType==='income')item.allocations=allocations(v.amount);
- if(currentType==='transfer'){
-  const b=getBalances(editing?{type:'transfer',id:editing.id}:null);
-  if(b[v.from]<v.amount){toast('موجودی صندوق مبدأ کافی نیست');return}
+
+ const f=new FormData(e.target);
+ const v=Object.fromEntries(f.entries());
+ const n=num(v.amount);
+ const date=v.date||dateNow();
+
+ if(formType!=='member'&&n<=0){
+  toast('مبلغ را درست وارد کنید');
+  return;
  }
- if(currentType==='expense'||currentType==='cash'&&v.direction==='out'){
-  const b=getBalances(editing?{type:currentType,id:editing.id}:null);
-  const fund=v.fund||'free';
-  if(b[fund]<v.amount){toast('موجودی صندوق انتخاب‌شده کافی نیست');return}
+
+ if(formType==='member'){
+  if(!v.name.trim()){
+   toast('نام عضو را وارد کنید');
+   return;
+  }
+  data.familyMembers.push({
+   id:uid(),name:v.name.trim(),phone:v.phone||'',note:v.note||''
+  });
+  save();
+  closeModal();
+  toast('عضو فامیل اضافه شد');
+  return;
  }
- if(currentType==='repair'){
-  const b=getBalances(editing?{type:'repair',id:editing.id}:null);
-  if(b.car<v.amount){toast('موجودی صندوق موتر کافی نیست');return}
+
+ if(formType==='familyTx'&&!v.memberId){
+  toast('ابتدا عضو فامیل ثبت کنید');
+  return;
  }
- if(currentType==='loan'){
-  const b=getBalances(editing?{type:'loan',id:editing.id}:null);
-  if(v.direction==='given'&&b[v.fund]<v.amount){toast('موجودی صندوق برای پرداخت قرضه کافی نیست');return}
+
+ const collection={
+  income:'income',expense:'expenses',gas:'gasUses',
+  repair:'repairs',transfer:'transfers',cash:'cashOps',
+  loan:'loans',familyTx:'familyTransactions'
+ }[formType];
+
+ if(!collection){
+  toast('نوع عملیات معتبر نیست');
+  return;
  }
- if(currentType==='payment'){
-  const loan=data.loans.find(l=>l.id===v.loanId);
-  const already=old?num(old.amount):0;
-  if(!loan||remainingLoan(loan)+already<v.amount){toast('مبلغ تسویه از باقی‌مانده قرضه بیشتر است');return}
-  item.person=loan.person;
- }
- if(old){
-  const i=data[collection].findIndex(z=>z.id===old.id);data[collection][i]=item;
- }else data[collection].push(item);
- save();closeModal();toast(old?'تغییرات ذخیره شد':'اطلاعات با موفقیت ثبت شد');
-}
-function setReport(p,btn){
- reportPeriod=p;document.querySelectorAll('#reportTabs .tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderReports();
-}
-function inPeriod(date){
- if(reportPeriod==='all')return true;
- const [y,m,d]=dateParts(date),[ty,tm,td]=dateParts(todaySolar());
- if(!y)return false;
- if(reportPeriod==='day')return y===ty&&m===tm&&d===td;
- if(reportPeriod==='month')return y===ty&&m===tm;
- if(reportPeriod==='week'){
-  const a=y*372+m*31+d,b=ty*372+tm*31+td;
-  return a<=b&&b-a<7;
- }
- return true;
-}
-function renderReports(){
- const income=data.income.filter(x=>inPeriod(x.date)).reduce((s,x)=>s+num(x.amount),0);
- const exp=data.expenses.filter(x=>inPeriod(x.date)).reduce((s,x)=>s+num(x.amount),0);
- const rep=data.repairs.filter(x=>inPeriod(x.date)).reduce((s,x)=>s+num(x.amount),0);
- const transfers=data.transfers.filter(x=>inPeriod(x.date)).reduce((s,x)=>s+num(x.amount),0);
- document.getElementById('reportIncome').textContent=fmt(income);
- document.getElementById('reportExpense').textContent=fmt(exp);
- document.getElementById('reportRepair').textContent=fmt(rep);
- document.getElementById('reportTransfers').textContent=fmt(transfers);
- document.getElementById('reportNet').textContent=fmt(income-exp-rep);
- const values=[['درآمد',income,'#20b981'],['مصارف',exp,'#ed6470'],['ترمیم موتر',rep,'#ff9c45'],['انتقال بین صندوق‌ها',transfers,'#4385f5']];
- const max=Math.max(1,...values.map(x=>x[1]));
- document.getElementById('reportDetails').innerHTML=values.map(x=>`<div class="bar-row"><span>${x[0]}</span><div class="bar-track"><div class="bar-fill" style="width:${x[1]/max*100}%;background:${x[2]}"></div></div><span class="bar-value">${Math.round(x[1]).toLocaleString('en-US')}</span></div>`).join('');
- const taken=data.loans.filter(x=>x.direction==='taken').reduce((s,x)=>s+remainingLoan(x),0);
- const given=data.loans.filter(x=>x.direction==='given').reduce((s,x)=>s+remainingLoan(x),0);
- document.getElementById('loanSummary').innerHTML=`<div class="settings-row"><div><b>قرضه‌های گرفته‌شده</b><small>پولی که باید پس بدهید</small></div><strong style="color:#e56c72">${fmt(taken)}</strong></div><div class="settings-row"><div><b>قرضه‌های داده‌شده</b><small>پولی که باید دریافت کنید</small></div><strong style="color:#20a77b">${fmt(given)}</strong></div>`;
-}
-function setHistoryFilter(f,btn){
- historyFilter=f;document.querySelectorAll('#historyTabs .tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderHistory();
-}
-function renderHistory(){
- let list=allRecords(),q=(document.getElementById('historySearch')?.value||'').toLowerCase();
- if(historyFilter!=='all')list=list.filter(x=>x.type===historyFilter||(historyFilter==='loan'&&x.type==='payment'));
- if(q)list=list.filter(x=>[x.title,x.note,x.person,x.date,x.label].join(' ').toLowerCase().includes(q));
- document.getElementById('historyCount').textContent=list.length+' ثبت';
- document.getElementById('historyList').innerHTML=list.length?list.map(r=>{
-  let desc=r.note||r.person||'';
-  if(r.type==='transfer')desc=`${fundName(r.from)} به ${fundName(r.to)}`;
-  if(r.type==='payment')desc='تسویه قرضه · '+(r.person||'');
-  return `<div class="history-card"><div class="recent-icon" style="background:${iconBg(r.type)}">${r.icon}</div><div class="history-main"><b>${esc(r.title||r.label)}</b><small>${esc(desc)} · ${esc(r.date)}</small></div><div class="history-side"><strong>${recordAmount(r)}</strong><div class="history-actions">${r.type!=='payment'?`<button class="mini-btn" onclick="editRecord('${r.type}','${r.id}')">ویرایش</button>`:''}<button class="mini-btn del" onclick="deleteRecord('${r.type}','${r.id}')">حذف</button></div></div></div>`;
- }).join(''):'<div class="panel empty">موردی برای نمایش وجود ندارد.</div>';
-}
-function editRecord(type,id){
- const map={income:'income',expense:'expenses',repair:'repairs',transfer:'transfers',cash:'cashOps',loan:'loans',payment:'loanPayments'};
- if(type==='payment'){toast('برای اصلاح تسویه، آن را حذف و دوباره ثبت کنید');return}
- openForm(type,id);
-}
-function deleteRecord(type,id){
- if(!confirm('آیا از حذف این ثبت مطمئن هستید؟'))return;
- const map={income:'income',expense:'expenses',repair:'repairs',transfer:'transfers',cash:'cashOps',loan:'loans',payment:'loanPayments'};
- const key=map[type];
- if(!key)return;
- if(type==='loan'&&data.loanPayments.some(p=>p.loanId===id)){toast('ابتدا تسویه‌های این قرضه را حذف کنید');return}
- data[key]=data[key].filter(x=>x.id!==id);save();toast('ثبت حذف شد');
-}
-function backupData(){
- const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
- const url=URL.createObjectURL(blob),a=document.createElement('a');
- a.href=url;a.download='hamrah-motor-backup-'+todaySolar().replaceAll('/','-')+'.json';a.click();URL.revokeObjectURL(url);
- toast('نسخه پشتیبان آماده شد');
-}
-function restoreData(e){
- const file=e.target.files[0];if(!file)return;
- const reader=new FileReader();
- reader.onload=()=>{
-  try{
-   const d=JSON.parse(reader.result);
-   const keys=['income','expenses','repairs','transfers','cashOps','loans','loanPayments'];
-   if(!d||!keys.every(k=>Array.isArray(d[k])))throw Error('invalid');
-   if(!confirm('اطلاعات فعلی با نسخه پشتیبان جایگزین شود؟'))return;
-   data={...defaults(),...d};save();toast('اطلاعات بازیابی شد');
-  }catch(err){toast('فایل پشتیبان معتبر نیست')}
-  e.target.value='';
+
+ const old=editing?findRecord(formType,editing.id):null;
+
+ const item={
+  ...v,id:old?.id||uid(),amount:n,date,note:v.note||''
  };
- reader.readAsText(file);
+
+ if(formType==='income'){
+  item.allocations=allocations(n);
+  item.title='درآمد روزانه';
+ }
+
+ if(formType==='expense')item.title=v.title||'مصرف';
+ if(formType==='gas')item.title='مصرف گاز';
+ if(formType==='repair')item.title=v.title||'ترمیم موتر';
+
+ if(formType==='transfer'){
+  if(v.from===v.to){
+   toast('صندوق مبدا و مقصد باید متفاوت باشد');
+   return;
+  }
+  if(n>getBalances()[v.from]+(old?old.amount:0)){
+   toast('موجودی صندوق کافی نیست');
+   return;
+  }
+  item.title='انتقال پول';
+ }
+
+ if(formType==='expense'){
+  if(n>getBalances()[v.fund]+(old?old.amount:0)){
+   toast('موجودی صندوق کافی نیست');
+   return;
+  }
+ }
+
+ if(formType==='repair'&&n>getBalances().car+(old?old.amount:0)){
+  toast('موجودی صندوق موتر کافی نیست');
+  return;
+ }
+
+ if(formType==='gas'&&n>getBalances().gas+(old?old.amount:0)){
+  toast('موجودی حساب گاز کافی نیست');
+  return;
+ }
+
+ if(formType==='familyTx'){
+  item.title=v.direction==='given'
+   ?'پرداخت به '+memberName(v.memberId)
+   :'برگشت پول از '+memberName(v.memberId);
+
+  if(v.direction==='given'&&n>getBalances()[v.fund]+(old?old.amount:0)){
+   toast('موجودی صندوق کافی نیست');
+   return;
+  }
+
+  const stats=familyStats(v.memberId);
+
+  if(v.direction==='returned'&&n>stats.balance+(old&&old.direction==='returned'?old.amount:0)){
+   toast('مبلغ برگشتی از باقی‌مانده بیشتر است');
+   return;
+  }
+ }
+
+ if(formType==='cash')item.title=v.title||'پول نقدی';
+
+ if(formType==='loan'){
+  item.title=(v.direction==='taken'?'قرض گرفته از ':'قرض داده به ')+(v.person||'شخص');
+ }
+
+ if(old){
+  const idx=data[collection].findIndex(x=>x.id===old.id);
+  if(idx>=0)data[collection][idx]=item;
+ }else{
+  data[collection].push(item);
+ }
+
+ save();
+ closeModal();
+ toast('اطلاعات با موفقیت ذخیره شد');
 }
+
+function openFamilyTransaction(id){
+ openForm('familyTx');
+ setTimeout(()=>{
+  const s=document.querySelector('[name="memberId"]');
+  if(s)s.value=id;
+ },0);
+}
+
+function editRecord(type,id){
+ const map={
+  income:'income',expense:'expense',gas:'gas',
+  repair:'repair',transfer:'transfer',cash:'cash',loan:'loan'
+ };
+ if(map[type])openForm(map[type],id);
+ else toast('ویرایش این نوع عملیات در این نسخه فعال نیست');
+}
+
+function deleteMember(id){
+ if(data.familyTransactions.some(x=>x.memberId===id)){
+  toast('برای حفظ تاریخچه، ابتدا عملیات این عضو را حذف کنید');
+  return;
+ }
+ if(confirm('این عضو حذف شود؟')){
+  data.familyMembers=data.familyMembers.filter(x=>x.id!==id);
+  save();
+ }
+}
+
+/* پشتیبان‌گیری */
+function backup(){
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+ a.href=url;
+ a.download='hamrah-motor-backup-'+dateNow().replaceAll('/','-')+'.json';
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ toast('فایل پشتیبان آماده شد');
+}
+
+/* بازیابی پشتیبان، با پشتیبانی از نسخه‌های قبلی */
+function restoreBackup(e){
+ const file=e.target.files[0];
+ if(!file)return;
+
+ const r=new FileReader();
+
+ r.onload=()=>{
+  try{
+   const x=JSON.parse(r.result);
+   if(!x||!Array.isArray(x.income))throw Error();
+
+   data={
+    ...defaults(),...x,
+    income:x.income||[],
+    expenses:x.expenses||[],
+    repairs:x.repairs||[],
+    transfers:x.transfers||[],
+    cashOps:x.cashOps||[],
+    loans:x.loans||[],
+    loanPayments:x.loanPayments||[],
+    gasUses:x.gasUses||[],
+    familyMembers:x.familyMembers||[],
+    familyTransactions:x.familyTransactions||[]
+   };
+
+   save();
+   toast('پشتیبان بازیابی شد');
+  }catch(err){
+   toast('فایل پشتیبان معتبر نیست');
+  }
+ };
+
+ r.readAsText(file);
+ e.target.value='';
+}
+
+document.getElementById('today').textContent=today();
 renderAll();
-if('serviceWorker' in navigator){
- window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-}
 </script>
 </body>
 </html>
