@@ -878,6 +878,14 @@ function restoreBackup(e){
 
 document.getElementById('today').textContent=today();
 renderAll();
+ <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(error => console.error('SW Error:', error));
+  });
+}
 </script>
+
 </body>
 </html>
