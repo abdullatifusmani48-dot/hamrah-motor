@@ -4,144 +4,366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#071810">
-<meta name="description" content="همراه موتر؛ مدیریت درآمد، صندوق‌ها و مصارف">
+<meta name="theme-color" content="#071910">
+<meta name="description" content="همراه موتر؛ سیستم حرفه‌ای مدیریت مالی">
 <link rel="manifest" href="./manifest.json">
 <title>همراه موتر | مدیریت مالی</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+
 :root{
- --bg:#071810;--panel:#10291e;--panel2:#173829;
- --line:#294b39;--gold:#d9b66c;--gold2:#f1dba4;
- --green:#54c994;--red:#f17d7d;--blue:#7bb9ef;
- --text:#f4f5ed;--muted:#9aafa1;
- --shadow:0 15px 40px #0005;--radius:22px;
+ --bg:#071710;
+ --bg2:#0b2017;
+ --surface:#10291e;
+ --surface2:#153628;
+ --surface3:#1c4331;
+ --line:#294b39;
+ --gold:#d8b56c;
+ --gold2:#f2dfac;
+ --gold3:#9d793d;
+ --green:#63d6a0;
+ --red:#ff8585;
+ --blue:#83c3f5;
+ --purple:#b7a1f4;
+ --text:#f4f5ef;
+ --muted:#91a99a;
+ --shadow:0 18px 45px #0005;
+ --radius:23px;
 }
+
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
- margin:0;padding:0 0 calc(88px + env(safe-area-inset-bottom));
- background:radial-gradient(ellipse at 85% 0%,#1d4933 0,transparent 32%),var(--bg);
- color:var(--text);font-family:Vazirmatn,Tahoma,Arial,sans-serif;min-height:100vh
+ margin:0;
+ min-height:100vh;
+ padding:0 0 calc(100px + env(safe-area-inset-bottom));
+ color:var(--text);
+ font-family:Vazirmatn,Tahoma,Arial,sans-serif;
+ background:
+ radial-gradient(ellipse at 85% -5%,#28553a 0,transparent 31%),
+ radial-gradient(ellipse at 0% 55%,#153a29 0,transparent 27%),
+ var(--bg);
 }
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
+button:active{transform:scale(.97)}
 header{
- max-width:950px;margin:auto;padding:20px 16px 14px;
- display:flex;align-items:center;justify-content:space-between;gap:10px
+ max-width:1050px;
+ margin:auto;
+ padding:20px 17px 13px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
 }
-.brand{display:flex;align-items:center;gap:11px}
+.brand{display:flex;align-items:center;gap:12px}
 .logo{
- width:47px;height:47px;border-radius:16px;display:grid;place-items:center;
- color:#142318;font-size:23px;font-weight:900;
- background:linear-gradient(145deg,#fff0bd,#bd9148);
- box-shadow:0 7px 22px #d9b66c35
+ width:49px;height:49px;
+ display:grid;place-items:center;
+ border-radius:17px;
+ color:#17251a;
+ font-size:24px;font-weight:900;
+ background:linear-gradient(145deg,#fff1c5,#d7b36b 55%,#987039);
+ box-shadow:0 8px 26px #d9b66c3b,inset 0 1px 2px #fff8;
 }
-h1{font-size:18px;margin:0;font-weight:900}
-.sub{font-size:10px;color:var(--muted);margin-top:3px}
-.date-pill{border:1px solid #8c7546;background:#d9b66c12;color:var(--gold2);border-radius:30px;padding:8px 12px;font-size:11px}
-main{max-width:950px;margin:auto;padding:0 14px}
-.page{display:none;animation:fade .25s ease}
+.brand h1{font-size:18px;font-weight:900;margin:0}
+.brand p{font-size:10px;color:var(--muted);margin:3px 0 0}
+.header-right{display:flex;align-items:center;gap:8px}
+.date-pill{
+ border:1px solid #8b7446;
+ background:#d8b56c12;
+ color:var(--gold2);
+ padding:8px 11px;
+ border-radius:30px;
+ font-size:10px;
+ white-space:nowrap;
+}
+main{max-width:1050px;margin:auto;padding:0 14px}
+.page{display:none;animation:pageIn .28s ease}
 .page.active{display:block}
-@keyframes fade{from{opacity:.5;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
 .hero{
- position:relative;overflow:hidden;border:1px solid #967b48;border-radius:28px;
- padding:22px 20px;margin:7px 0 18px;
- background:radial-gradient(circle at 10% 110%,#d9b66c28,transparent 40%),linear-gradient(130deg,#24523a,#102a1d 60%,#3a301c);
- box-shadow:var(--shadow)
+ position:relative;
+ overflow:hidden;
+ border:1px solid #a98a4d88;
+ border-radius:29px;
+ padding:22px 20px;
+ margin:7px 0 17px;
+ background:
+ radial-gradient(circle at 90% 0%,#d9b66c25,transparent 34%),
+ radial-gradient(circle at 0% 100%,#64d69b20,transparent 35%),
+ linear-gradient(135deg,#214b34,#10291d 55%,#2b2a1d);
+ box-shadow:var(--shadow),inset 0 1px 0 #ffffff17;
 }
-.eyebrow{font-size:12px;color:#d8ddcf}
-.total{font-size:36px;font-weight:900;color:#fff;margin:9px 0 0}
-.unit{font-size:11px;color:var(--gold2)}
-.hero-foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
-.mini-stat{padding:9px 12px;border-radius:13px;background:#07180f75;border:1px solid #ffffff18;color:#e8eadf;font-size:10px}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:23px 2px 11px}
-.section-head h2{font-size:14px;margin:0;font-weight:800}
-.hint{font-size:10px;color:var(--muted)}
+.hero:after{
+ content:"";
+ position:absolute;
+ width:180px;height:180px;
+ border:1px solid #f0d99a20;
+ border-radius:50%;
+ left:-80px;top:-100px;
+ box-shadow:0 0 0 18px #f0d99a08,0 0 0 38px #f0d99a05;
+}
+.hero-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.eyebrow{font-size:11px;color:#d5e1d5}
+.hero-icon{
+ width:38px;height:38px;border-radius:13px;
+ display:grid;place-items:center;
+ color:var(--gold2);
+ background:#f0d99a17;border:1px solid #f0d99a35;
+ font-size:18px;
+}
+.total{
+ font-size:36px;font-weight:900;
+ margin:10px 0 0;
+ letter-spacing:.3px;
+ color:#fff;
+ position:relative;z-index:1;
+}
+.unit{font-size:10px;color:var(--gold2);position:relative;z-index:1}
+.hero-foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;position:relative;z-index:1}
+.mini-stat{
+ padding:9px 12px;border-radius:13px;
+ background:#07180f75;border:1px solid #ffffff17;
+ color:#e8eadf;font-size:10px;
+}
+.mini-stat b{color:var(--gold2);margin-right:4px}
+
+.section-head{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:8px;margin:23px 2px 12px;
+}
+.section-head h2{font-size:14px;margin:0;font-weight:900}
+.section-head .hint{font-size:10px;color:var(--muted)}
+
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.card{min-width:0;padding:15px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,#173829dd,#10271ddd);box-shadow:0 8px 24px #0002}
-.wallet{position:relative;overflow:hidden}
-.w-title{font-size:11px;color:var(--muted);display:flex;gap:7px;align-items:center}
-.w-amount{font-size:21px;font-weight:900;margin:11px 0 4px;overflow-wrap:anywhere}
+.card{
+ min-width:0;
+ padding:15px;
+ border:1px solid #315440;
+ border-radius:21px;
+ background:linear-gradient(145deg,#17392add,#10271ddd);
+ box-shadow:0 9px 26px #0002,inset 0 1px 0 #ffffff08;
+ position:relative;
+ overflow:hidden;
+}
+.wallet:after{
+ content:"";
+ position:absolute;
+ width:90px;height:90px;
+ border-radius:50%;
+ left:-40px;bottom:-50px;
+ background:#d8b56c0b;
+}
+.w-title{font-size:11px;color:#b0c2b4;display:flex;gap:7px;align-items:center}
+.w-amount{font-size:22px;font-weight:900;margin:12px 0 4px;overflow-wrap:anywhere}
 .w-note{font-size:9px;color:var(--muted)}
-.gold{color:var(--gold2)}.green{color:var(--green)}.red{color:var(--red)}.blue{color:var(--blue)}
+.gold{color:var(--gold2)}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.blue{color:var(--blue)}
+.purple{color:var(--purple)}
+
 .actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
 .action{
- min-height:80px;padding:12px 5px;display:flex;flex-direction:column;
- justify-content:center;align-items:center;gap:7px;border-radius:17px;
- border:1px solid var(--line);color:var(--text);
- background:linear-gradient(145deg,#183a29,#10271c);font-size:10px
+ min-height:88px;
+ padding:12px 5px;
+ display:flex;flex-direction:column;
+ justify-content:center;align-items:center;gap:8px;
+ border-radius:19px;
+ border:1px solid #315440;
+ color:var(--text);
+ background:linear-gradient(145deg,#193c2b,#10271c);
+ font-size:10px;
+ box-shadow:0 8px 20px #0002,inset 0 1px 0 #ffffff08;
+ transition:.2s;
 }
-.action:active{transform:scale(.96)}
-.ico{font-size:22px;color:var(--gold2)}
-.panel{padding:15px;margin-bottom:11px;border-radius:var(--radius);border:1px solid var(--line);background:linear-gradient(145deg,#132e21,#0f241a)}
+.action:hover{border-color:#b99859;background:#244833}
+.ico{
+ width:35px;height:35px;border-radius:12px;
+ display:grid;place-items:center;
+ color:var(--gold2);
+ background:linear-gradient(145deg,#d8b56c22,#d8b56c08);
+ border:1px solid #d8b56c25;
+ font-size:19px;
+}
+
+.panel{
+ padding:15px;
+ margin-bottom:11px;
+ border-radius:22px;
+ border:1px solid #2d4c39;
+ background:linear-gradient(145deg,#153526,#0e251a);
+ box-shadow:0 8px 24px #0002;
+}
 .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.muted{color:var(--muted)}.small{font-size:10px}
+.muted{color:var(--muted)}
+.small{font-size:10px}
 .list{display:flex;flex-direction:column;gap:9px}
-.record{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid #294536;border-radius:16px;background:#0c2117}
-.r-icon{width:39px;height:39px;flex:none;display:grid;place-items:center;border-radius:13px;background:#234332;font-size:17px}
+.record{
+ display:flex;align-items:center;gap:10px;
+ padding:12px;
+ border:1px solid #294536;
+ border-radius:17px;
+ background:linear-gradient(120deg,#10291d,#0c2117);
+}
+.r-icon{
+ width:40px;height:40px;flex:none;
+ display:grid;place-items:center;
+ border-radius:14px;
+ background:linear-gradient(145deg,#294b37,#1a3527);
+ border:1px solid #49634b;
+ font-size:17px;
+}
 .r-main{flex:1;min-width:0}
 .r-title{font-size:11px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .r-meta{font-size:9px;color:var(--muted);margin-top:5px}
-.r-value{font-size:11px;font-weight:800;white-space:nowrap;text-align:left}
-.empty{text-align:center;color:var(--muted);padding:25px 10px;font-size:11px}
-input,select,textarea{width:100%;border:1px solid #355644;background:#091c12;color:var(--text);padding:12px;border-radius:13px;outline:none;font-size:12px}
-input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+.r-value{font-size:11px;font-weight:900;white-space:nowrap;text-align:left}
+.empty{text-align:center;color:var(--muted);padding:26px 10px;font-size:11px}
+
+input,select,textarea{
+ width:100%;
+ border:1px solid #355644;
+ background:#091c12;
+ color:var(--text);
+ padding:12px;
+ border-radius:14px;
+ outline:none;
+ font-size:12px;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px #d8b56c13}
 input::placeholder,textarea::placeholder{color:#738779}
 label{display:block;font-size:10px;color:var(--muted);margin:12px 0 6px}
 textarea{min-height:70px;resize:vertical}
-.btn{border:0;border-radius:13px;padding:11px 15px;background:linear-gradient(135deg,#f2dfa9,#bd9148);color:#18251a;font-weight:900;font-size:11px}
-.btn.secondary{background:#203d2d;color:var(--text);border:1px solid #365542}
+.btn{
+ border:0;border-radius:14px;padding:11px 16px;
+ background:linear-gradient(135deg,#f2dfa9,#bd9148);
+ color:#18251a;font-weight:900;font-size:11px;
+ box-shadow:0 5px 14px #d8b56c22;
+}
+.btn.secondary{
+ background:linear-gradient(145deg,#234633,#173626);
+ color:var(--text);border:1px solid #3b6349;box-shadow:none;
+}
+.btn.danger{background:#4a2929;color:#ffc4c4;border:1px solid #754444;box-shadow:none}
 .btn.full{width:100%;margin-top:15px}
-.tabs{display:flex;gap:7px;overflow-x:auto;padding:3px 0 11px}
-.tab{border:1px solid var(--line);background:#12291d;color:var(--muted);border-radius:30px;padding:9px 13px;white-space:nowrap;font-size:10px}
-.tab.active{background:var(--gold);color:#18251a;border-color:var(--gold)}
-.bottom{position:fixed;bottom:0;left:0;right:0;z-index:5;background:#091b12ed;backdrop-filter:blur(15px);border-top:1px solid #294637;padding:8px 5px calc(8px + env(safe-area-inset-bottom))}
-.nav{width:min(950px,100%);margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
-.nav button{border:0;background:transparent;color:var(--muted);font-size:9px;padding:6px 2px;border-radius:12px}
-.nav button span{display:block;font-size:19px;margin-bottom:3px}
+.tabs{display:flex;gap:7px;overflow-x:auto;padding:3px 0 12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+ border:1px solid var(--line);background:#12291d;color:var(--muted);
+ border-radius:30px;padding:9px 14px;white-space:nowrap;font-size:10px;
+}
+.tab.active{background:linear-gradient(135deg,#f2dfa9,#bd9148);color:#18251a;border-color:var(--gold);font-weight:900}
+
+.bottom{
+ position:fixed;bottom:0;left:0;right:0;z-index:5;
+ background:#091b12ed;backdrop-filter:blur(18px);
+ border-top:1px solid #294637;
+ padding:8px 5px calc(8px + env(safe-area-inset-bottom));
+}
+.nav{width:min(1050px,100%);margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.nav button{
+ border:0;background:transparent;color:var(--muted);
+ font-size:9px;padding:7px 2px;border-radius:14px;
+}
+.nav button span{display:block;font-size:20px;margin-bottom:3px}
 .nav button.active{color:var(--gold2);background:#294333}
-.modal-bg{display:none;position:fixed;inset:0;background:#000b;z-index:10;align-items:flex-end;justify-content:center;padding:10px}
+.nav button.active span{filter:drop-shadow(0 0 5px #d8b56c55)}
+
+.modal-bg{
+ display:none;position:fixed;inset:0;background:#000c;z-index:10;
+ align-items:flex-end;justify-content:center;padding:10px;
+ backdrop-filter:blur(5px);
+}
 .modal-bg.show{display:flex}
-.modal{width:min(600px,100%);max-height:91vh;overflow:auto;background:linear-gradient(145deg,#163526,#0c2117);border:1px solid #526d53;border-radius:25px;padding:17px;box-shadow:var(--shadow)}
-.modal-top{display:flex;justify-content:space-between;align-items:center}
+.modal{
+ width:min(600px,100%);max-height:91vh;overflow:auto;
+ background:linear-gradient(145deg,#173a29,#0b2017);
+ border:1px solid #63794d;border-radius:27px;
+ padding:18px;box-shadow:var(--shadow);
+}
+.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .modal-top h3{font-size:15px;margin:0}
-.x{border:0;background:#294534;color:#fff;border-radius:10px;width:32px;height:32px;font-size:18px}
-.toast{position:fixed;bottom:95px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f0d99a;color:#17251b;border-radius:30px;padding:11px 17px;font-size:11px;z-index:20;transition:.25s;white-space:nowrap}
+.x{border:0;background:#294534;color:#fff;border-radius:11px;width:34px;height:34px;font-size:19px}
+.toast{
+ position:fixed;bottom:100px;left:50%;transform:translate(-50%,20px);
+ opacity:0;pointer-events:none;background:#f0d99a;color:#17251b;
+ border-radius:30px;padding:11px 17px;font-size:11px;z-index:20;
+ transition:.25s;white-space:nowrap;box-shadow:var(--shadow)
+}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.bar-wrap{margin:13px 0}
+
+.bar-wrap{margin:14px 0}
 .bar-label{display:flex;justify-content:space-between;font-size:10px;margin-bottom:7px}
-.bar{height:8px;border-radius:10px;background:#294234;overflow:hidden}
+.bar{height:9px;border-radius:10px;background:#294234;overflow:hidden}
 .bar i{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#b58e4d,#f0d99a)}
+.notice{
+ padding:12px 14px;border-radius:15px;
+ background:#d9b66c12;border:1px solid #8c754644;
+ color:#e8d7a8;font-size:10px;line-height:2;
+}
 .member{display:flex;align-items:center;gap:10px}
-.avatar{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:#294b37;color:var(--gold2);font-weight:900}
-.notice{padding:11px 13px;border-radius:14px;background:#d9b66c12;border:1px solid #8c754644;color:#e8d7a8;font-size:10px;line-height:1.9}
+.avatar{
+ width:42px;height:42px;border-radius:15px;
+ display:grid;place-items:center;background:linear-gradient(145deg,#34583b,#1a3526);
+ border:1px solid #63794d;color:var(--gold2);font-weight:900
+}
 .attendance{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}
-.attendance button{padding:10px 3px;border-radius:12px;border:1px solid var(--line);background:#10291e;color:var(--text);font-size:10px}
-.attendance button.selected{background:#d9b66c;color:#17251b;border-color:var(--gold);font-weight:900}
-@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.actions{grid-template-columns:repeat(6,minmax(0,1fr))}.modal-bg{align-items:center}}
-@media(max-width:390px){.total{font-size:30px}.grid{gap:8px}.card{padding:12px}.w-amount{font-size:18px}}
+.attendance button{
+ padding:11px 3px;border-radius:13px;
+ border:1px solid var(--line);background:#10291e;color:var(--text);font-size:10px
+}
+.attendance button.selected{background:var(--gold);color:#17251b;border-color:var(--gold);font-weight:900}
+.settings-days{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.settings-days label{
+ display:flex;align-items:center;gap:8px;margin:0;
+ border:1px solid var(--line);padding:10px;border-radius:12px;
+ background:#0b2117;color:var(--text)
+}
+.settings-days input{width:16px;height:16px;accent-color:var(--gold)}
+.stat-line{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #ffffff10;font-size:11px}
+.stat-line:last-child{border:0}
+@media(min-width:650px){
+ .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .actions{grid-template-columns:repeat(6,minmax(0,1fr))}
+ .modal-bg{align-items:center}
+ .hero{padding:28px}
+}
+@media(max-width:390px){
+ .total{font-size:31px}
+ .grid{gap:8px}
+ .card{padding:12px}
+ .w-amount{font-size:19px}
+ .date-pill{font-size:9px;padding:7px}
+}
 </style>
 </head>
-<body>
 
+<body>
 <header>
  <div class="brand">
   <div class="logo">م</div>
-  <div><h1>همراه موتر</h1><div class="sub">مدیریت هوشمند درآمد و مصارف</div></div>
+  <div><h1>همراه موتر</h1><p>مدیریت هوشمند درآمد و مصارف</p></div>
  </div>
- <div class="date-pill" id="today"></div>
+ <div class="header-right"><div class="date-pill" id="today"></div></div>
 </header>
 
 <main>
+
 <section class="page active" id="page-home">
  <div class="hero">
-  <div class="eyebrow">مجموع موجودی تمام صندوق‌ها</div>
-  <div class="total" id="grandTotal">0</div><div class="unit">افغانی</div>
+  <div class="hero-top">
+   <div class="eyebrow">مجموع موجودی تمام صندوق‌ها</div>
+   <div class="hero-icon">◈</div>
+  </div>
+  <div class="total" id="grandTotal">0</div>
+  <div class="unit">افغانی</div>
   <div class="hero-foot">
-   <div class="mini-stat">درآمد امروز: <b id="todayIncome">0</b></div>
-   <div class="mini-stat">مصارف امروز: <b id="todayExpense">0</b></div>
-   <div class="mini-stat">گاز روزانه: <b>200</b></div>
+   <div class="mini-stat">درآمد امروز <b id="todayIncome">0</b></div>
+   <div class="mini-stat">مصارف امروز <b id="todayExpense">0</b></div>
+   <div class="mini-stat">گاز روزانه <b>200</b></div>
   </div>
  </div>
 
@@ -166,14 +388,17 @@ textarea{min-height:70px;resize:vertical}
   <button class="action" onclick="showPage('family')"><span class="ico">👥</span>اعضای فامیل</button>
  </div>
 
- <div class="section-head"><h2>آخرین فعالیت‌ها</h2><button class="btn secondary" onclick="showPage('history')">همه فعالیت‌ها</button></div>
+ <div class="section-head"><h2>آخرین فعالیت‌ها</h2><button class="btn secondary" onclick="showPage('history')">مشاهده همه</button></div>
  <div class="panel"><div class="list" id="recentList"></div></div>
 </section>
 
 <section class="page" id="page-reports">
- <div class="section-head"><h2>گزارش مالی</h2><span class="hint">بررسی فعالیت‌ها</span></div>
+ <div class="section-head"><h2>گزارش مالی</h2><span class="hint">تحلیل عملکرد مالی</span></div>
  <div class="tabs" id="periodTabs">
-  <button class="tab active" data-period="day">امروز</button><button class="tab" data-period="week">این هفته</button><button class="tab" data-period="month">این ماه</button><button class="tab" data-period="all">تمام مدت</button>
+  <button class="tab active" data-period="day">امروز</button>
+  <button class="tab" data-period="week">این هفته</button>
+  <button class="tab" data-period="month">این ماه</button>
+  <button class="tab" data-period="all">تمام مدت</button>
  </div>
  <div class="grid">
   <div class="card"><div class="w-title">درآمد</div><div class="w-amount green" id="repIncome">0</div></div>
@@ -181,13 +406,13 @@ textarea{min-height:70px;resize:vertical}
   <div class="card"><div class="w-title">مصرف گاز</div><div class="w-amount blue" id="repGas">0</div></div>
   <div class="card"><div class="w-title">ترمیم موتر</div><div class="w-amount gold" id="repRepair">0</div></div>
  </div>
- <div class="section-head"><h2>جزئیات گزارش</h2></div>
+ <div class="section-head"><h2>تحلیل و جزئیات</h2></div>
  <div class="panel" id="reportDetails"></div>
 </section>
 
 <section class="page" id="page-family">
  <div class="section-head"><h2>حساب اعضای فامیل</h2><button class="btn" onclick="openForm('member')">+ عضو جدید</button></div>
- <div class="notice">برای هر عضو، پول پرداخت‌شده، پول برگشتی و باقی‌مانده جداگانه محاسبه می‌شود.</div>
+ <div class="notice">برای هر عضو، پول پرداخت‌شده، برگشتی و باقی‌مانده جداگانه محاسبه می‌شود.</div>
  <div class="list" id="familyList" style="margin-top:12px"></div>
 </section>
 
@@ -195,18 +420,24 @@ textarea{min-height:70px;resize:vertical}
  <div class="section-head"><h2>تاریخچه عملیات</h2></div>
  <input id="historySearch" placeholder="جستجو در عنوان یا یادداشت..." oninput="renderHistory()">
  <div class="tabs" id="historyTabs">
-  <button class="tab active" data-filter="all">همه</button><button class="tab" data-filter="income">درآمد</button><button class="tab" data-filter="expense">مصارف</button><button class="tab" data-filter="gas">گاز</button><button class="tab" data-filter="family">فامیل</button><button class="tab" data-filter="repair">ترمیم</button><button class="tab" data-filter="transfer">انتقال</button>
+  <button class="tab active" data-filter="all">همه</button>
+  <button class="tab" data-filter="income">درآمد</button>
+  <button class="tab" data-filter="expense">مصارف</button>
+  <button class="tab" data-filter="gas">گاز</button>
+  <button class="tab" data-filter="family">فامیل</button>
+  <button class="tab" data-filter="repair">ترمیم</button>
+  <button class="tab" data-filter="transfer">انتقال</button>
  </div>
  <div class="list" id="historyList"></div>
 </section>
 
 <section class="page" id="page-settings">
- <div class="section-head"><h2>تنظیمات</h2></div>
+ <div class="section-head"><h2>تنظیمات سیستم</h2></div>
 
  <div class="panel">
   <h3 style="font-size:13px">روزهای رخصتی هفتگی</h3>
   <p class="small muted">روزهایی را انتخاب کن که معمولاً به دفتر نمی‌روی. در این روزها مصرف گاز ثبت نمی‌شود.</p>
-  <div class="grid" id="weekdaySettings">
+  <div class="settings-days" id="weekdaySettings">
    <label><input type="checkbox" value="0"> یکشنبه</label>
    <label><input type="checkbox" value="1"> دوشنبه</label>
    <label><input type="checkbox" value="2"> سه‌شنبه</label>
@@ -220,8 +451,8 @@ textarea{min-height:70px;resize:vertical}
 
  <div class="panel">
   <h3 style="font-size:13px">ثبت وضعیت حضور روزانه</h3>
-  <div class="notice">اگر در یک روز کاری به دفتر نرفتی، همان روز را «عدم حضور» انتخاب کن تا مصرف گاز کم نشود. روزهای رخصتی نیز خودکار محاسبه نمی‌شوند.</div>
-  <label>تاریخ</label>
+  <div class="notice">اگر در یک روز کاری به دفتر نرفتی، همان روز را «عدم حضور» انتخاب کن تا مصرف گاز کم نشود.</div>
+  <label>تاریخ هجری شمسی</label>
   <input id="attendanceDate" placeholder="1405/08/06">
   <div class="attendance">
    <button onclick="setAttendance('present')">حاضر بودم</button>
@@ -233,17 +464,20 @@ textarea{min-height:70px;resize:vertical}
 
  <div class="panel">
   <h3 style="font-size:13px">پشتیبان اطلاعات</h3>
-  <p class="small muted">برای محافظت از اطلاعات، به‌صورت منظم فایل پشتیبان بگیر.</p>
+  <p class="small muted">برای محافظت از اطلاعات مالی، به‌صورت منظم فایل پشتیبان بگیر.</p>
   <button class="btn full" onclick="backup()">دریافت فایل پشتیبان</button>
   <label for="restoreFile">بازیابی فایل پشتیبان</label>
   <input id="restoreFile" type="file" accept="application/json" onchange="restoreBackup(event)">
  </div>
+
  <div class="panel">
-  <div class="row"><span class="small muted">نسخه برنامه</span><b class="small">همراه موتر 4.0</b></div>
-  <div class="row" style="margin-top:12px"><span class="small muted">ذخیره‌سازی</span><b class="small green">حافظه همین دستگاه</b></div>
-  <div class="row" style="margin-top:12px"><span class="small muted">حالت کار</span><b class="small green">آفلاین</b></div>
+  <div class="stat-line"><span class="muted">نام سیستم</span><b>همراه موتر</b></div>
+  <div class="stat-line"><span class="muted">نسخه</span><b>5.0 Premium</b></div>
+  <div class="stat-line"><span class="muted">ذخیره‌سازی</span><b class="green">حافظه همین دستگاه</b></div>
+  <div class="stat-line"><span class="muted">حالت کار</span><b class="green">آفلاین</b></div>
  </div>
 </section>
+
 </main>
 
 <div class="bottom">
@@ -270,7 +504,7 @@ textarea{min-height:70px;resize:vertical}
 const STORAGE_KEY='hamrahMotor_v2';
 
 const defaults=()=>({
- version:4,currency:'افغانی',
+ version:5,currency:'افغانی',
  income:[],expenses:[],repairs:[],transfers:[],
  cashOps:[],loans:[],loanPayments:[],
  gasUses:[],familyMembers:[],familyTransactions:[],
@@ -301,7 +535,6 @@ function save(){
  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
  renderAll();
 }
-
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const num=v=>Math.max(0,Number(v)||0);
 const fmt=v=>Math.round(Number(v)||0).toLocaleString('en-US');
@@ -309,7 +542,6 @@ const fmt=v=>Math.round(Number(v)||0).toLocaleString('en-US');
 function esc(s){
  return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
-
 function today(){
  return new Intl.DateTimeFormat('en-US-u-ca-persian-nu-latn',{
   year:'numeric',month:'2-digit',day:'2-digit'
@@ -342,8 +574,6 @@ function allocations(amount){
  const personal=Math.floor(left/2);
  return {gas,car,personal,free:left-personal};
 }
-
-/* تبدیل تاریخ شمسی به روز هفته با جستجوی روز میلادی متناظر */
 function weekdayForSolar(solar){
  const target=String(solar).split('/').map(Number);
  if(target.length!==3)return -1;
@@ -354,10 +584,7 @@ function weekdayForSolar(solar){
  }
  return -1;
 }
-
-function attendanceStatus(date){
- return data.attendance[date]||'';
-}
+function attendanceStatus(date){return data.attendance[date]||''}
 function isHoliday(date){
  const w=weekdayForSolar(date);
  return data.weekendDays.includes(w)||attendanceStatus(date)==='holiday';
@@ -365,26 +592,21 @@ function isHoliday(date){
 function shouldChargeGas(date){
  if(isHoliday(date))return false;
  if(attendanceStatus(date)==='absent')return false;
- if(attendanceStatus(date)==='present')return true;
- // اگر روز کاری است و وضعیت حضور ثبت نشده، به‌طور پیش‌فرض روز کاری حساب می‌شود
  return true;
 }
-
 function addDailyGas(date){
  if(!shouldChargeGas(date))return;
- const exists=data.gasUses.some(x=>x.autoDaily&&x.date===date);
- if(exists)return;
+ if(data.gasUses.some(x=>x.autoDaily&&x.date===date))return;
  data.gasUses.push({
   id:uid(),amount:200,date,
-  title:'مصرف روزانه گاز',note:'ثبت خودکار روز کاری',
+  title:'مصرف روزانه گاز',
+  note:'ثبت خودکار روز کاری',
   autoDaily:true
  });
 }
-
 function ensureDailyGas(){
  const todayISO=localISO();
  if(!data.lastAutoGasDate){
-  // برای نسخه قبلی، از تاریخ امروز آغاز می‌شود تا گذشته دوباره محاسبه نشود
   addDailyGas(today());
   data.lastAutoGasDate=todayISO;
   localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
@@ -408,7 +630,6 @@ function ensureDailyGas(){
  data.lastAutoGasDate=todayISO;
  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
 }
-
 function toast(s){
  const t=document.getElementById('toast');
  t.textContent=s;t.classList.add('show');
@@ -417,7 +638,6 @@ function toast(s){
 function fundName(k){
  return ({car:'صندوق موتر',personal:'پس‌انداز شخصی',free:'پول آزاد',gas:'حساب گاز'})[k]||k;
 }
-
 function getBalances(){
  const b={car:0,personal:0,free:0,gas:0};
  data.income.forEach(x=>{
@@ -437,7 +657,6 @@ function getBalances(){
  data.familyTransactions.forEach(x=>b[x.fund||'free']+=(x.direction==='given'?-1:1)*num(x.amount));
  return b;
 }
-
 function memberName(id){return data.familyMembers.find(m=>m.id===id)?.name||'عضو فامیل'}
 function familyStats(id){
  const a=data.familyTransactions.filter(x=>x.memberId===id);
@@ -445,7 +664,6 @@ function familyStats(id){
  const returned=a.filter(x=>x.direction==='returned').reduce((s,x)=>s+num(x.amount),0);
  return {given,returned,balance:given-returned};
 }
-
 function allRecords(){
  let a=[];
  const add=(arr,type,title,sign)=>{
@@ -462,7 +680,6 @@ function allRecords(){
  add(data.familyTransactions,'family','حساب فامیل',x=>x.direction==='given'?-1:1);
  return a.sort((x,y)=>dateMs(y.date)-dateMs(x.date));
 }
-
 function recordHTML(x){
  const icons={income:'＋',expense:'−',repair:'🔧',gas:'⛽',transfer:'⇄',cash:'↕',loan:'🤝',payment:'✓',family:'👥'};
  const sign=x.sign>0?'+':x.sign<0?'−':'';
@@ -475,7 +692,6 @@ function recordHTML(x){
   </div>
  </div>`;
 }
-
 function renderHome(){
  const b=getBalances(),total=Object.values(b).reduce((s,v)=>s+v,0);
  document.getElementById('grandTotal').textContent=fmt(total);
@@ -489,13 +705,15 @@ function renderHome(){
  const recent=allRecords().slice(0,6);
  document.getElementById('recentList').innerHTML=recent.length?recent.map(recordHTML).join(''):'<div class="empty">هنوز فعالیتی ثبت نشده است.</div>';
 }
-
 function renderFamily(){
  const el=document.getElementById('familyList');
  el.innerHTML=data.familyMembers.length?data.familyMembers.map(m=>{
   const s=familyStats(m.id);
   return `<div class="panel">
-   <div class="row"><div class="member"><div class="avatar">${esc(m.name.slice(0,1))}</div><div><b style="font-size:12px">${esc(m.name)}</b><div class="small muted">${esc(m.phone||'بدون شماره')}</div></div></div><button class="btn secondary" onclick="openFamilyTransaction('${m.id}')">ثبت پول</button></div>
+   <div class="row">
+    <div class="member"><div class="avatar">${esc(m.name.slice(0,1))}</div><div><b style="font-size:12px">${esc(m.name)}</b><div class="small muted">${esc(m.phone||'بدون شماره')}</div></div></div>
+    <button class="btn secondary" onclick="openFamilyTransaction('${m.id}')">ثبت پول</button>
+   </div>
    <div class="grid" style="margin-top:15px">
     <div><div class="small muted">پرداخت‌شده</div><b class="gold">${fmt(s.given)}</b></div>
     <div><div class="small muted">برگشتی</div><b class="green">${fmt(s.returned)}</b></div>
@@ -505,7 +723,6 @@ function renderFamily(){
   </div>`;
  }).join(''):'<div class="panel empty">هنوز عضوی ثبت نشده است.</div>';
 }
-
 function inPeriod(x){
  if(reportPeriod==='all')return true;
  const t=dateMs(x.date),now=dateMs(dateNow());
@@ -537,7 +754,9 @@ function renderAll(){
 function showPage(p){
  document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+p));
  document.querySelectorAll('.nav [data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===p));
- if(p==='family')renderFamily();if(p==='history')renderHistory();if(p==='reports')renderReports();
+ if(p==='family')renderFamily();
+ if(p==='history')renderHistory();
+ if(p==='reports')renderReports();
 }
 document.querySelectorAll('.nav [data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
 document.getElementById('periodTabs').addEventListener('click',e=>{
@@ -552,13 +771,11 @@ document.getElementById('historyTabs').addEventListener('click',e=>{
  document.querySelectorAll('#historyTabs .tab').forEach(x=>x.classList.toggle('active',x===b));
  renderHistory();
 });
-
 function closeModal(){document.getElementById('modalBg').classList.remove('show');editing=null}
 function findRecord(type,id){
  const map={income:'income',expense:'expenses',gas:'gasUses',repair:'repairs',transfer:'transfers',cash:'cashOps',loan:'loans',familyTx:'familyTransactions'};
  return (data[map[type]]||[]).find(x=>x.id===id);
 }
-
 function openForm(type,id=null){
  formType=type;editing=id?{type,id}:null;
  const old=id?findRecord(type,id):null;
@@ -572,7 +789,7 @@ function openForm(type,id=null){
  let body='';
  if(type==='income')body=amountField+dateField+noteField+'<div class="notice" style="margin-top:12px">از درآمد جدید، ابتدا ۲۰۰ افغانی به حساب گاز اختصاص می‌یابد؛ باقی‌مانده میان سه صندوق تقسیم می‌شود.</div>';
  if(type==='expense')body=amountField+funds(old?.fund||'free')+`<label>عنوان مصرف</label><input name="title" value="${esc(old?.title||'مصرف عادی')}" required>`+dateField+noteField;
- if(type==='gas')body=amountField+`<div class="notice">موجودی حساب گاز: ${fmt(getBalances().gas)} افغانی. مصرف روزهای کاری به‌صورت خودکار ثبت می‌شود.</div>`+dateField+noteField;
+ if(type==='gas')body=amountField+`<div class="notice">موجودی حساب گاز: ${fmt(getBalances().gas)} افغانی.</div>`+dateField+noteField;
  if(type==='repair')body=amountField+`<label>عنوان ترمیم</label><input name="title" value="${esc(old?.title||'ترمیم موتر')}" required>`+dateField+noteField;
  if(type==='transfer')body=amountField+`<label>از صندوق</label><select name="from">${['car','personal','free'].map(k=>`<option value="${k}">${fundName(k)}</option>`).join('')}</select><label>به صندوق</label><select name="to">${['car','personal','free'].map(k=>`<option value="${k}">${fundName(k)}</option>`).join('')}</select>`+dateField+noteField;
  if(type==='cash')body=amountField+`<label>نوع عملیات</label><select name="direction"><option value="in">پول داخل صندوق</option><option value="out">پول خارج از صندوق</option></select>`+funds()+`<label>عنوان</label><input name="title" value="پول نقدی">`+dateField+noteField;
@@ -583,7 +800,6 @@ function openForm(type,id=null){
  document.getElementById('modalBg').classList.add('show');
  document.getElementById('entryForm').addEventListener('submit',submitForm);
 }
-
 function submitForm(e){
  e.preventDefault();
  const v=Object.fromEntries(new FormData(e.target).entries()),n=num(v.amount),date=v.date||dateNow();
@@ -597,7 +813,6 @@ function submitForm(e){
  const collection={income:'income',expense:'expenses',gas:'gasUses',repair:'repairs',transfer:'transfers',cash:'cashOps',loan:'loans',familyTx:'familyTransactions'}[formType];
  const old=editing?findRecord(formType,editing.id):null;
  const item={...v,id:old?.id||uid(),amount:n,date,note:v.note||''};
-
  if(formType==='income'){item.allocations=allocations(n);item.title='درآمد روزانه'}
  if(formType==='expense')item.title=v.title||'مصرف';
  if(formType==='gas')item.title='مصرف اضافی گاز';
@@ -618,14 +833,12 @@ function submitForm(e){
  }
  if(formType==='cash')item.title=v.title||'پول نقدی';
  if(formType==='loan')item.title=(v.direction==='taken'?'قرض گرفته از ':'قرض داده به ')+(v.person||'شخص');
-
  if(old){
   const idx=data[collection].findIndex(x=>x.id===old.id);
   if(idx>=0)data[collection][idx]=item;
  }else data[collection].push(item);
  save();closeModal();toast('اطلاعات ذخیره شد');
 }
-
 function openFamilyTransaction(id){
  if(!data.familyMembers.length){toast('ابتدا عضو فامیل ثبت کنید');return}
  openForm('familyTx');
@@ -635,8 +848,6 @@ function deleteMember(id){
  if(data.familyTransactions.some(x=>x.memberId===id)){toast('برای حفظ تاریخچه، عملیات این عضو را حذف کنید');return}
  if(confirm('این عضو حذف شود؟')){data.familyMembers=data.familyMembers.filter(x=>x.id!==id);save();toast('عضو حذف شد')}
 }
-
-/* تنظیم و ثبت روزهای رخصتی */
 function renderWeekdaySettings(){
  document.querySelectorAll('#weekdaySettings input').forEach(c=>{
   c.checked=data.weekendDays.includes(Number(c.value));
@@ -644,11 +855,8 @@ function renderWeekdaySettings(){
 }
 function saveWeekdays(){
  data.weekendDays=[...document.querySelectorAll('#weekdaySettings input:checked')].map(x=>Number(x.value));
- save();
- // حذف مصارف خودکار روزهایی که حالا رخصتی انتخاب شده‌اند
  data.gasUses=data.gasUses.filter(x=>!(x.autoDaily&&isHoliday(x.date)));
- save();
- toast('روزهای رخصتی ذخیره شد');
+ save();toast('روزهای رخصتی ذخیره شد');
 }
 function setAttendance(status){
  const date=document.getElementById('attendanceDate').value.trim();
@@ -665,13 +873,12 @@ function setAttendance(status){
  document.getElementById('attendanceStatus').textContent=names[status]+' برای '+date;
  toast(names[status]);
 }
-
-/* پشتیبان‌گیری و بازیابی */
 function backup(){
  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');
  a.href=url;a.download='hamrah-motor-backup-'+dateNow().replaceAll('/','-')+'.json';
- a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('فایل پشتیبان آماده شد');
+ a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ toast('فایل پشتیبان آماده شد');
 }
 function restoreBackup(e){
  const file=e.target.files[0];if(!file)return;
@@ -692,7 +899,7 @@ function restoreBackup(e){
  r.readAsText(file);e.target.value='';
 }
 
-/* راه‌اندازی */
+/* راه‌اندازی سیستم */
 ensureDailyGas();
 document.getElementById('today').textContent=today();
 document.getElementById('attendanceDate').value=today();
@@ -701,8 +908,7 @@ renderAll();
 
 if('serviceWorker' in navigator){
  window.addEventListener('load',()=>{
-  navigator.serviceWorker.register('./sw.js')
-   .catch(error=>console.error('Service Worker Error:',error));
+  navigator.serviceWorker.register('./sw.js').catch(console.error);
  });
 }
 </script>
