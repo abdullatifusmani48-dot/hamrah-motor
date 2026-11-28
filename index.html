@@ -374,13 +374,20 @@ textarea{min-height:70px;resize:vertical}
   <div class="card wallet"><div class="w-title">💵 پول آزاد</div><div class="w-amount" id="balFree">0</div><div class="w-note">پول قابل استفاده</div></div>
   <div class="card wallet"><div class="w-title">⛽ حساب گاز</div><div class="w-amount blue" id="balGas">0</div><div class="w-note">مصرف روزهای کاری</div></div>
  </div>
-
+<div class="card wallet">
+ <div class="w-title">⛽ صندوق تیل موتر</div>
+ <div class="w-amount gold" id="balFuel">0</div>
+ <div class="w-note">پس‌انداز روزانه 30 افغانی</div>
+</div>
  <div class="section-head"><h2>عملیات سریع</h2><span class="hint">ثبت و مدیریت</span></div>
  <div class="actions">
   <button class="action" onclick="openForm('income')"><span class="ico">＋</span>ثبت درآمد</button>
   <button class="action" onclick="openForm('expense')"><span class="ico">−</span>مصرف عادی</button>
   <button class="action" onclick="openForm('gas')"><span class="ico">⛽</span>مصرف اضافی گاز</button>
   <button class="action" onclick="openForm('repair')"><span class="ico">🔧</span>ترمیم موتر</button>
+  <button class="action" onclick="openForm('fuelPurchase')">
+ <span class="ico">⛽</span>ثبت تیل‌گیری
+</button>
   <button class="action" onclick="openForm('transfer')"><span class="ico">⇄</span>انتقال پول</button>
   <button class="action" onclick="openForm('familyTx')"><span class="ico">👨‍👩‍👧</span>حساب فامیل</button>
   <button class="action" onclick="openForm('cash')"><span class="ico">↕</span>پول داخل/خارج</button>
